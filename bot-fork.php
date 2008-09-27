@@ -14,7 +14,7 @@ $irc_server = "irc.syrolnet.org";
 $irc_port = 6668;
 $irc_chan = "#sardylan";
 $user_name = "filetor";
-
+$function = "E_CHE_LA_VENGO_A_DIRE_A_VOI????";
 
 $functions = array();
 
