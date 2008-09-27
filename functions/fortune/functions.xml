@@ -1,0 +1,8 @@
+<sardylan_db>
+  <function>
+    <name>fortune</name>
+    <privileged>0</privileged>
+    <regex><![CDATA[/^fortune/i]]></regex>
+    <descr>Typing fortune you will read a fortune in the chat</descr>
+  </function>
+</sardylan_db>

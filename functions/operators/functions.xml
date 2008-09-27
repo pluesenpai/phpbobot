@@ -1,0 +1,20 @@
+<sardylan_db>
+  <function>
+    <name>addop</name>
+    <privileged>1</privileged>
+    <regex><![CDATA[/^>(.*)/]]></regex>
+    <descr>Typing >newop I'll add newop in the bot operators list.</descr>
+  </function>
+  <function>
+    <name>rmop</name>
+    <privileged>1</privileged>
+    <regex><![CDATA[/^<(.*)/]]></regex>
+    <descr><![CDATA[Typing <aop I'll remove aop from the bot operators list.]]></descr>
+  </function>
+  <function>
+    <name>listop</name>
+    <privileged>0</privileged>
+    <regex><![CDATA[/^listop/i]]></regex>
+    <descr>Typing listop I'll show you all bot operators.</descr>
+  </function>
+</sardylan_db>

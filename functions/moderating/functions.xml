@@ -1,0 +1,38 @@
+<sardylan_db>
+  <function>
+    <name>addword</name>
+    <privileged>1</privileged>
+    <regex><![CDATA[/^\+(.*)/]]></regex>
+    <descr>Typing +newword it will be added newword to the list of bad words.</descr>
+  </function>
+  <function>
+    <name>rmword</name>
+    <privileged>1</privileged>
+    <regex><![CDATA[/^-(.*)/]]></regex>
+    <descr>Typing -aword it will be removed aword from the list of bad words.</descr>
+  </function>
+  <function>
+    <name>modera</name>
+    <privileged>1</privileged>
+    <regex><![CDATA[/^modera/i]]></regex>
+    <descr>Typing modera the chan will be moderated by me.</descr>
+  </function>
+  <function>
+    <name>stop</name>
+    <privileged>1</privileged>
+    <regex><![CDATA[/^stop/i]]></regex>
+    <descr>Typing stop I will stop moderating this chan.</descr>
+  </function>
+  <function>
+    <name>listwords</name>
+    <privileged>0</privileged>
+    <regex><![CDATA[/^listwords/i]]></regex>
+    <descr>Typing listwords I will show you all bad words.</descr>
+  </function>
+  <function>
+    <name>info</name>
+    <privileged>0</privileged>
+    <regex><![CDATA[/^info/i]]></regex>
+    <descr>Typing info I will inform you if I'm moderating this chan.</descr>
+  </function>
+</sardylan_db>

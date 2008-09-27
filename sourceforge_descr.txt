@@ -1,0 +1,36 @@
+ ======
+| ITA: |
+ ======
+
+  Type:                 Open Source Software Project
+
+  Name:                 phpBobot (o YabiP - Yet another bot in PHP)
+
+  Unix-Name:            phpbobot (o yabip)
+
+  Public Descr:         phpBobot è un BOT per reti IRC scritto in PHP.
+                        E' modulare e può utilizzare un qualsiasi DB
+                        (compresi i Flat Files) per la memorizzazione dei suoi dati.
+
+  Registration Descr:   phpBobot è un BOT per reti IRC. Le funzioni sono varie perché possono
+                        essere aggiunte tramite plugins e proprio per questo motivo può utilizzare
+                        diversi DBMS per la memorizzazione dei dati, compresi i Flat Files.
+
+-----------------------------------------------------------------------------------------------------
+ ======
+| ENG: |
+ ======
+
+  Type:                 Open Source Software Project
+
+  Name:                 phpBobot (or YabiP - Yet another bot in PHP)
+
+  Unix-Name:            phpbobot (or yabip)
+
+  Public Descr:         phpBobot is a BOT for IRC networks written in PHP.
+                        It's modular and it could use any DBMS (and Flat Files too)
+                        to memorize its data.
+
+  Registration Descr:   phpBobot is a BOT for IRC networks. It could have many functions because
+                        they can be added by adding plugins. Because of the plugins it could use
+                        differents DBMS to memorize its data, including Flat Files.
