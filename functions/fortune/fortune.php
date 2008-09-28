@@ -20,15 +20,17 @@
     $LF = chr(69);
     $FIXED_KEY = chr(59);
 
-    $fortunes_dat = getFiles("fortunes/", "dat");
+    $basedir = "functions/fortune/fortunes/"
+
+    $fortunes_dat = getFiles($basedir, "dat");
     $n_file = rand(0, count($fortunes_dat) - 1);
-    $content = file_get_contents(realpath("fortunes/".$fortunes_dat[$n_file]));
-    $n_fortunes = contafortunes("fortunes/".$fortunes_dat[$n_file]);
+    $content = file_get_contents(realpath($basedir.$fortunes_dat[$n_file]));
+    $n_fortunes = contafortunes($basedir.$fortunes_dat[$n_file]);
     if($n_fortunes <= 0)
       return false;
     $foundFortune = 0;
     $parcurs = $currentChar = $previousChar = $procent = 0;
-    $filesize = filesize("fortunes/".$fortunes_dat[$n_file]);
+    $filesize = filesize($basedir.$fortunes_dat[$n_file]);
     $numero = rand(1, $n_fortunes);
     $i = 0;
     $fortune = "";
