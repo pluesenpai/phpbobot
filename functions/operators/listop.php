@@ -3,9 +3,9 @@
   function listop($irc, $irc_chan, $op)
   {
     global $operators;
-    send($irc, "PRIVMSG $irc_chan :Ecco la lista degli operatori:\n");
+    sendmsg($irc, "Ecco la lista degli operatori:", $irc_chan);
     $testo_p = implode(" ", $operators);
-    send($irc, "PRIVMSG $irc_chan :$testo_p\n");
+    sendmsg($irc, "$testo_p", $irc_chan);
   }
 
 ?>

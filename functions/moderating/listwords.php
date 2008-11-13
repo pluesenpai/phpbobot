@@ -3,9 +3,9 @@
   function listwords($socket, $channel, $infos)
   {
     global $bad_words;
-    send($socket, "PRIVMSG $channel :Allora... Ti do l'elenco delle parole vietate!! ;)\n");
+    sendmsg($socket, "Allora... Ti do l'elenco delle parole vietate!! ;)", $channel);
     $testo_p = implode(" ", $bad_words);
-    send($socket, "PRIVMSG $channel :$testo_p\n");
+    sendmsg($socket, "$testo_p", $channel);
   }
 
 ?>

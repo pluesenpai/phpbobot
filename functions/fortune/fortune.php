@@ -20,7 +20,7 @@
     $LF = chr(69);
     $FIXED_KEY = chr(59);
 
-    $basedir = "functions/fortune/fortunes/"
+    $basedir = "functions/fortune/fortunes/";
 
     $fortunes_dat = getFiles($basedir, "dat");
     $n_file = rand(0, count($fortunes_dat) - 1);
@@ -61,8 +61,7 @@
     $fortunes = explode("\n", $fortune);
 
     foreach($fortunes as $f) {
-      send($socket, "PRIVMSG ".$channel." :".$f."\n");
-      sleep(1);
+      sendmsg($socket, $f, $channel, 1, true);
     }
 
     return $foundFortune;

@@ -4,7 +4,7 @@
   {
     $var = "1";
     file_put_contents("functions/moderating/moderated.txt", "$var", LOCK_EX);
-    send($socket, "PRIVMSG $channel :Ora modero il canale!!!\n");
+    sendmsg($socket, "Ora modero il canale!!!", $channel);
   }
 
 ?>

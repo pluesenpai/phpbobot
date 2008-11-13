@@ -7,10 +7,10 @@
     if($ret != false) {
       unset($bad_words[$ret]);
       $bad_words = array_values($bad_words);
-      file_put_contents("bad_words.txt", implode("\n", $bad_words), LOCK_EX);
-      send($socket, "PRIVMSG $channel :Fatto!!! $infos[1] non è più nella lista!!!\n");
+      file_put_contents("functions/moderating/bad_words.txt", implode("\n", $bad_words), LOCK_EX);
+      sendmsg($socket, "Fatto!!! $infos[1] non &egrave; pi&ugrave; nella lista!!!", $channel);
     } else
-      send($socket, "PRIVMSG $channel :Spiacente... $infos[1] non era nella lista!!!\n");
+      sendmsg($socket, "Spiacente... $infos[1] non era nella lista!!!", $channel);
   }
 
 ?>
