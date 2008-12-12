@@ -1,8 +1,10 @@
 <sardylan_db>
-  <function>
-    <name>utstatus</name>
-    <privileged>0</privileged>
-    <regex><![CDATA[/^utstatus/]]></regex>
-    <descr>Typing utstatus it will show you the status of the Urban Terror server.</descr>
-  </function>
+	<function>
+		<name>utstatus</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^utstatus/]]></regex>
+		<descr_name>utstatus</descr_name>
+		<descr>Typing utstatus it will show you the status of the Urban Terror server.</descr>
+		<tipo>normal</tipo>
+	</function>
 </sardylan_db>

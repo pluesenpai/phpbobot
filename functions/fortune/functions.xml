@@ -1,8 +1,26 @@
 <sardylan_db>
-  <function>
-    <name>fortune</name>
-    <privileged>0</privileged>
-    <regex><![CDATA[/^fortune/i]]></regex>
-    <descr>Typing fortune you will read a fortune in the chat</descr>
-  </function>
+	<function>
+		<name>fortune</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^fortune$/i]]></regex>
+		<descr_name>fortune</descr_name>
+		<descr>Typing fortune you will read a fortune in the chat (it could be a "offensive" fortune, too)</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>fortune</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^fortune-i$/i]]></regex>
+		<descr_name>fortune-i</descr_name>
+		<descr>Typing fortune you will read a fortune in the chat (it doesn't show "offensive" fortunes)</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>fortune</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^fortune-o$/i]]></regex>
+		<descr_name>fortune-o</descr_name>
+		<descr>Typing fortune you will read an "offensive" fortune in the chat</descr>
+		<tipo>normal</tipo>
+	</function>
 </sardylan_db>

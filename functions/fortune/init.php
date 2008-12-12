@@ -2,7 +2,7 @@
 
 function fortune_update()
 {
-  return;
+	return;
 }
 
 ?>

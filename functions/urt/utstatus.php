@@ -41,7 +41,7 @@ function ut_send($sck, $preut, $data) {
 	fwrite($sck, "$outdata\n");
 }
 
-function utstatus($socket, $channel, $infos) {
+function utstatus($socket, $channel, $sender, $msg, $infos) {
 	$ut_server = "192.168.0.9";
 	$ut_port = 27960;
 	$ut_psw = ""; #Metti qui la psw di RCon

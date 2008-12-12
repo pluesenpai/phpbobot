@@ -1,197 +1,38 @@
 <?php
 	system("clear");
-
 	declare(ticks = 1);
-	$debug = 1;
+
+	include_once("common.php");
+
 	$irc_server = "irc.syrolnet.org";
 	$irc_port = 6668;
 	$irc_chans = array("#sardylan");
 	$user_name = "bobot";
 	$user_psw = "E_CHE_LA_VENGO_A_DIRE_A_VOI?!?!?!?!?!";
 
-	$functions = array();
-
-	function toUTF8($text)
-	{
-		$testo = htmlentities(html_entity_decode($text));
-
-		return(html_entity_decode($testo, ENT_QUOTES, 'UTF-8'));
+	$debug = false;
+	$colors = true;
+	$chiusura = false;		//When setted to true the Bot will close
+	$functions = array();	//array containing information about functions
+	$on_join = array();		//array containing information about on_join functions
+	$always = array();		//array containing information about functions that must be called on receiving a PRIVMSG
+	for($i = 0; $i < count($irc_chans); $i++) {
+		$users[$irc_chans[$i]] = array();
 	}
 
-	function chiama($folder, $fun, $irc, $irc_chan, $infos)
-	{
-		$pid = pcntl_fork();
-		if($pid == -1) {
-			die("Could not fork");
-		} elseif(!$pid) {
-			include_once("functions/$folder/$fun.php");
-			call_user_func($fun, $irc, $irc_chan, $infos);
-			posix_kill(posix_getppid(), SIGUSR1);
-			posix_kill(posix_getpid(), 9);
-		}
-	}
-
-	function get_from_file($file)
-	{
-		$words_array = preg_replace("#\r\n?|\n#", "", file($file)); //returns an array where elements are the rows of $file
-
-		return $words_array;
-	}
-
-	function removeExtension($fileName)
-	{
-		$ext = strrchr($fileName, '.');
-
-		if($ext !== false) {
-			$fileName = substr($fileName, 0, -strlen($ext));
-		}
-
-		return $fileName;
-	}
-
-	function getFunctions() //It scans the dirs and retrieves all functions for each folder
-	{
-		$folders = getDirs("functions/");
-
-		$i = 0;
-
-		foreach($folders as $folder) {
-			$xml = simplexml_load_file("functions/".$folder."/functions.xml");
-			foreach($xml->function as $func) {
-				$j = 0;
-				$functions[$i][$j++] = $folder;
-				$functions[$i][$j++] = $func->name;
-				$functions[$i][$j++] = $func->privileged;
-				$functions[$i][$j++] = $func->regex;
-				$functions[$i++][$j++] = $func->descr;
-			}
-		}
-
-		return $functions;
-	}
-
-	function getDirs($dir) //Returns list of subdirs from given $dir
-	{
-		$files = scandir($dir);
-
-		foreach($files as $i => $value) {
-			if(substr($value, 0, 1) == '.')           // Removes . and ..
-				unset($files[$i]);
-			elseif(!is_dir($dir.$value))              // Removes Files
-				unset($files[$i]);
-		}
-
-		return array_values($files);
-	}
-
-	function getFiles($dir, $type) //Returns list of files of type $type from the given $dir
-	{
-		$files = scandir($dir);
-		$type_len = strlen($type);
-
-		foreach($files as $i => $value) {
-			if(substr($value, 0, 1) == '.')             // Removes . and ..
-				unset($files[$i]);
-			elseif(is_dir($dir.$value))                 // Removes Directories
-				unset($files[$i]);
-			elseif(substr($value, -1, 1) == '~')        // Removes Backup Files
-				unset($files[$i]);
-			elseif(substr($value, -$type_len, $type_len) != $type)  //Removes files where extension is different from $type
-				unset($files[$i]);
-		}
-
-		return array_values($files); //Restoring array indices
-	}
-
-	function dbg($debug, $text) {
-		if($debug) {
-			echo " [ deb ] $text\n";
-		}
-	}
-
-	function send($stream, $data, $delay = 0) {
-		$pid_write = pcntl_fork();
-		$d = $delay;
-		if($pid_write == -1) {
-			echo "ERROR:  Cannot fork!!!\n";
-			die();
-		} elseif($pid_write) {
-			return true;
-		} elseif(!$pid_write) {
-			echo "   --->> $data";
-			usleep($d * 1000000);
-			fwrite($stream, $data);
-			posix_kill(posix_getpid(), 9);
-		}
-	}
-
-	function sendmsg($stream, $msg, $recv, $delay = 0, $wait = false)
-	{
-		$message = toUTF8($msg);
-		send($stream, "PRIVMSG $recv :$message\n", $delay);
-		if($wait) {
-			pcntl_wait(&$status);
-		}
-	}
-
-	function sig_handler($signo) //Signal handler
-	{
-		switch($signo) {
-			case SIGTERM:
-			case SIGHUP:
-				global $chiusura; //It's global because $chiusura is extern to the function
-				$chiusura = true;
-				break;
-			case SIGUSR1:
-				$dirs = getDirs("functions/");
-				foreach($dirs as $dir) {
-					echo "Calling {$dir}_update\n";
-					call_user_func("{$dir}_update");
-				}
-				break;
-			default:
-				//handle all other signals
-		}
-	}
-
-	function help($irc, $sender, $functions)
-	{
-		$s = $sender;
-		$pid = pcntl_fork();
-		if($pid == -1) {
-			die("Could not fork");
-		} elseif(!$pid) {
-			sendmsg($irc, "Ecco la lista delle funzioni:", $s, 1, true);
-			sendmsg($irc, "( ) help: Shows this listing.", $s, 1, true);
-			sendmsg($irc, "( ) ciao: I'll greet all people in this chan.\n", $s, 1, true);
-			sendmsg($irc, "( ) saluta: I'll greet all people in this chan.\n", $s, 1, true);
-			sendmsg($irc, "( ) salutami: I'll greet you.", $s, 1, true);
-			sendmsg($irc, "(*) sparati: I'll close the connection with this chan.\n", $s, 1, true);
-			sendmsg($irc, "(*) debanna: I'll deban the user indicated.\n", $s, 1, true);
-
-			foreach($functions as $func) {
-				$priv = " ";
-				if($func[2] == 1)
-					$priv = "*";
-				sendmsg($irc, "($priv) $func[1]: $func[4]\n", $s, 1, true);
-			}
-			sendmsg($irc, "     NOTE: (*) means that you need to be bot operator to exec it.", $s);
-			posix_kill(posix_getpid(), 9);
-		}
-	}
+	include_once("colors.php");
 
 	echo "\n\n";
-	echo "roBOT for IRC Network\n\n\n";
-	echo "Summary of connection data:\n\n";
+	echo "{$BOLD}roBOT for IRC Network{$Z}\n\n\n";
+	echo "{$UNDERLINE}Summary of connection data:{$Z}\n\n";
 	echo "Server:\t\t$irc_server\n";
 	echo "Port:\t\t$irc_port\n";
-	echo "Channel:\t$irc_chan\n";
+	echo "Channel(s):\t" . implode(", ", $irc_chans) . "\n";
 	echo "UserName:\t$user_name\n";
 	echo "Password:\t$user_psw\n";
 	echo "\n\n";
 
-	$chiusura = false; //When setted to true the Bot will close
-	$functions = getFunctions();
+	list($functions, $on_join, $always) = getFunctions();
 
 	echo "Creating socket... ";
 	$irc = fsockopen($irc_server, $irc_port, $irc_errno, $irc_errstr, 15);
@@ -218,13 +59,14 @@
 		pcntl_signal(SIGHUP,  "sig_handler");
 		pcntl_signal(SIGUSR1, "sig_handler");
 		foreach($functions as $func)
-			include_once("functions/$func[0]/init.php");
+			include_once("functions/{$func['folder']}/init.php");
 		while (!feof($irc) && $chiusura == false) {
 			$rawdata = str_replace(array("\n","\r"), "", fgets($irc, 512));
 			$data = trim(str_replace("  ", " ", $rawdata));
-			echo " <<---   $data\n";
+			if(strlen($data) == 0)
+				continue;
 			if($data[0] === ":") {
-				list($d, $type, $recv, $msg) = explode(" ", trim($data), 4);
+				list($d, $type, $recv, $msg) = explode(" ", $data, 4);
 				$d = substr($d, 1);
 				if(strpos($d, "!") !== false) {
 					ereg("(.*)!.*", $d, $sender);
@@ -236,6 +78,18 @@
 					$irc_chan = $sender;
 				else
 					$irc_chan = $recv;
+				if($recv == $user_name) {
+					$col = $LGREEN;
+					$col_ = $Z;
+				} else {
+					$col = $col_ = "";
+				}
+				echo "{$col}<<---   $data{$col_}\n";
+
+				if(in_array(strtolower($type), array("nick", "quit", "mode", "join", "part"))) {
+					if($type == "mode" || $sender != $user_name)
+						send($irc, "NAMES $irc_chan\n");
+				}
 				if(strtolower($type) == "join") {
 					dbg($debug, "New join");
 					dbg($debug, "\$joiner = $sender");
@@ -260,6 +114,9 @@
 						send($irc, $stringa_mode . "\n");
 						dbg($debug, $stringa_mode);
 					}
+					foreach($on_join as $join_func) {
+						chiama($join_func['folder'], $join_func['name'], $irc, $irc_chan, $sender, $msg, array("on_join"));
+					}
 				} elseif(($type == "376") || ($type == "422")) {
 					dbg($debug, "Codice 376 o codice 422 ricevuto... Procedo con join e login");
 					if(isset($user_psw) && strlen($user_psw) != 0)
@@ -280,6 +137,15 @@
 						sendmsg($irc, "Ora controllo il canale!!!", $irc_chan);
 						sendmsg($irc, "Per informazioni dai il comando \"$user_name help\"!!!", $irc_chan);
 					}
+				} elseif($type == "353") {  //Ricevo l'output di names
+					$read_users = explode(" ", $msg);
+					$chan = $read_users[1];
+					for($c = 0; $c < 2; $c++)
+						unset($read_users[$c]);
+					$read_users[$c] = substr($read_users[$c], 1); //Tolgo i : dall'inizio del nome.
+					$users[$chan] = array_values($read_users);
+					//dbg($debug, implode(" ", $users));
+					//print_r($users);
 				} else {
 					$array = explode(" ", $msg);
 					for($j = 3; $j < count($array); $j++) {
@@ -309,63 +175,70 @@
 							}
 						}
 					}
-					///NOTE: "/^filetor[ \,;.:\-!\?]*[ ]+(.*)$/" Questa e' la regex completa... andrebbe rimossa la divisione di $data in $d[]
-     				///NOTE: Eliminata divisione di $data in $d[], quindi ho cambiato la vecchia regex: /^{$user_name}[ \,;.:\-!\?]*$/
-					if(preg_match("/^{$user_name}[ \,;.:\-!\?]*[ ]+(.*)$/", $msg, $ret)) { // Accetta tutti i $user_name + una combinazione (lunga quanto vuoi) dei char nelle [ ]...
-						if(count($ret) > 1) {
-							unset($ret[0]);
-							$ret = array_values($ret);
-							$cmd = implode(" ", $ret);
-							/// TODO: eregiare anche il $d[4]...
-							dbg($debug, "\$cmd = $cmd");
-							if($cmd == "salutami") {
-								sendmsg($irc, "Ciao $sender :)", $irc_chan);
-							}
-							if($cmd == "saluta") {
-								sendmsg($irc, "Ciao a tutti!! :)", $irc_chan);
-							}
-							if(preg_match("/^saluta (.*)$/", $cmd, $name)) {
-								sendmsg($irc, "Ciao $name[1]... Come stai??", $irc_chan);
-								/// TODO: $d[5] va controllato se e' in chan... Altrimenti stai salutando il nulla ;)
-							}
-							if($cmd == "ciao") {
-								sendmsg($irc, "Ciao a tutti!! :)", $irc_chan);
-							}
-							if($cmd == "help")
-								help($irc, $sender, $functions);
-							if($cmd == "sparati" && in_array($sender, $operators)) {
-								sendmsg($irc, "Ok... :( Addio!!!", $irc_chan, 1, true);
-								sendmsg($irc, "BANG!", $irc_chan);
-								$chiusura = true;
-							}
-							$trovato = false;
-							for($i = 0; ($i < count($functions)) && ($trovato == false); $i++) {
-								$folder = $functions[$i][0];
-								$fun = $functions[$i][1];
-								$priv = $functions[$i][2];
-								$regex = $functions[$i][3];
-								if($priv == 1) {
-									if(preg_match($regex, $cmd, $infos) && in_array($sender, $operators)) {
-										chiama($folder, $fun, $irc, $irc_chan, $infos);
-										$trovato = true;
-									}
-								} else {
-									if(preg_match($regex, $cmd, $infos)) {
-										chiama($folder, $fun, $irc, $irc_chan, $infos);
-										$trovato = true;
-									}
-								}
-							}
-
-							if(preg_match("/^debanna (.*)$/", $cmd, $name) && in_array($sender, $operators)) {
-								if(count($d) > 5) {
-									sendmsg($irc, "OK... Debanno $name[1]...", $irc_chan);
-									send($irc, "MODE $irc_chan -b $name[1]!*@*\n");
-								}
-							}
-						} else {
-							sendmsg($irc, "Cosa c'&egrave; $sender??", $irc_chan);
+					//From here all functions
+					foreach($always as $always_func) {
+						chiama($always_func['folder'], $always_func['name'], $irc, $irc_chan, $sender, $msg, array("always"));
+					}
+					if($recv == $user_name)
+						$regex = "/^(.*)$/";
+					else
+						$regex = "/^{$user_name}[ \,;.:\-!\?]*[ ]+(.*)$/";
+					///NOTE: Eliminata divisione di $data in $d[], quindi ho cambiato la vecchia regex: /^{$user_name}[ \,;.:\-!\?]*$/
+					if(preg_match($regex, $msg, $ret)) { // Accetta tutti i $user_name + una combinazione (lunga quanto vuoi) dei char nelle [ ]...
+						unset($ret[0]);
+						$ret = array_values($ret);
+						$cmd = implode(" ", $ret);
+						dbg($debug, "\$cmd = $cmd");
+						if($cmd == "salutami") {
+							sendmsg($irc, "Ciao $sender :)", $irc_chan);
 						}
+						if($cmd == "saluta") {
+							sendmsg($irc, "Ciao a tutti!! :)", $irc_chan);
+						}
+						if(preg_match("/^saluta (.*)$/", $cmd, $name)) {
+							if(preg_match("/\b([\+%&$~\@])*$name[1]\b/", implode(" ", $users[$irc_chan])) && $name[1] != $user_name)
+								sendmsg($irc, "Ciao $name[1]... Come stai??", $irc_chan);
+							elseif(count($name) > 1 && $name[1] == $user_name)
+								sendmsg($irc, "Chi mi fai salutare? $name[1] sono io!!!", $irc_chan);
+							else
+								sendmsg($irc, "Chi mi fai salutare? $name[1] non c'&egrave;!!!", $irc_chan);
+						}
+						if($cmd == "ciao") {
+							sendmsg($irc, "Ciao a tutti!! :)", $irc_chan);
+						}
+						if($cmd == "help")
+							help($irc, $sender, $functions);
+						if($cmd == "sparati" && in_array($sender, $operators)) {
+							sendmsg($irc, "Ok... :( Addio!!!", $irc_chan, 1, true);
+							sendmsg($irc, "BANG!", $irc_chan);
+							$chiusura = true;
+						}
+						$trovato = false;
+						for($i = 0; ($i < count($functions)) && ($trovato == false); $i++) {
+							$folder = $functions[$i]['folder'];
+							$fun = $functions[$i]['name'];
+							$priv = $functions[$i]['privileged'];
+							$regex = $functions[$i]['regex'];
+							if($priv == 1) {
+								if(preg_match($regex, $cmd, $infos) && in_array($sender, $operators)) {
+									chiama($folder, $fun, $irc, $irc_chan, $sender, $msg, $infos);
+									$trovato = true;
+								}
+							} else {
+								if(preg_match($regex, $cmd, $infos)) {
+									chiama($folder, $fun, $irc, $irc_chan, $sender, $msg, $infos);
+									$trovato = true;
+								}
+							}
+						}
+						if(preg_match("/^debanna (.*)$/", $cmd, $name) && in_array($sender, $operators)) {
+							if(count($d) > 5) {
+								sendmsg($irc, "OK... Debanno $name[1]...", $irc_chan);
+								send($irc, "MODE $irc_chan -b $name[1]!*@*\n");
+							}
+						}
+					} elseif(preg_match("/^{$user_name}[ \,;.:\-!\?]*$/", $msg)) {
+						sendmsg($irc, "Cosa c'&egrave; $sender??", $irc_chan);
 					}
 				}
 			} else {
