@@ -47,4 +47,8 @@
 		<descr>Typing info I will inform you if I'm moderating this chan.</descr>
 		<tipo>normal</tipo>
 	</function>
+	<function>
+		<name>ver_words</name>
+		<tipo>always</tipo>
+	</function>
 </sardylan_db>

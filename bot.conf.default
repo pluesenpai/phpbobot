@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<bobot>
+	<botName>bobot</botName>
+	<password></password>
+	<port>6668</port>
+	<server>irc.syrolnet.org</server>
+	<listenAddress>127.0.0.1</listenAddress>
+	<listenPort>25000</listenPort>
+	<chans>
+		<chan>#sardylan</chan>
+		<chan>#bottoli</chan>
+	</chans>
+</bobot>

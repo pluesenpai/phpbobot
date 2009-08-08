@@ -1,0 +1,117 @@
+<sardylan_db>
+	<function>
+		<descr_name>help</descr_name>
+		<descr>Shows this listing.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>help {GROUP}</descr_name>
+		<descr>Shows functions in specified group.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>shorthelp</descr_name>
+		<descr>Shows only groups of available functions.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>version</descr_name>
+		<descr>Shows the bot version.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>ciao</descr_name>
+		<descr>I'll greet all people in this chan.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>saluta</descr_name>
+		<descr>I'll greet all people in this chan.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>saluta {USER}</descr_name>
+		<descr>I'll greet specified user.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>salutami</descr_name>
+		<descr>I'll greet you.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>register {PASSWORD}</descr_name>
+		<descr>I'll register you with given password</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>auth {PASSWORD}</descr_name>
+		<descr>I'll authenticate you.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>deauth</descr_name>
+		<descr>I'll deauthenticate you.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>setmessage {MESSAGE}</descr_name>
+		<descr>I'll use the given message for greeting you when you enter in chan where you typed the command.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>delmessage</descr_name>
+		<descr>I'll won't greet you even more.</descr>
+		<privileged>0</privileged>
+	</function>
+	<function>
+		<descr_name>sparati</descr_name>
+		<descr>I'll close the connection with this chan.</descr>
+		<privileged>1</privileged>
+	</function>
+	<function>
+		<descr_name>debanna {USER}</descr_name>
+		<descr>I'll deban specified user.</descr>
+		<privileged>1</privileged>
+	</function>
+	<function>
+		<descr_name>aop add {USER}</descr_name>
+		<descr>Add specified user to the bot Auto-Op list</descr>
+		<privileged>1</privileged>
+	</function>
+	<function>
+		<descr_name>hop add {USER}</descr_name>
+		<descr>Add specified user to the bot Auto-Hop list</descr>
+		<privileged>1</privileged>
+	</function>
+	<function>
+		<descr_name>sop add {USER}</descr_name>
+		<descr>Add specified user to the bot Auto-Sop list</descr>
+		<privileged>1</privileged>
+	</function>
+	<function>
+		<descr_name>vop add {USER}</descr_name>
+		<descr>Add specified user to the bot Auto-Vop list</descr>
+		<privileged>1</privileged>
+	</function>
+	<function>
+		<descr_name>aop remove {USER}</descr_name>
+		<descr>Remove specified user from the bot Auto-Op list</descr>
+		<privileged>1</privileged>
+	</function>
+	<function>
+		<descr_name>hop remove {USER}</descr_name>
+		<descr>Remove specified user from the bot Auto-Hop list</descr>
+		<privileged>1</privileged>
+	</function>
+	<function>
+		<descr_name>sop remove {USER}</descr_name>
+		<descr>Remove specified user from the bot Auto-Sop list</descr>
+		<privileged>1</privileged>
+	</function>
+	<function>
+		<descr_name>vop remove {USER}</descr_name>
+		<descr>Remove specified user from the bot Auto-Vop list</descr>
+		<privileged>1</privileged>
+	</function>
+</sardylan_db>
