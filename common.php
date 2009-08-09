@@ -7,9 +7,7 @@
 	  */
 	function toUTF8($text)
 	{
-		$testo = htmlentities(html_entity_decode($text));
-
-		return(html_entity_decode($testo, ENT_QUOTES, 'UTF-8'));
+		return(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 	}
 
 	function entra_chan($irc_chan)
