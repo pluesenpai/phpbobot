@@ -44,7 +44,7 @@
 				$name = html_entity_decode(htmlentities($result1[2], ENT_QUOTES, 'UTF-8'));
 				$address = preg_replace("#&bull;#", "-", $address);
 				$name = preg_replace("#&bull;#", "-", $name);
-				sendmsg($socket, "$name @ \002\00304$address\00F", $channel, 1, true);
+				sendmsg($socket, "$name @ \002\00304$address\002", $channel, 1, true);
 			}
 		}
 	}

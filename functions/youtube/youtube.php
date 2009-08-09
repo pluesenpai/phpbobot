@@ -36,7 +36,7 @@
 		else {
 			$title = html_entity_decode(htmlentities($result[1], ENT_QUOTES, 'UTF-8'));
 			$address = "http://www.youtube.com/watch?v=" . $q;
-			sendmsg($socket, "Video: $title @ \002\00304$address\00F", $channel, 1, true);
+			sendmsg($socket, "Video: \037\00302$title\037 \00301@ \002\00304$address\002", $channel, 1, true);
 		}
 	}
 ?>
