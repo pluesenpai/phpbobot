@@ -15,6 +15,7 @@
 
 	$config = Config::singleton();
 	$user_name = $config->getBotName();
+	$user_descr = $config->getBotDescription();
 	$user_psw = $config->getPassword();
 	$irc_chans = $config->getChans();
 	$logger = new Logger($user_name, $irc_chans);
@@ -68,6 +69,7 @@
 	echo "Port:\t\t$irc_port\n";
 	echo "Channel(s):\t" . implode(", ", $irc_chans) . "\n";
 	echo "UserName:\t$user_name\n";
+	echo "Description:\t$user_descr\n";
 	echo "Password:\t$user_psw\n";
 	echo "\n\n";
 
@@ -105,7 +107,7 @@
 		die("Could not fork");
 	} elseif($pid) { //Father
 		dbg($debug, "Sending user-name and nick");
-		send($irc, "USER $user_name \"1\" \"1\" :Sono BOT... James BOT.\n");
+		send($irc, "USER $user_name \"1\" \"1\" :$user_descr.\n");
 		send($irc, "NICK $user_name\n");
 		$party_pid = pcntl_fork();
 		if($party_pid == -1) {

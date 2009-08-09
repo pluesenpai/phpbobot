@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <bobot>
 	<botName>bobot</botName>
+	<botDescription>PHP written Bot for IRC</botDescription>
 	<password></password>
 	<port>6668</port>
 	<server>irc.syrolnet.org</server>

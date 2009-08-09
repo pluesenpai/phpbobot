@@ -13,6 +13,48 @@
 		{
 			if(!file_exists(self::filename)) {
 				copy(self::filename . ".default", self::filename);
+
+				$this->_xml = simplexml_load_file(self::filename);
+
+				//Now ask for new configuration data
+				echo "Bot name: ";
+				$name = trim(fgets(STDIN));
+				self::setBotName($name);
+
+				echo "Bot description: ";
+				$description = trim(fgets(STDIN));
+				self::setBotDescription($description);
+
+				echo "Bot password: ";
+				$password = trim(fgets(STDIN));
+				self::setPassword($password);
+
+				echo "Server address: ";
+				$address = trim(fgets(STDIN));
+				self::setServer($address);
+
+				echo "Server port: ";
+				$port = trim(fgets(STDIN));
+				self::setPort($port);
+
+				echo "Listening address: ";
+				$l_address = trim(fgets(STDIN));
+				self::setListenAddress($l_address);
+
+				echo "Listening port: ";
+				$l_port = trim(fgets(STDIN));
+				self::setListenPort($l_port);
+
+				self::removeChan("#sardylan");
+				self::removeChan("#bottoli");
+				do {
+					echo "Channel (empty to finish): ";
+					$channel = trim(fgets(STDIN));
+					if($channel != "")
+						self::addChans($channel);
+				} while($channel != "");
+
+				echo "Configuration created!";
 			}
 			$this->_xml = simplexml_load_file(self::filename);
 		}
@@ -54,6 +96,25 @@
 		public function setBotName($name)
 		{
 			$this->_xml->botName = $name;
+			file_put_contents(self::filename, $this->_xml->asXML());
+		}
+
+		/**
+		  * Retrieve the description of the Bot
+		  * @returns (String) The description of the Bot
+		  */
+		public function getBotDescription()
+		{
+			return (string)$this->_xml->botDescription;
+		}
+
+		/**
+		  * Permits to set the description of the Bot
+		  * @param $name New description of the bot
+		  */
+		public function setBotDescription($descr)
+		{
+			$this->_xml->botDescription = $descr;
 			file_put_contents(self::filename, $this->_xml->asXML());
 		}
 
@@ -189,8 +250,10 @@
 		public function removeChan($ircchan)
 		{
 			foreach($this->_xml->chans->chan as $chan) {
-				if((string)$chan == $irchan)
-					$chan = NULL;
+				if((string)$chan == $ircchan) {
+					$dom = dom_import_simplexml($chan);
+					$dom->parentNode->removeChild($dom);
+				}
 			}
 
 			file_put_contents(self::filename, $this->_xml->asXML());
