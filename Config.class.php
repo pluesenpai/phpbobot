@@ -17,33 +17,45 @@
 				$this->_xml = simplexml_load_file(self::filename);
 
 				//Now ask for new configuration data
-				echo "Bot name: ";
+				$oldname = self::getBotName();
+				echo "Bot name: [$oldname] ";
 				$name = trim(fgets(STDIN));
-				self::setBotName($name);
+				if($name != "")
+					self::setBotName($name);
 
-				echo "Bot description: ";
+				$olddescr = self::getBotDescription();
+				echo "Bot description: [$olddescr] ";
 				$description = trim(fgets(STDIN));
-				self::setBotDescription($description);
+				if($description != "")
+					self::setBotDescription($description);
 
 				echo "Bot password: ";
 				$password = trim(fgets(STDIN));
 				self::setPassword($password);
 
-				echo "Server address: ";
+				$oldaddress = self::getServer();
+				echo "Server address: [$oldaddress] ";
 				$address = trim(fgets(STDIN));
-				self::setServer($address);
+				if($address != "")
+					self::setServer($address);
 
-				echo "Server port: ";
+				$oldport = self::getPort();
+				echo "Server port: [$oldport] ";
 				$port = trim(fgets(STDIN));
-				self::setPort($port);
+				if($port != "")
+					self::setPort($port);
 
-				echo "Listening address: ";
+				$old_laddress = self::getListenAddress();
+				echo "Listening address: [$old_laddress] ";
 				$l_address = trim(fgets(STDIN));
-				self::setListenAddress($l_address);
+				if($l_address != "")
+					self::setListenAddress($l_address);
 
-				echo "Listening port: ";
+				$old_lport = self::getListenPort();
+				echo "Listening port: [$old_lport]";
 				$l_port = trim(fgets(STDIN));
-				self::setListenPort($l_port);
+				if($l_port != "")
+					self::setListenPort($l_port);
 
 				self::removeChan("#sardylan");
 				self::removeChan("#bottoli");
