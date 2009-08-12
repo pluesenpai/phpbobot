@@ -7,11 +7,11 @@
 	require_once("Logger.class.php");
 	require_once("Config.class.php");
 
-	require_once("database/sqlite.php");  //For sqlite2 DB
+	require_once("database/sqlite.php");  //For sqlite2/3 DB
 	///TODO: Create class for mysql DB
 	///TODO: Create class for mysqli DB
-	//require_once("database/mysql.php");
-	//require_once("database/mysqli.php");
+	//require_once("database/mysql.php");  //For mysql DB
+	//require_once("database/mysqli.php");  //For mysqli DB
 
 	$config = Config::singleton();
 	$user_name = $config->getBotName();
@@ -36,6 +36,7 @@
 	$colors = false;
 	$debug = false;
 	$sck_debug = false;
+	$slot_saluto = array();
 	$party_addr = $config->getListenAddress();
 	$party_port = $config->getListenPort();
 
@@ -165,6 +166,42 @@
 				}
 				echo "{$col}<<---   $data{$col_}\n";
 
+				print_r($slot_saluto);
+				if(isset($slot_saluto[0])) {
+					for($i = 0; $i < count($slot_saluto); $i++) {
+						$slot_saluto[$i][0]--;
+						if($slot_saluto[$i][0] == 2)
+							send($irc, "NAMES {$slot_saluto[$i][2]}\n");
+					}
+					if($slot_saluto[0][0] <= 0) {
+						$slot_saluto[0][0] = is_user_in_chan($slot_saluto[0][1], $slot_saluto[0][2]);
+						if($slot_saluto[0][0] == true) {
+							$s = $slot_saluto[0][1];
+							$i = $slot_saluto[0][2];
+							$joiner_mess = saluto($db, $s, $i);
+							$joiner_mode = mode($db, $s, $i);
+// 							if(strcmp($s, $user_name) != 0) {
+								sendmsg($irc, "Ciao $s", $i, 0, true);
+								if(strlen($joiner_mess) > 0)
+									sendmsg($irc, "[$s]: $joiner_mess", $i, 0, true);
+								sendmsg($irc, "Per informazioni dai il comando \"$user_name help\"!!!", $i, 0, true);
+								$mode_len = strlen($joiner_mode);
+								if($mode_len > 0) {
+									$stringa_mode = "MODE $i $joiner_mode ";
+									for($index = 1; $index < $mode_len; $index++)
+										$stringa_mode .= $s . " ";
+									send($irc, $stringa_mode . "\n");
+									dbg($debug, $stringa_mode);
+								}
+// 							}
+							foreach($on_join as $join_func) {
+								chiama($join_func['folder'], $join_func['name'], $irc, $i, $s, $msg, array("on_join"));
+							}
+						}
+						unset($slot_saluto[0]);
+						$slot_saluto = array_values($slot_saluto);
+					}
+				}
 				if(in_array(strtolower($type), array("nick", "quit", "mode", "join", "part"))) {
 					if($type == "mode" || $sender != $user_name)
 						send($irc, "NAMES $irc_chan\n");
@@ -173,25 +210,8 @@
 					dbg($debug, "New join");
 					dbg($debug, "\$joiner = $sender");
 					$irc_chan = substr($recv, 1);
-					$joiner_mess = saluto($db, $sender, $irc_chan);
-					$joiner_mode = mode($db, $sender, $irc_chan);
-					if(strcmp($sender, $user_name) != 0) {
-						sendmsg($irc, "Ciao $sender", $irc_chan, 0, true);
-						if(strlen($joiner_mess) > 0)
-							sendmsg($irc, "[$sender]: $joiner_mess", $irc_chan, 0, true);
-						sendmsg($irc, "Per informazioni dai il comando \"$user_name help\"!!!", $irc_chan, 0, true);
-						$mode_len = strlen($joiner_mode);
-						if($mode_len > 0) {
-							$stringa_mode = "MODE $irc_chan $joiner_mode ";
-							for($index = 1; $index < $mode_len; $index++)
-								$stringa_mode .= $sender . " ";
-							send($irc, $stringa_mode . "\n");
-							dbg($debug, $stringa_mode);
-						}
-					}
-					foreach($on_join as $join_func) {
-						chiama($join_func['folder'], $join_func['name'], $irc, $irc_chan, $sender, $msg, array("on_join"));
-					}
+					if(strcmp($sender, $user_name) != 0)
+						$slot_saluto[] = array(5, $sender, $irc_chan);
 				} elseif(($type == "376") || ($type == "422")) {
 					dbg($debug, "Codice 376 o codice 422 ricevuto... Procedo con join e login");
 					if(isset($user_psw) && strlen($user_psw) != 0)

@@ -377,6 +377,13 @@
 		return preg_match("/\b(.*)&(.*){$user}\b/", implode(" ", $users[$channel]));
 	}
 
+	function is_user_in_chan($user, $channel)
+	{
+		global $users;
+
+		return preg_match("/\b(.*){$user}\b/", implode(" ", $users[$channel]));
+	}
+
 	function party_working($party_sck, $db, $socket, $irc_chans)
 	{
 		global $YELLOW, $Z, $user_name;
