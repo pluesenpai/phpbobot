@@ -20,7 +20,7 @@
 	$irc_chans = $config->getChans();
 	$logger = new Logger($user_name, $irc_chans);
 
-	$version = "0.9.8 (beta)";
+	$version = "0.9.9 (beta)";
 	$allowed_autolists = array("s", "v", "h");
 	$chiusura = false;		//When setted to true the Bot will close
 	$functions = array();	//array containing information about functions
@@ -166,6 +166,35 @@
 				}
 				echo "{$col}<<---   $data{$col_}\n";
 
+				if($type == "353") {  //Ricevo l'output di names
+					$read_users = explode(" ", $msg);
+					$chan = $read_users[1];
+					for($c = 0; $c < 2; $c++)
+						unset($read_users[$c]);
+					$read_users[$c] = substr($read_users[$c], 1); //Tolgo i : dall'inizio del nome.
+					$users[$chan] = array_values($read_users);
+					$utenti = combina_array($users);
+					foreach($users[$chan] as $user) {
+						$utente = clean_username($user);
+						if(!isset($auth[$utente]))
+							$auth[$utente] = false;
+					}
+					$auth_a = array_keys($auth);
+					foreach($auth_a as $utente) {
+						if(!in_array($utente, $utenti))
+							unset($auth[$utente]);
+					}
+					if($token[$chan]) {
+						$token[$chan] = false;
+						foreach($on_join as $join_func) {
+							foreach($users[$chan] as $u) {
+								chiama($join_func['folder'], $join_func['name'], $irc, $chan, clean_username($u), $msg, array("bot_join"));
+							}
+						}
+					}
+// 					dbg($debug, implode(" ", $users));
+				}
+
 				print_r($slot_saluto);
 				if(isset($slot_saluto[0])) {
 					for($i = 0; $i < count($slot_saluto); $i++) {
@@ -175,6 +204,7 @@
 					}
 					if($slot_saluto[0][0] <= 0) {
 						$slot_saluto[0][0] = is_user_in_chan($slot_saluto[0][1], $slot_saluto[0][2]);
+						echo $slot_saluto[0][0];
 						if($slot_saluto[0][0] == true) {
 							$s = $slot_saluto[0][1];
 							$i = $slot_saluto[0][2];
@@ -225,33 +255,6 @@
 					dbg($debug, "Codice 433 ricevuto, necessario GHOST");
 					sendmsg($irc, "GHOST $user_name $user_psw", "NickServ");
 					sendmsg($irc, "IDENTIFY $user_psw", "NickServ");
-				} elseif($type == "353") {  //Ricevo l'output di names
-					$read_users = explode(" ", $msg);
-					$chan = $read_users[1];
-					for($c = 0; $c < 2; $c++)
-						unset($read_users[$c]);
-					$read_users[$c] = substr($read_users[$c], 1); //Tolgo i : dall'inizio del nome.
-					$users[$chan] = array_values($read_users);
-					$utenti = combina_array($users);
-					foreach($users[$chan] as $user) {
-						$utente = clean_username($user);
-						if(!isset($auth[$utente]))
-							$auth[$utente] = false;
-					}
-					$auth_a = array_keys($auth);
-					foreach($auth_a as $utente) {
-						if(!in_array($utente, $utenti))
-							unset($auth[$utente]);
-					}
-					if($token[$chan]) {
-						$token[$chan] = false;
-						foreach($on_join as $join_func) {
-							foreach($users[$chan] as $u) {
-								chiama($join_func['folder'], $join_func['name'], $irc, $chan, clean_username($u), $msg, array("bot_join"));
-							}
-						}
-					}
-// 					dbg($debug, implode(" ", $users));
 				} elseif(($type == "NOTICE" && $sender == "NickServ" && $msg == "Password accettata - adesso sei riconosciuto.") || ($type == "401" && $msg == "ickServ :No such nick/channel")) {
 					///TODO: Sistemare queste condizioni!!! Altrimenti funziona solo su un server localizzato in ITA
 					foreach($irc_chans as $irc_chan) {
@@ -278,10 +281,11 @@
 						if($cmd == "sparati" && in_array($sender, $operators)) {
 							$channels = array_diff($irc_chans, array($irc_chan));
 							sendmsg($irc, "Ok... :( Addio!!!", $irc_chan, 0, true);
+							sendmsg($irc, "BANG!", $irc_chan, 0, true);
 							foreach($channels as $c) {
 								sendmsg($irc, "Addio!!! :'(", $c, 1 / count($channels), true);
+								sendmsg($irc, "BANG!", $c, 1 / count($channels), true);
 							}
-							sendmsg($irc, "BANG!", $irc_chan);
 							$chiusura = true;
 						}
 						$trovato = false;
@@ -317,6 +321,7 @@
 				}
 			}
 		}
+		send($irc, "QUIT bye bye!");
 		posix_kill(posix_getpid(), 9);
 	}
 ?>
