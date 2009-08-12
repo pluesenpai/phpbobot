@@ -195,7 +195,6 @@
 // 					dbg($debug, implode(" ", $users));
 				}
 
-				print_r($slot_saluto);
 				if(isset($slot_saluto[0])) {
 					for($i = 0; $i < count($slot_saluto); $i++) {
 						$slot_saluto[$i][0]--;
@@ -204,7 +203,6 @@
 					}
 					if($slot_saluto[0][0] <= 0) {
 						$slot_saluto[0][0] = is_user_in_chan($slot_saluto[0][1], $slot_saluto[0][2]);
-						echo $slot_saluto[0][0];
 						if($slot_saluto[0][0] == true) {
 							$s = $slot_saluto[0][1];
 							$i = $slot_saluto[0][2];
