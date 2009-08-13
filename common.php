@@ -207,6 +207,21 @@
 	}
 
 	/**
+	  * Sends a message and eventually waits
+	  * @param $stream Socket
+	  * @param $msg Message to send
+	  * @param $delay Number of seconds to wait after sending the message
+	  * @param $wait If set to true waits the called process
+	  */
+	function sendwait($stream, $msg, $delay = 0, $wait = false)
+	{
+		$pid = send($stream, "$msg\n", $delay);
+		if($wait) {
+			pcntl_waitpid($pid, $status);
+		}
+	}
+
+	/**
 	  * Sends a message of type PRIVMSG on a socket
 	  * @param $stream Socket
 	  * @param $msg Message to send

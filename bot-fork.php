@@ -319,7 +319,7 @@
 				}
 			}
 		}
-		send($irc, "QUIT bye bye!");
+		sendwait($irc, "QUIT bye bye!", 0, true);
 		posix_kill(posix_getpid(), 9);
 	}
 ?>
