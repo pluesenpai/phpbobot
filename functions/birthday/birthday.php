@@ -4,14 +4,20 @@ function birthday($socket, $channel, $sender, $msg, $infos)
 {
 	global $db;
 
-	$cond_f = array("birthday", "username");
-	$cond_o = array("=", "=");
-	$cond_v = array("DATE('now')", "'$sender'");
+	$cond_f = array("username");
+	$cond_o = array("=");
+	$cond_v = array("'$sender'");
 
 	$result = $db->select(array("user"), array("birthday"), array(""), $cond_f, $cond_o, $cond_v);
 
-	if(count($result) > 0) {
-		sendmsg($socket, "$sender!! Ma... Oggi &egrave; il tuo compleanno!!! Auguri!!!!", $channel);
+	if(count($result[0]) > 0) {
+		if($result[0]["birthday"] > date("Y-m-d")) {
+			return;
+		}
+		if($result[0]["birthday"] == date("Y-m-d")) {
+			sendmsg($socket, "$sender!! Ma... Oggi &egrave; il tuo compleanno!!! Auguri!!!!", $channel);
+		}
+
 		$year = ((int)date('Y')) + 1;
 		$month = date('n');
 		$day = date('j');

@@ -18,6 +18,9 @@
 		$hour = 0;
 		$minute = 0;
 		$second = 0;
+		$cond_f = array("username");
+		$cond_o = array("=");
+		$cond_v = array("'$sender'");
 
 		$giorno = $infos[1];
 		$mese = $infos[2];
@@ -29,15 +32,17 @@
 			sendmsg($socket, "Non &egrave; possibile questo giorno, $sender!!!", $channel);
 			return;
 		}
-		if(mktime($second, $minute, $hour, $mese, $giorno, (int)date('Y')) > mktime())
+
+		$sum_year = 0;
+		if(mktime($second, $minute, $hour, $mese, $giorno, (int)date('Y')) < mktime())
 			$sum_year = 1;
-		else
-			$sum_year = 0;
 
 		$year = ((int)date('Y')) + $sum_year;
 		$data = date("Y-m-d", mktime($second, $minute, $hour, $mese, $giorno, $year));
 
 		$db->update("user", array("birthday"), array("'$data'"), $cond_f, $cond_o, $cond_v);
+
+		sendmsg($socket, "$sender: data impostata.", $channel);
 	}
 
 ?>
