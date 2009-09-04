@@ -25,7 +25,7 @@
 
 	function google($socket, $channel, $sender, $msg, $infos)
 	{
-		$q = $infos[1];
+		$q = $infos[2];
 
 		$body = getpage("http://www.google.it/search?q=$q");
 		preg_match_all("/<!--m-->(.+?)<!--n-->/", $body, $result);

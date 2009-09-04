@@ -57,7 +57,7 @@
 				@list($d, $type, $recv, $msg) = explode(" ", $data, min(4, substr_count($data, " ") + 1));
 				$d = substr($d, 1);
 				if(strpos($d, "!") !== false) {
-					ereg("(.*)!.*", $d, $sender);
+					preg_match("/(.*)!.*/", $d, $sender);
 					$sender = $sender[1];
 				} else
 					$sender = $d;

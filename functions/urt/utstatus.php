@@ -42,9 +42,9 @@ function ut_send($sck, $preut, $data) {
 }
 
 function utstatus($socket, $channel, $sender, $msg, $infos) {
-	$ut_server = "192.168.0.9";
+	$ut_server = "127.0.0.1";
 	$ut_port = 27960;
-	$ut_psw = ""; #Metti qui la psw di RCon
+	$ut_psw = "A9b7h23m1"; #Metti qui la psw di RCon
 	$ut = fsockopen("udp://$ut_server", $ut_port, $ut_errno, $ut_errstr);
 	if(!$ut) {
 		echo "ERRORE!!!!\n\n";
@@ -75,7 +75,7 @@ function utstatus($socket, $channel, $sender, $msg, $infos) {
 				$output_utenti = $output_utenti . ", " . $urt_utenti_nick[$m];
 			}
 		}
-		sendmsg($irc, "Nel Server ci sono $urt_utenti giocatori: $output_utenti", $irc_chan);
+		sendmsg($socket, "Nel Server ci sono $urt_utenti giocatori: $output_utenti", $channel);
 	}
 }
 

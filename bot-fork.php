@@ -7,9 +7,12 @@
 	require_once("Logger.class.php");
 	require_once("Config.class.php");
 
-	require_once("database/sqlite.php");  //For sqlite2/3 DB
-	///TODO: Create class for mysql DB
-	///TODO: Create class for mysqli DB
+	require_once("database/pdo_sqlite3.php");  //For sqlite3 DB with PDO
+	///TODO: Create class for mysql
+	///TODO: Create class for mysqli
+	///TODO: Create class for sqlite2
+	///TODO: Create class for sqlite3
+	///TODO: Create class for postgres
 	//require_once("database/mysql.php");  //For mysql DB
 	//require_once("database/mysqli.php");  //For mysqli DB
 
@@ -20,7 +23,7 @@
 	$irc_chans = $config->getChans();
 	$logger = new Logger($user_name, $irc_chans);
 
-	$version = "0.9.9 (beta)";
+	$version = "0.9.10 (beta)";
 	$allowed_autolists = array("s", "v", "h");
 	$chiusura = false;		//When setted to true the Bot will close
 	$functions = array();	//array containing information about functions
@@ -115,7 +118,11 @@
 			die("Could not fork");
 		} elseif($party_pid) { //Father
 			pcntl_waitpid($pid, $status);
+			socket_shutdown($irc, 2);
+			sleep(1);
 			socket_close($irc);
+			//--------------------------------
+			socket_shutdown($party_mainsck, 2);
 			socket_close($party_mainsck);
 			posix_kill($party_pid, 9);
 		} else { //Son
@@ -149,7 +156,7 @@
 				dbg($debug, "\$msg: $msg");
 				$d = substr($d, 1);
 				if(strpos($d, "!") !== false) {
-					ereg("(.*)!.*", $d, $sender);
+					preg_match("/(.*)!.*/", $d, $sender);
 					$sender = $sender[1];
 				} else
 					$sender = $d;
@@ -197,9 +204,11 @@
 
 				if(isset($slot_saluto[0])) {
 					for($i = 0; $i < count($slot_saluto); $i++) {
-						$slot_saluto[$i][0]--;
-						if($slot_saluto[$i][0] == 2)
-							send($irc, "NAMES {$slot_saluto[$i][2]}\n");
+						if(microtime(true) - $slot_saluto[$i][3] >= 0.05) {
+							$slot_saluto[$i][0]--;
+							if($slot_saluto[$i][0] == 3)
+								send($irc, "NAMES {$slot_saluto[$i][2]}\n");
+						}
 					}
 					if($slot_saluto[0][0] <= 0) {
 						$slot_saluto[0][0] = is_user_in_chan($slot_saluto[0][1], $slot_saluto[0][2]);
@@ -239,7 +248,7 @@
 					dbg($debug, "\$joiner = $sender");
 					$irc_chan = substr($recv, 1);
 					if(strcmp($sender, $user_name) != 0)
-						$slot_saluto[] = array(5, $sender, $irc_chan);
+						$slot_saluto[] = array(4, $sender, $irc_chan, microtime(true));
 				} elseif(($type == "376") || ($type == "422")) {
 					dbg($debug, "Codice 376 o codice 422 ricevuto... Procedo con join e login");
 					if(isset($user_psw) && strlen($user_psw) != 0)
@@ -277,12 +286,10 @@
 						$cmd = implode(" ", $ret);
 						dbg($debug, "\$cmd = $cmd");
 						if($cmd == "sparati" && in_array($sender, $operators)) {
-							$channels = array_diff($irc_chans, array($irc_chan));
-							sendmsg($irc, "Ok... :( Addio!!!", $irc_chan, 0, true);
-							sendmsg($irc, "BANG!", $irc_chan, 0, true);
-							foreach($channels as $c) {
-								sendmsg($irc, "Addio!!! :'(", $c, 1 / count($channels), true);
-								sendmsg($irc, "BANG!", $c, 1 / count($channels), true);
+							sendmsg($irc, "Ok... :(", $irc_chan, 0, true);
+							foreach($irc_chans as $c) {
+								sendmsg($irc, "Addio!!! :'(", $c, 1 / count($irc_chans), true);
+								sendmsg($irc, "BANG!", $c, 1 / count($irc_chans), true);
 							}
 							$chiusura = true;
 						}
@@ -320,6 +327,6 @@
 			}
 		}
 		sendwait($irc, "QUIT bye bye!", 0, true);
-		posix_kill(posix_getpid(), 9);
+		posix_kill(posix_getpid(), SIGTERM);
 	}
 ?>

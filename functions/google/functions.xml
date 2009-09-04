@@ -2,7 +2,7 @@
 	<function>
 		<name>google</name>
 		<privileged>0</privileged>
-		<regex><![CDATA[/^google (.+?)$/i]]></regex>
+		<regex><![CDATA[/^(g|google) (.+?)$/i]]></regex>
 		<descr_name>google {KEYWORDS}</descr_name>
 		<descr>I'll search the keywords with Google.</descr>
 		<tipo>normal</tipo>

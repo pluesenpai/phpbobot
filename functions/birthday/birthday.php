@@ -10,7 +10,7 @@ function birthday($socket, $channel, $sender, $msg, $infos)
 
 	$result = $db->select(array("user"), array("birthday"), array(""), $cond_f, $cond_o, $cond_v);
 
-	if(count($result[0]) > 0) {
+	if(isset($result[0]) && count($result[0]) > 0) {
 		if($result[0]["birthday"] > date("Y-m-d")) {
 			return;
 		}

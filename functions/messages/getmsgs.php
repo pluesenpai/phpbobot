@@ -103,11 +103,11 @@
 		$all = $silent = false;
 
 		if(count($infos) >= 1) {
-			if(ereg("^(allmessages|readall)", $infos[0]))
+			if(preg_match("/^(allmessages|readall)/", $infos[0]))
 				$all = true;
-			if(ereg("on_join", $infos[0]))
+			if(preg_match("/on_join/", $infos[0]))
 				$silent = true;
-			if(ereg("bot_join", $infos[0]))
+			if(preg_match("/bot_join/", $infos[0]))
 				$silent = true;
 		}
 		if(count($infos) > 1) {

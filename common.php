@@ -89,19 +89,19 @@
 		foreach($folders as $folder) {
 			$xml = simplexml_load_file("functions/".$folder."/functions.xml");
 			foreach($xml->function as $func) {
-				if(in_array($func->tipo, array("join", "part", "quit", "nick", "always")) === false) {
-					$functions[$funz]['folder'] = $folder;
-					$functions[$funz]['name'] = $func->name;
-					$functions[$funz]['privileged'] = $func->privileged;
-					$functions[$funz]['regex'] = $func->regex;
-					$functions[$funz]['descr'] = $func->descr;
-					$functions[$funz++]['descr_name'] = $func->descr_name;
+				if(in_array((string)$func->tipo, array("join", "part", "quit", "nick", "always")) === false) {
+					$functions[$funz]['folder'] = (string)$folder;
+					$functions[$funz]['name'] = (string)$func->name;
+					$functions[$funz]['privileged'] = (string)$func->privileged;
+					$functions[$funz]['regex'] = (string)$func->regex;
+					$functions[$funz]['descr'] = (string)$func->descr;
+					$functions[$funz++]['descr_name'] = (string)$func->descr_name;
 				} elseif($func->tipo == "join") {
-					$on_join[$join]['folder'] = $folder;
-					$on_join[$join++]['name'] = $func->name;
+					$on_join[$join]['folder'] = (string)$folder;
+					$on_join[$join++]['name'] = (string)$func->name;
 				} elseif($func->tipo == "always") {
-					$always[$alw]['folder'] = $folder;
-					$always[$alw++]['name'] = $func->name;
+					$always[$alw]['folder'] = (string)$folder;
+					$always[$alw++]['name'] = (string)$func->name;
 				}
 			}
 		}
@@ -277,7 +277,7 @@
 		if($pid == -1) {
 			die("Could not fork");
 		} elseif(!$pid) {
-			if($folder != "" && !in_array($foler, getDirs("functions/"))) {
+			if($folder != "" && $folder != "builtins" && !in_array($folder, getDirs("functions/"))) {
 				sendmsg($irc, "Spiacente $sender... Non ho nessun groppo chiamato $folder", $s, 1, true);
 				return;
 			}
@@ -371,7 +371,7 @@
 
 	function is_cop($user)
 	{
-		list($utente, $d) = split("!", $user);
+		list($utente, $d) = preg_split("/!/", $user);
 		if($d == "cop@Security.org")
 			return true;
 		return false;

@@ -22,15 +22,15 @@ function fortune($socket, $channel, $sender, $msg, $infos)
 
 	$basedir = "functions/fortune/fortunes/";
 
-	if(ereg("fortune-o", $infos[0]))
+	if(preg_match("/fortune-o/", $infos[0]))
 		$type = "-o.dat";
 	else
 		$type = "dat";
 
 	$fortunes_dat = getFiles($basedir, $type);
-	if(ereg("fortune-i", $infos[0])) {
+	if(preg_match("/fortune-i/", $infos[0])) {
 		for($i = 0; $i < count($fortunes_dat); $i++)
-			if(ereg("-o.dat$", $fortunes_dat[$i]))
+			if(preg_match("/-o.dat$/", $fortunes_dat[$i]))
 				unset($fortunes_dat[$i]);
 		$fortunes_dat = array_values($fortunes_dat);
 	}
