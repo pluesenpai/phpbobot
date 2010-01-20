@@ -1,0 +1,33 @@
+bot-fork.php
+
+68:			Attenzione! La directory %s non esiste!
+76:			roBOT for IRC Network
+77:			Summary of connection data
+78:			Server
+79:			Port
+80:			Channel(s)
+81:			UserName
+82:			Description
+83:			Password
+88:			Creating socket...
+98:			Creating party-line socket...
+101:		done!
+102:		Socket listening on
+94-109:		ERROR!!!!
+117-124:	Could not fork
+119:		Sending user-name and nick
+140:		New party-line socket connection from
+247:		Ciao %s
+250:		Per informazioni dai il comando \"%s %s\"!
+250:		help
+274:		New join
+280:		Codice 376 o codice 422 ricevuto... Procedo con join e login
+289:		Codice 433 ricevuto, necessario GHOST
+292:		Password accettata - adesso sei riconosciuto.
+292:		ickServ :No such nick/channel
+315:		sparati | suicidati
+317:		Ok... :(
+319:		Addio!!! :'(
+320:		BANG!
+345:		Cosa c'&egrave; %s??
+353:		PING request

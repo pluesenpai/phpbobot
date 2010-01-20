@@ -1,0 +1,34 @@
+<sardylan_db>
+	<function>
+		<name>search</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^\? (.+)$/i]]></regex>
+		<descr_name>? {WORD OR PHRASE}</descr_name>
+		<descr>Search {WORD OR PHRASE} in the dictionary</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>learn</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^learn "(.+?)" (.+)$/i]]></regex>
+		<descr_name>learn {WORD OR PHRASE} {DEFINITON}</descr_name>
+		<descr>Add {WORD OR PHRASE} in the dictionary, which means {DEFINITON}</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>randdef</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^randdef$/i]]></regex>
+		<descr_name>randdef</descr_name>
+		<descr>Shows a random definition from the dictionary</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>forget</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^forget (.+)$/i]]></regex>
+		<descr_name>forget {WORD OR PHRASE}</descr_name>
+		<descr>Forget the last inserted meaning of {WORD OR PHRASE}</descr>
+		<tipo>normal</tipo>
+	</function>
+</sardylan_db>

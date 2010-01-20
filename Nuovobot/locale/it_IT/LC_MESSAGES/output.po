@@ -1,0 +1,459 @@
+# translation of output.po to
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: output\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-12 15:27+0200\n"
+"PO-Revision-Date: 2010-01-15 20:04+0100\n"
+"Last-Translator: Paolo\n"
+"Language-Team:  <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: bot-fork.php:68
+#, php-format
+msgid "directory-notexists-%s"
+msgstr "Attenzione! La directory %s non esiste!"
+
+#: bot-fork.php:76
+msgid "bot-descr"
+msgstr "Bot per reti IRC"
+
+#: bot-fork.php:77
+msgid "conn-summary"
+msgstr "Dati di connessione"
+
+#: bot-fork.php:78
+msgid "conn-server"
+msgstr "Server"
+
+#: bot-fork.php:79
+msgid "conn-port"
+msgstr "Porta"
+
+#: bot-fork.php:80
+msgid "conn-channels"
+msgstr "Canale/i"
+
+#: bot-fork.php:81
+msgid "conn-username"
+msgstr "Nome utente"
+
+#: bot-fork.php:82
+msgid "conn-desc"
+msgstr "Descrizione"
+
+#: bot-fork.php:83
+msgid "conn-password"
+msgstr "Password"
+
+#: bot-fork.php:88
+msgid "socket-create"
+msgstr "Creazione socket..."
+
+#: bot-fork.php:92 bot-fork.php:101
+msgid "done"
+msgstr "Fatto!"
+
+#: bot-fork.php:94 bot-fork.php:109
+msgid "error"
+msgstr "ERRORE!!"
+
+#: bot-fork.php:98
+msgid "socket-partyline-create"
+msgstr "Creazione socket partyline"
+
+#: bot-fork.php:102
+msgid "socket-partyline-listening"
+msgstr "Socket in ascolto all'indirizzo"
+
+#: bot-fork.php:117 bot-fork.php:124
+msgid "fork-error"
+msgstr "Impossibile forkare"
+
+#: bot-fork.php:119
+msgid "dbg-user_nick-send"
+msgstr "Invio nome utente e descrizione"
+
+#: bot-fork.php:140
+msgid "socket-partyline-newconn"
+msgstr "Nuova connessione partyline da"
+
+#: bot-fork.php:247
+#, php-format
+msgid "greet-hi-%s"
+msgstr "Ciao %s"
+
+#: bot-fork.php:250
+#, php-format
+msgid "greet-infos-%s-%s"
+msgstr "Per informazioni dai il comando \"%s %s\"!"
+
+#: bot-fork.php:250
+msgid "command-help"
+msgstr "help"
+
+#: bot-fork.php:274
+msgid "event-newjoin"
+msgstr "Nuovo join"
+
+#: bot-fork.php:280
+msgid "event-376-422"
+msgstr "Codice 376 o codice 422 ricevuto... Procedo con join e login"
+
+#: bot-fork.php:289
+msgid "event-433"
+msgstr "Codice 433 ricevuto, necessario GHOST"
+
+#: bot-fork.php:292
+msgid "pass-ok"
+msgstr "Password accettata - adesso sei riconosciuto."
+
+#: bot-fork.php:292
+msgid "no-nickserv"
+msgstr "ickServ :No such nick/channel"
+
+#: bot-fork.php:315
+msgid "command-kill"
+msgstr "suicidati"
+
+#: bot-fork.php:317
+msgid "command-kill-msg1"
+msgstr "Ok... :("
+
+#: bot-fork.php:319
+msgid "command-kill-msg2"
+msgstr "Addio!!! :'("
+
+#: bot-fork.php:320
+msgid "command-kill-msg3"
+msgstr "BANG!"
+
+#: bot-fork.php:345
+#, php-format
+msgid "bot-poke-%s"
+msgstr "Cosa c'&egrave; %s??"
+
+#: bot-fork.php:353
+msgid "ping"
+msgstr "PING request"
+
+#: register.php:8
+msgid "register-complete"
+msgstr "Ora sei registrato!"
+
+#: register.php:10
+msgid "register-failed"
+msgstr "Registrazione fallita!"
+
+#: greetme.php:4
+#, php-format
+msgid "greetme-message-%s"
+msgstr "Ciao %s :)"
+
+#: greetuser.php:5
+#, php-format
+msgid "greetuser-message-%s"
+msgstr "Ciao %s... Come stai??"
+
+#: greetuser.php:7
+#, php-format
+msgid "greetuser-userbot-%s"
+msgstr "Chi mi fai salutare? %s sono io!!!"
+
+#: greetuser.php:9
+#, php-format
+msgid "greetuser-absent-%s"
+msgstr "Chi mi fai salutare? %s non c'&egrave;!!!"
+
+#: talkall.php:9
+msgid "back-message"
+msgstr "Torrau!!"
+
+#: botversion.php:4
+#, php-format
+msgid "botversion-%s-%s"
+msgstr "Sono %s, versione %s"
+
+#: functions.xml.php:5
+msgid "greet-regex"
+msgstr "/^saluta$/"
+
+#: functions.xml.php:6
+msgid "greet-descr_name"
+msgstr "saluta"
+
+#: functions.xml.php:7
+msgid "greet-descr"
+msgstr "Saluto il canale"
+
+#: functions.xml.php:13
+msgid "greetme-regex"
+msgstr "/^salutami$|^ciao$/"
+
+#: functions.xml.php:14
+msgid "greetme-descr_name"
+msgstr "salutami, ciao"
+
+#: functions.xml.php:15
+msgid "greetme-descr"
+msgstr "Scrivendo \"salutami\" oppure \"ciao\" ti saluter&ograve;"
+
+#: functions.xml.php:21
+msgid "greetuser-regex"
+msgstr "/^saluta (.+)$/"
+
+#: functions.xml.php:22
+msgid "greetuser-descr_name"
+msgstr "saluta {UTENTE}"
+
+#: functions.xml.php:23
+msgid "greetuser-descr"
+msgstr "Saluter&ograve; l'utente {UTENTE}"
+
+#: functions.xml.php:29
+msgid "silence-regex"
+msgstr "/^zitto$/"
+
+#: functions.xml.php:30
+msgid "silence-descr_name"
+msgstr "zitto"
+
+#: functions.xml.php:31
+msgid "silence-descr"
+msgstr "Star&ograve; zitto e buono :|"
+
+#: functions.xml.php:37
+msgid "silenceall-regex"
+msgstr "/^bai a marrai$/"
+
+#: functions.xml.php:38
+msgid "silenceall-descr_name"
+msgstr "bai a marrai"
+
+#: functions.xml.php:39
+msgid "silenceall-descr"
+msgstr "Lascer&ograve; tutti i canali per andare a... zappare"
+
+#: functions.xml.php:45
+msgid "talk-regex"
+msgstr "/^parla$/"
+
+#: functions.xml.php:46
+msgid "talk-descr_name"
+msgstr "parla"
+
+#: functions.xml.php:47
+msgid "talk-descr"
+msgstr "Riprender&ograve; a parlare"
+
+#: functions.xml.php:53
+msgid "talkall-regex"
+msgstr "/^torra$/"
+
+#: functions.xml.php:54
+msgid "talkall-descr_name"
+msgstr "torra"
+
+#: functions.xml.php:55
+msgid "talkall-descr"
+msgstr "Tornerò a controllare i canali dopo essere andato a... zappare"
+
+#: functions.xml.php:61
+msgid "help-regex"
+msgstr "/^help$/"
+
+#: functions.xml.php:62
+msgid "help-descr_name"
+msgstr "help"
+
+#: functions.xml.php:63
+msgid "help-descr"
+msgstr "Mostro l'elenco delle funzioni"
+
+#: functions.xml.php:69
+msgid "shorthelp-regex"
+msgstr "/^lista$/"
+
+#: functions.xml.php:70
+msgid "shorthelp-descr_name"
+msgstr "lista"
+
+#: functions.xml.php:71
+msgid "shorthelp-descr"
+msgstr "Mostro la lista dei gruppi di funzioni"
+
+#: functions.xml.php:77
+msgid "grouphelp-regex"
+msgstr "/^help (.+)$/"
+
+#: functions.xml.php:78
+msgid "grouphelp-descr_name"
+msgstr "help {GRUPPO}"
+
+#: functions.xml.php:79
+msgid "grouphelp-descr"
+msgstr "Mostro l'elenco delle funzioni nel gruppo {GRUPPO}"
+
+#: functions.xml.php:85
+msgid "botversion-regex"
+msgstr "/^versione$/"
+
+#: functions.xml.php:86
+msgid "botversion-descr_name"
+msgstr "versione"
+
+#: functions.xml.php:87
+msgid "botversion-descr"
+msgstr "Mostro la mia versione"
+
+#: functions.xml.php:93
+msgid "register-regex"
+msgstr "/^registra (.+)$/"
+
+#: functions.xml.php:94
+msgid "register-descr_name"
+msgstr "register {PASSWORD}"
+
+#: functions.xml.php:95
+msgid "register-descr"
+msgstr "Verrai registrato con la password {PASSWORD}"
+
+#: functions.xml.php:101
+msgid "auth-regex"
+msgstr "/^auth (.+)$/"
+
+#: functions.xml.php:102
+msgid "auth-descr_name"
+msgstr "auth {PASSWORD}"
+
+#: functions.xml.php:103
+msgid "auth-descr"
+msgstr "Verrai autenticato"
+
+#: functions.xml.php:109
+msgid "deauth-regex"
+msgstr "/^deauth$/"
+
+#: functions.xml.php:110
+msgid "deauth-descr_name"
+msgstr "deauth"
+
+#: functions.xml.php:111
+msgid "deauth-descr"
+msgstr "Verrai deautenticato"
+
+#: functions.xml.php:117
+msgid "lists_add-regex"
+msgstr "/^([a-z])op add (.+?)$/"
+
+#: functions.xml.php:118
+msgid "lists_add-descr_name"
+msgstr "{LISTA}op add {UTENTE}"
+
+#: functions.xml.php:119
+msgid "lists_add-descr"
+msgstr "Aggiungerò l'utente {UTENTE} alla lista {LISTA}"
+
+#: functions.xml.php:125
+msgid "lists_remove-regex"
+msgstr "/^([a-z])op remove (.+?)$/"
+
+#: functions.xml.php:126
+msgid "lists_remove-descr_name"
+msgstr "{LISTA}op remove {UTENTE}"
+
+#: functions.xml.php:127
+msgid "lists_remove-descr"
+msgstr "Rimuoverò l'utente {UTENTE} dalla lista {LISTA}"
+
+#: functions.xml.php:133
+msgid "setmessage-regex"
+msgstr "/^setmessage (.+)$/"
+
+#: functions.xml.php:134
+msgid "setmessage-descr_name"
+msgstr "setmessage {MESSAGGIO}"
+
+#: functions.xml.php:135
+msgid "setmessage-descr"
+msgstr "Imposter&ograve; il tuo messaggio di saluto con quello specificato"
+
+#: functions.xml.php:141
+msgid "delmessage-regex"
+msgstr "/^delmessage$/"
+
+#: functions.xml.php:142
+msgid "delmessage-descr_name"
+msgstr "delmessage"
+
+#: functions.xml.php:143
+msgid "delmessage-descr"
+msgstr "Elimino il tuo messaggio impostato"
+
+#: lists_add.php:17 lists_add.php:22
+#, php-format
+msgid "lists-user_added-%s-%s"
+msgstr "%s &egrave; stato aggiunto alla %sop list."
+
+#: lists_add.php:28 lists_remove.php:29
+#, php-format
+msgid "lists-list_notexists-%s"
+msgstr "La lista %sop non esistente."
+
+#: lists_add.php:30 setmessage.php:12 lists_remove.php:31 delmessage.php:10
+msgid "auth-required"
+msgstr "Prima effettua l'autenticazione!"
+
+#: deauth.php:8
+msgid "deauth-success"
+msgstr "Deautenticato con successo"
+
+#: deauth.php:10
+msgid "deauth-failed"
+msgstr "Errore durante la deautenticazione"
+
+#: greet.php:4
+msgid "greet-message"
+msgstr "Ciao a tutti!! :)"
+
+#: setmessage.php:10
+msgid "message-success"
+msgstr "Messaggio impostato!"
+
+#: talk.php:8
+msgid "talk-message"
+msgstr "Blablabla Blabla"
+
+#: lists_remove.php:16 lists_remove.php:25
+#, php-format
+msgid "lists-user_notpresent-%s-%s"
+msgstr "%s non fa parte della %sop list."
+
+#: lists_remove.php:23
+#, php-format
+msgid "lists-user_removed-%s-%s"
+msgstr "%s &egrave; stato rimosso dalla %sop list."
+
+#: silenceall.php:7 silenceall.php:10
+msgid "away-message"
+msgstr "Vado a zappare!"
+
+#: auth.php:8
+msgid "auth-success"
+msgstr "Ora sei autenticato!"
+
+#: auth.php:10
+msgid "auth-failed"
+msgstr "Password errata"
+
+#: delmessage.php:8
+msgid "message-removed"
+msgstr "Saluto eliminato!"
+

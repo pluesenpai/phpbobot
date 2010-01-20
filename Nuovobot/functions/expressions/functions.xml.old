@@ -1,0 +1,10 @@
+<sardylan_db>
+	<function>
+		<name>expression</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^valuta (.+)$/]]></regex>
+		<descr_name>valuta {ESPRESSIONE}</descr_name>
+		<descr>Calcola il risultato di un'espressione</descr>
+		<tipo>normal</tipo>
+	</function>
+</sardylan_db>

@@ -1,0 +1,50 @@
+<sardylan_db>
+	<function>
+		<name>jok_cumbidu</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^cumbida$/]]></regex>
+		<descr_name>cumbida</descr_name>
+		<descr>Cubidu po tottusu :)</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>jok_inviteto</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^a (.+?) to (.+) please$/]]></regex>
+		<descr_name>a {SOMETHING} to {USER}</descr_name>
+		<descr>Give what you want to {USER} :)</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>jok_invite</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^a (.+?) please$/]]></regex>
+		<descr_name>a {SOMETHING} please</descr_name>
+		<descr>Give you what you want :)</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>roulette</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^roulette (.+(,[ ]*.+)*)$/]]></regex>
+		<descr_name>roulette {WORD1}[, {WORD2}[, {WORD3}...]]</descr_name>
+		<descr>I'll choose between given words</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>lotteria</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^lotteria ([0-9]+) ([0-9]+)$/]]></regex>
+		<descr_name>lotteria {MIN} {MAX}</descr_name>
+		<descr>I'll pick a random number between {MIN} and {MAX}</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>bigd</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^bigd ([0-9]+) ([0-9]+)$|^bigd (-comm){1} ([0-9]+)$/]]></regex>
+		<descr_name>bigd {YY} {WW} / bigd -comm {NUM}</descr_name>
+		<descr>I'll choose BigD's story from year {YY} and week {WW} or comment numbered {NUM}</descr>
+		<tipo>normal</tipo>
+	</function>
+</sardylan_db>
