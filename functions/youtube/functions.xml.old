@@ -1,0 +1,14 @@
+<sardylan_db>
+	<function>
+		<name>youtube</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^(youtube|yt) (.+?)$/i]]></regex>
+		<descr_name>youtube|yt {CODE}|{URL}</descr_name>
+		<descr>I'll post in chan the title and the link of the video.</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>youtube</name>
+		<tipo>always</tipo>
+	</function>
+</sardylan_db>

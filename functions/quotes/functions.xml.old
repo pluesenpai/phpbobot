@@ -1,0 +1,58 @@
+<sardylan_db>
+	<function>
+		<name>addquote</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^addquote (.+?) (.+)$/i]]></regex>
+		<descr_name>addquote {QUOTE_TEXT}</descr_name>
+		<descr>You will add a quote</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>quote</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^quote ([0-9]+)$/i]]></regex>
+		<descr_name>quote {NUMBER}</descr_name>
+		<descr>You will get the text of the quote number {NUMBER}</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>randquote</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^randquote$/i]]></regex>
+		<descr_name>randquote</descr_name>
+		<descr>You will get a random quote</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>delquote</name>
+		<privileged>1</privileged>
+		<regex><![CDATA[/^delquote ([0-9]+)$/i]]></regex>
+		<descr_name>delquote {NUMBER}</descr_name>
+		<descr>You will drop the quote number {NUMBER}</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>userquotes</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^userquotes (.+)$/i]]></regex>
+		<descr_name>userquotes {MULTIPLE_USER_NAME}</descr_name>
+		<descr>You will get the last 5 quotes of {MULTIPLE_USER_NAME}</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>findquotes</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^findquotes (.+)$/i]]></regex>
+		<descr_name>findquotes {MULTIPLE_QUERIES}</descr_name>
+		<descr>You will get the last 5 quotes which contains {MULTIPLE_QUERIES}</descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>allquotes</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[/^allquotes$/i]]></regex>
+		<descr_name>allquotes</descr_name>
+		<descr>You will get all quotes (in private)</descr>
+		<tipo>normal</tipo>
+	</function>
+</sardylan_db>
