@@ -25,6 +25,8 @@
 
 	function youtube($socket, $channel, $sender, $msg, $infos)
 	{
+		global $translations;
+	
 		$always = preg_match("/always/", $infos[0]);
 		if($always) {
 			$messaggio = explode(" ", $msg);

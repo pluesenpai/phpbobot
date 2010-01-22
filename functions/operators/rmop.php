@@ -2,7 +2,7 @@
 
 function rmop($irc, $irc_chan, $sender, $msg, $op)
 {
-	global $operators, $db;
+	global $operators, $db, $translations;
 
 	if(in_array($op[1], $operators)) {
 		$db->del_operator($op[1]);
