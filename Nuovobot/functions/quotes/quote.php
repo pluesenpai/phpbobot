@@ -2,7 +2,7 @@
 
 function quote($socket, $channel, $sender, $msg, $infos)
 {
-	global $db;
+	global $db, $translations;
 
 	$quote_id = (int)$infos[1];
 
@@ -17,7 +17,7 @@ function quote($socket, $channel, $sender, $msg, $infos)
 			sendmsg($socket, "\00301\002#{$quote["IDQuote"]}\002 \037(quoted by {$quote["the_sender"]})\037: \00311<{$quote["the_poster"]}>\00301 \017" . toUTF8(stripslashes($quote["message"])), $channel);
 		}
 	} else
-		sendmsg($socket, "Spiacente... Non esiste la quote n. $quote_id.", $channel);
+		sendmsg($socket, sprintf($translations->bot_gettext("quotes-notexists-%s"), $quote_id), $channel); //"Spiacente... Non esiste la quote n. $quote_id."
 
 }
 

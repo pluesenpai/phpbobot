@@ -20,6 +20,9 @@
 	$user_psw = $config->getPassword();
 	$irc_chans = $config->getChans();
 
+	require_once("Internationalizer.class.php");
+	$translations = new Internationalizer($locale);
+
 	require_once("MinimalLogger.class.php");
 	$logger = new MinimalLogger($user_name, $irc_chans);
 // 	require_once("Logger.class.php");

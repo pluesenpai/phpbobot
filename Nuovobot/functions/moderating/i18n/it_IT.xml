@@ -1,0 +1,58 @@
+<db>
+	<translation>
+		<msgid><![CDATA[moderating-addword-%s]]></msgid>
+		<msgstr><![CDATA[Aggiunta la parola %s nella lista!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-infos-yes]]></msgid>
+		<msgstr><![CDATA[Sto moderando il canale!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-infos-no]]></msgid>
+		<msgstr><![CDATA[NON sto moderando il canale!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-listwords]]></msgid>
+		<msgstr><![CDATA[Allora... Ti do l'elenco delle parole vietate!! ;)]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-nobadwords]]></msgid>
+		<msgstr><![CDATA[Non ci sono parole vietate in questo canale]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-started]]></msgid>
+		<msgstr><![CDATA[Ora modero il canale!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-rmword-removed-%s]]></msgid>
+		<msgstr><![CDATA[Fatto!!! %s non &egrave; pi&ugrave; nella lista!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-rmword-notpresent-%s]]></msgid>
+		<msgstr><![CDATA[Spiacente... %s non era nella lista!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-stop]]></msgid>
+		<msgstr><![CDATA[Ora NON modero pi&ugrave; il canale!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-badword-%s-%s]]></msgid>
+		<msgstr><![CDATA[%s::: La parola %s non &egrave; ammessa!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-warn-%s]]></msgid>
+		<msgstr><![CDATA[%s::: Alla prossima ti butto FUORI!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-bye-%s]]></msgid>
+		<msgstr><![CDATA[%s::: Ti avevo avertito!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-kick-%s]]></msgid>
+		<msgstr><![CDATA[%s::: FFUUOORRIIIIIII!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-mwahaha]]></msgid>
+		<msgstr><![CDATA[Peggio per lui... Si arrangia!!! MWAHAHAHAH ;)]]></msgstr>
+	</translation>
+</db>

@@ -2,10 +2,10 @@
 
 function stop($socket, $channel, $sender, $msg, $infos)
 {
-	global $db;
+	global $db, $translations;
 
 	$db->update("chan", array("moderated"), array("false"), array("name"), array("="), array($channel));
-	sendmsg($socket, "Ora NON modero pi&ugrave; il canale!!!", $channel);
+	sendmsg($socket, $translations->bot_gettext("moderating-stop"), $channel); //"Ora NON modero pi&ugrave; il canale!!!"
 }
 
 ?>

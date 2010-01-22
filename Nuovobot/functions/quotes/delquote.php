@@ -2,7 +2,7 @@
 
 function delquote($socket, $channel, $sender, $msg, $infos)
 {
-	global $db;
+	global $db, $translations;
 
 	$quote_id = $infos[1];
 
@@ -11,7 +11,7 @@ function delquote($socket, $channel, $sender, $msg, $infos)
 	$cond_v = array($quote_id);
 	$result = $db->remove("quotes", $cond_f, $cond_o, $cond_v);
 
-	sendmsg($socket, "Quote \00301\002#{$quote_id}\002 deleted!!", $channel);
+	sendmsg($socket, sprintf($translations->bot_gettext("quotes-deleted-%s"), $quote_id), $channel); //"Quote \00301\002#{$quote_id}\002 deleted!!"
 }
 
 ?>

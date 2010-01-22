@@ -1,0 +1,26 @@
+<db>
+	<translation>
+		<msgid><![CDATA[quotes-addquote-ok-%s-%s]]></msgid>
+		<msgstr><![CDATA[%s, ho aggiunto la quote n. %s!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-already_sending-%s]]></msgid>
+		<msgstr><![CDATA[Spiacente %s... Sto gi&agrave; inviando un file. Riprova fra un po'...]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-deleted-%s]]></msgid>
+		<msgstr><![CDATA[Quote \00301\002#%s\002 eliminata!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-findquotes-notfound]]></msgid>
+		<msgstr><![CDATA[Nessuna quote disponibile contenente il testo cercato.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-notexists-%s]]></msgid>
+		<msgstr><![CDATA[Spiacente... Non esiste la quote n. %s.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-userquotes-notfound-%s]]></msgid>
+		<msgstr><![CDATA[Nessuna quote disponibile per l'utente %s.]]></msgstr>
+	</translation>
+</db>

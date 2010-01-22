@@ -8,13 +8,14 @@
 
 	function msgsend($socket, $channel, $sender, $msg, $infos)
 	{
-		global $db;
+		global $db, $translations;
+
 		$to = $infos[1];
 		$post = $infos[2];
 		$id_to = $db->check_user($to);
 		$id_sender = $db->check_user($sender);
 
 		insert_msg($post, $id_to, $id_sender);
-		sendmsg($socket, "Messaggio inviato, $sender!", $channel);
+		sendmsg($socket, sprintf($translations->bot_gettext("messages-sent-%s")), $channel); //"Messaggio inviato, $sender!"
 	}
 ?>

@@ -46,7 +46,7 @@
 			preg_match("/<meta name=\"title\" content=\"(.+?)\">/", $body, $result);
 
 			if(count($result[0]) == 0)
-				sendmsg($socket, "Spiacente. Non ho trovato alcun risultato", $channel);
+				sendmsg($socket, $translations->bot_gettext("youtube-notfound"), $channel); //"Spiacente. Non ho trovato alcun risultato"
 			else {
 				$title = html_entity_decode(htmlentities($result[1], ENT_QUOTES, 'UTF-8'));
 				$address = "http://www.youtube.com/watch?v=$id";

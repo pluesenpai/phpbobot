@@ -25,13 +25,15 @@
 
 	function google($socket, $channel, $sender, $msg, $infos)
 	{
+		global $translations;
+
 		$q = $infos[2];
 
 		$body = getpage("http://www.google.it/search?q=$q");
 		preg_match_all("/<!--m-->(.+?)<!--n-->/", $body, $result);
 
 		if(count($result[0]) == 0)
-			sendmsg($socket, "Spiacente. Non ho trovato alcun risultato", $channel);
+			sendmsg($socket, $translations->bot_gettext("google-noresult"), $channel); //"Spiacente. Non ho trovato alcun risultato"
 
 		foreach($result[0] as $r) {
 			preg_match("#^<!--m--><li class=g><h3 class=r><a href=\"(.+?)\" class=l onmousedown=\"return clk\(this\.href,'','','res','[0-9]+','','[a-zA-Z0-9]+'\)\">(.+?)</a></h3><div class=\"s\">(.+)<br>#", $r, $result1);

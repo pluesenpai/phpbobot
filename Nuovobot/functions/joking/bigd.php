@@ -1,9 +1,11 @@
 <?php
 
-require_once("funcs.php");
+//require_once("funcs.php");
 
 function bigd($socket, $channel, $sender, $msg, $infos)
 {
+	global $translations;
+
 	if(isset($infos[3]) && $infos[3] == "-comm")
 		$pag = "commenti/comm" . $infos[4];
 	else
@@ -14,7 +16,7 @@ function bigd($socket, $channel, $sender, $msg, $infos)
 	$body = getpage($address);
 
 	if(preg_match("/<title>Documento Non Trovato<\/title>/", $body)) {
-		sendmsg($socket, "Spiacente. Non sono riuscito a trovarlo.", $channel);
+		sendmsg($socket, $translations->bot_gettext("joking-bidg_notfound"), $channel); //"Spiacente. Non sono riuscito a trovarlo."
 		return;
 	}
 

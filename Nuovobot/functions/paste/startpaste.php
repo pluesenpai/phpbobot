@@ -2,8 +2,10 @@
 
 	function startpaste($socket, $channel, $sender, $msg, $infos)
 	{
+		global $translations;
+
 		if(isset($paste_enabled[$sender]) && $paste_enabled[$sender]) {
-			sendmsg($socket, "$sender:: Hai gi&agrave; un paste aperto. Digita `pasted` prima di avviarne uno nuovo.", $channel);
+			sendmsg($socket, sprintf($translations->bot_gettext("paste-already_open-%s"), $sender), $channel); //"$sender:: Hai gi&agrave; un paste aperto. Digita `pasted` prima di avviarne uno nuovo."
 		} else {
 			global $user_name, $db, $dir_paste, $paste_langs1;
 
@@ -21,7 +23,7 @@
 
 			$db->update("user", array("paste_enabled"), array("true"), array("username"), array("="), array($sender));
 
-			sendmsg($socket, "$sender:: Per chiudere il paste e inviarlo, digita `pasted`", $channel);
+			sendmsg($socket, sprintf($translations->bot_gettext("paste-newpaste-%s"), $sender), $channel); //"$sender:: Per chiudere il paste e inviarlo, digita `pasted`"
 		}
 	}
 

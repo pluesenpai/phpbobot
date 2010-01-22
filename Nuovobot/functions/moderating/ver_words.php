@@ -1,7 +1,7 @@
 <?php
 	function ver_words($socket, $channel, $sender, $msg, $infos)
 	{
-		global $operators, $bad_words, $moderated, $debug, $max_kicks, $db;
+		global $operators, $bad_words, $moderated, $debug, $max_kicks, $db, $translations;
 
 		if($infos[1] != "PRIVMSG")
 			return;
@@ -15,7 +15,7 @@
 			$array = explode(" ", $msg);
 			foreach($array as $parola) {
 				if(!in_array($sender, $operators) && array_search($parola, $words) !== FALSE) {
-					sendmsg($socket, "$sender::: La parola $parola non &egrave; ammessa!!!", $channel, 0, true);
+					sendmsg($socket, sprintf($translations->bot_gettext("moderating-badword-%s-%s"), $sender, $parola), $channel, 0, true); //"$sender::: La parola $parola non &egrave; ammessa!!!"
 					$iduser = $db->check_user($sender);
 					$idchan = $db->check_chan($channel);
 					//SELECT kicks FROM entra WHERE IDUser = $iduser AND IDChan = $idchan
@@ -35,13 +35,13 @@
 						$kicks = ((int)$result[0]['kicks']) + 1;
 					sendmsg($socket, "$sender::: E siamo a $kicks...", $channel, 0, true);
 					if($kicks == $max_kicks - 1)
-						sendmsg($socket, "$sender::: Alla prossima ti butto FUORI!!!", $channel, 0, true);
+						sendmsg($socket, sprintf($translations->bot_gettext("moderating-warn-%s"), $sender), $channel, 0, true); //"$sender::: Alla prossima ti butto FUORI!!!"
 					elseif($kicks == $max_kicks) {
-						sendmsg($socket, "$sender::: Ti avevo avertito!!!", $channel, 0, true);
-						sendmsg($socket, "$sender::: FFUUOORRIIIIIII!!!", $channel, 0, true);
+						sendmsg($socket, sprintf($translations->bot_gettext("moderating-bye-%s"), $sender), $channel, 0, true); //"$sender::: Ti avevo avertito!!!"
+						sendmsg($socket, sprintf($translations->bot_gettext("moderating-kick-%s"), $sender), $channel, 0, true); //"$sender::: FFUUOORRIIIIIII!!!"
 						send($socket, "KICK $channel $sender\n");
 						send($socket, "MODE $channel +b $sender!*@*\n");
-						sendmsg($socket, "Peggio per lui... Si arrangia!!! MWAHAHAHAH ;)", 0, true);
+						sendmsg($socket, $translations->bot_gettext("moderating-mwahaha"), 0, true); //"Peggio per lui... Si arrangia!!! MWAHAHAHAH ;)"
 						$kicks = 0;
 					}
 					if($kicks < $max_kicks)

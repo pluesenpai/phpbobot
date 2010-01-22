@@ -1,0 +1,34 @@
+<db>
+	<translation>
+		<msgid><![CDATA[joking-bidg_notfound]]></msgid>
+		<msgstr><![CDATA[Spiacente. Non sono riuscito a trovarlo.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-cumbidu]]></msgid>
+		<msgstr><![CDATA[Mi son rotto!!! Adesso offro IO!!!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-cumbidu_notice]]></msgid>
+		<msgstr><![CDATA[cumbida a tutti!! :)]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-invite-%s-%s]]></msgid>
+		<msgstr><![CDATA[offre un %s a %s :)]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-lotteria_err-%s-%s-%s]]></msgid>
+		<msgstr><![CDATA[%s: Ti pare che %s sia più piccolo di %s??]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-lotteria_chosen-%s]]></msgid>
+		<msgstr><![CDATA[Ho scelto il numero %s]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-roulette_user-%s]]></msgid>
+		<msgstr><![CDATA[%s, sei stato nominato... ca\$\$i tuoi!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-roulette_word-%s]]></msgid>
+		<msgstr><![CDATA[Ho scelto la parola %s]]></msgstr>
+	</translation>
+</db>

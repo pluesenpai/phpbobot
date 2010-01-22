@@ -1,7 +1,7 @@
 <?php
 	function corrections($socket, $channel, $sender, $msg, $infos)
 	{
-		global $db;
+		global $db, $translations;
 	
 		if($infos[1] != "PRIVMSG")
 			return;
@@ -11,17 +11,17 @@
 		$wrong = $db->select(array("corrections"), array("last_said"), array(""), array("user_IDUser", "chan_IDChan"), array("=",  "="), array($iduser, $idchan));
 
 		if(preg_match("#^s(\*(.+?))?/(.+)/(.*)[^/]$#", $msg)) {
-			sendmsg($socket, "Fai pi&ugrave; attenzione {$sender}: hai dimenticato lo slash finale :)", $channel);
+			sendmsg($socket, sprintf($translations->bot_gettext("corrections-final_slash-%s"), $sender), $channel); //"Fai pi&ugrave; attenzione {$sender}: hai dimenticato lo slash finale :)"
 			$msg .= "/";
 		}
-		if(preg_match("#^s(\*(.+?))?/(.+)/(.*)/(.*)$#", $msg, $pieces)) {// && preg_match("/{$pieces[3]}/", $wrong[0]['last_said'])) {
-			$phrase = "meant";
+		if(preg_match("#^s(\*(.+?))?/(.+)/(.*)/(.*)$#", $msg, $pieces)) {// && preg_match("/{$pieces[3]}/", $wrong[0]["last_said"])) {
+			$phrase = $translations->bot_gettext("corrections-theuser"); //"meant";
 			$corrected_user = $sender;
 			if($pieces[2] != "") {
 				$corrected_user = $pieces[2];
 				$iduser = $db->check_user($pieces[2]);
 				$wrong = $db->select(array("corrections"), array("last_said"), array(""), array("user_IDUser", "chan_IDChan"), array("=",  "="), array($iduser, $idchan));
-				$phrase = "should have meant";
+				$phrase = $translations->bot_gettext("corrections-otheruser"); //"should have meant";
 			}
 			$oldtext = $pieces[3];
 			$newtext = $pieces[4];
@@ -31,7 +31,7 @@
 			if(preg_match("/r/", $pieces[5]))
 				$oldtext = preg_replace("/([\.\/\#\(\)\+\?\*])/", "\\\\$1", $oldtext);
 
-			$corrected = preg_replace("/{$oldtext}/{$modifiers}", $newtext, $wrong[0]['last_said']);
+			$corrected = preg_replace("/{$oldtext}/{$modifiers}", $newtext, $wrong[0]["last_said"]);
 			if(strlen($corrected) > 0) {
 				sendmsg($socket, "{$corrected_user} {$phrase}: \002$corrected\002", $channel);
 			}

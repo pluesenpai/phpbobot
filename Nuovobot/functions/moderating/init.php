@@ -60,16 +60,17 @@ if(!$db->field_is_present("chan", "moderated")) {
 if(!$db->table_is_present("bad_words")) {
 	//CREATE TABLE bad_words (IDWord INTEGER PRIMARY KEY NOT NULL, word VARCHAR(128) NOT NULL, count INTEGER DEFAULT 0 NOT NULL)
 	$field1 = array('fieldname' => "IDWord", 'type' => "integer", 'size' => 0, 'null' => "not", 'flags' => array("primary", "ai"));
-	$field2 = array('fieldname' => "word", 'type' => "varchar", 'size' => 128, 'null' => "not", 'flags' => array());
+	$field2 = array('fieldname' => "word", 'type' => "varchar", 'size' => 128, 'null' => "not", 'flags' => array("unique"));
 	$field3 = array('fieldname' => "count", 'type' => "integer", 'size' => 0, 'null' => "not", 'flags' => array());
 	$db->create_table("bad_words", $field1, $field2, $field3);
 }
 
-if(!$db->table_is_present("forbidden")) {
+if(!$db->table_is_present("forbidden")) { //args[] = array('PK' => array(PK_fields))
 	//CREATE TABLE forbidden (IDword INTEGER NOT NULL, IDChan INTEGER NOT NULL, FOREIGN KEY (IDword) references bad_words(IDword), FOREIGN KEY (IDChan) references chan(IDChan))
 	$moderated_forbidden_field1 = array('fieldname' => "IDBadWord", 'type' => "integer", 'size' => 0, 'null' => "not", 'flags' => array("references bad_words IDWord"));
 	$moderated_forbidden_field2 = array('fieldname' => "IDChannel", 'type' => "integer", 'size' => 0, 'null' => "not", 'flags' => array("references chan IDChan"));
-	$db->create_table("forbidden", $moderated_forbidden_field1, $moderated_forbidden_field2);
+	$moderated_forbidden_pk = array("PK" => array("IDBadWord", "IDChannel"));
+	$db->create_table("forbidden", $moderated_forbidden_field1, $moderated_forbidden_field2, $moderated_forbidden_pk);
 }
 
 $bad_words = refresh_badwords();

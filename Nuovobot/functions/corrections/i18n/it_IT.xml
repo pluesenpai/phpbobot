@@ -1,0 +1,14 @@
+<db>
+	<translation>
+		<msgid><![CDATA[corrections-final_slash-%s]]></msgid>
+		<msgstr><![CDATA[Fai pi&ugrave; attenzione %s: hai dimenticato lo slash finale :)]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[corrections-theuser]]></msgid>
+		<msgstr><![CDATA[voleva dire]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[corrections-otheruser]]></msgid>
+		<msgstr><![CDATA[probabilmente intendeva]]></msgstr>
+	</translation>
+</db>

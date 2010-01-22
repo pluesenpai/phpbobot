@@ -73,12 +73,15 @@
 
 	function getmsgs($socket, $channel, $sender, $msg, $infos)
 	{
+		global $translations;
+
 		$number = -1;
 		$to = "";
 		$all = $silent = false;
 
 		if(count($infos) >= 1) {
-			if(preg_match("/^(allmessages|readall)/", $infos[0]))
+			//if(preg_match("/^(allmessages|readall)/", $infos[0]))
+			if(preg_match("/\+$/", $infos[0]))
 				$all = true;
 			if(preg_match("/on_join/", $infos[0]))
 				$silent = true;
@@ -103,9 +106,17 @@
 		if($cnt > 0 || ($cnt == 0 && !$silent)) {
 			if($all)
 				$letti = "";
-			else
-				$letti = " non lett" . ($cnt == 1 ? "o" : "i");
-			sendmsg($socket, "$sender, hai $cnt " . ($cnt == 1 ? "messaggio" : "messaggi") . $letti , $sender);
+			else {
+				if($cnt == 1) {
+					$letti = $translations->bot_gettext("messages-getmsgs-read_singular");
+					$msg = $translations->bot_gettext("messages-getmsgs-msg_singular");
+				} else {
+					$letti = $translations->bot_gettext("messages-getmsgs-read_plural");
+					$msg = $translations->bot_gettext("messages-getmsgs-msg_plural");
+				}
+				//$letti = " non lett" . ($cnt == 1 ? "o" : "i");
+			}
+			sendmsg($socket, sprintf($translations->bot_gettext("messages-getmsgs-infos-%s-%s-%s-%s"), $sender, $cnt, $msg, $letti), $sender); //"$sender, hai $cnt $msg $letti"
 			foreach($msgs as $msg) {
 				sendmsg($socket, "{$msg['IDMsg']}) Sender: {$msg['User_From']}, Date: " . date("d F Y", strtotime($msg['data'])), $sender);
 				if($number != -1)

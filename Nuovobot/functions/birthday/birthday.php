@@ -2,7 +2,7 @@
 
 function birthday($socket, $channel, $sender, $msg, $infos)
 {
-	global $db;
+	global $db, $translations;
 
 	$cond_f = array("username");
 	$cond_o = array("=");
@@ -14,7 +14,7 @@ function birthday($socket, $channel, $sender, $msg, $infos)
 		if($result[0]["birthday"] > date("Y-m-d"))
 			return;
 		elseif($result[0]["birthday"] == date("Y-m-d")) {
-			sendmsg($socket, "$sender!! Ma... Oggi &egrave; il tuo compleanno!!! Auguri!!!!", $channel);
+			sendmsg($socket, sprintf($translations->bot_gettext("birthday-theday-%s"), $sender), $channel); //"$sender!! Ma... Oggi &egrave; il tuo compleanno!!! Auguri!!!!"
 
 			$year = ((int)date('Y')) + 1;
 			$month = date('n');

@@ -2,7 +2,7 @@
 
 	function set_birthday($socket, $channel, $sender, $msg, $infos)
 	{
-		global $db;
+		global $db, $translations;
 		$giorni_ammessi = array(1 => 31,
 								3 => 31,
 								4 => 30,
@@ -25,11 +25,11 @@
 		$giorno = $infos[1];
 		$mese = $infos[2];
 		if($mese < 1 || $mese > 12) {
-			sendmsg($socket, "$mese... che mese &egrave;, $sender???", $channel);
+			sendmsg($socket, sprintf($translations->bot_gettext("birthday-wrong_month-%s-%s"), $mese, $sender), $channel); //"$mese... che mese &egrave;, $sender???"
 			return;
 		}
 		if($giorno < 1 || ($mese != 2 && $giorno > $giorni_ammessi[$mese]) || ($mese == 2 && $giorno > 29)) {
-			sendmsg($socket, "Non &egrave; possibile questo giorno, $sender!!!", $channel);
+			sendmsg($socket, sprintf($translations->bot_gettext("birthday-wrong_day-%s"), $sender), $channel); //"Non &egrave; possibile questo giorno, $sender!!!"
 			return;
 		}
 
@@ -42,7 +42,7 @@
 
 		$db->update("user", array("birthday"), array($data), $cond_f, $cond_o, $cond_v);
 
-		sendmsg($socket, "$sender: data impostata.", $channel);
+		sendmsg($socket, sprintf($translations->bot_gettext("birthday-ok-%s")), $channel); //"$sender: data impostata."
 	}
 
 ?>

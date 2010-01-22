@@ -1,0 +1,10 @@
+<db>
+	<translation>
+		<msgid><![CDATA[definitions-chosen-%s-%s]]></msgid>
+		<msgstr><![CDATA[\037Random definition for %s!!!\037 Chosen definition: \002%s]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[definitions-number-%s-%s]]></msgid>
+		<msgstr><![CDATA[Definition n. \037%s\037 for \002%s]]></msgstr>
+	</translation>
+</db>

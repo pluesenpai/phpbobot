@@ -2,7 +2,7 @@
 
 	function pasted($socket, $channel, $sender, $msg, $infos)
 	{
-		global $user_name, $dir_paste, $db, $paste_langs, $paste_langs1;
+		global $user_name, $dir_paste, $db, $paste_langs, $paste_langs1, $translations;
 
 		if(file_exists("{$dir_paste}{$sender}_paste.txt")) {
 			$db->update("user", array("paste_enabled"), array("false"), array("username"), array("="), array($sender));
@@ -31,7 +31,7 @@
 
 			print_r($post_data);
 
-			sendmsg($socket, "$sender:: Attendi, sto eseguendo il paste...", $channel);
+			sendmsg($socket, sprintf($translations->bot_gettext("paste-pasting-%s"), $sender), $channel); //"$sender:: Attendi, sto eseguendo il paste..."
 
 			$page = curl_init();
 			curl_setopt($page, CURLOPT_URL, "http://rafb.net/paste/paste.php");
@@ -46,7 +46,7 @@
 
 			echo $link;
 
-			sendmsg($socket, "$sender:: Link del paste: \002\00302$link\00F", $channel);
+			sendmsg($socket, sprintf($translations->bot_gettext("paste-link-%s-%s"), $sender, $link), $channel); //"$sender:: Link del paste: \002\00302$link\00F"
 		}
 	}
 ?>

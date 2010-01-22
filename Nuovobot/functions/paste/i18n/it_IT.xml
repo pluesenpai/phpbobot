@@ -1,0 +1,30 @@
+<db>
+	<translation>
+		<msgid><![CDATA[paste-already_open-%s]]></msgid>
+		<msgstr><![CDATA[%s:: Hai gi&agrave; un paste aperto. Chiudi il precedente con il relativo comando.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[paste-newpaste-%s]]></msgid>
+		<msgstr><![CDATA[%s:: Per chiudere il paste e inviarlo, ricordati di digitare il relativo comando.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[paste-pasting-%s]]></msgid>
+		<msgstr><![CDATA[%s:: Attendi, sto eseguendo il paste...]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[paste-link-%s-%s]]></msgid>
+		<msgstr><![CDATA[%s:: Link del paste: \002\00302%s\00F]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[paste-languages-%s]]></msgid>
+		<msgstr><![CDATA[Ecco i linguaggi riconosciuti da %s]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[paste-case_sensitive_1]]></msgid>
+		<msgstr><![CDATA[Attenzione! Uso un riconoscimento Case Sensitive,]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[paste-case_sensitive_2]]></msgid>
+		<msgstr><![CDATA[quindi se non scrivi il linguaggio correttamente user&ograve; `Text`]]></msgstr>
+	</translation>
+</db>
