@@ -1,19 +1,19 @@
 <db>
 	<translation>
 		<msgid><![CDATA[messages-getmsgs-read_singular]]></msgid>
-		<msgstr><![CDATA[]]></msgstr>
+		<msgstr><![CDATA[letto]]></msgstr>
 	</translation>
 	<translation>
 		<msgid><![CDATA[messages-getmsgs-read_plural]]></msgid>
-		<msgstr><![CDATA[]]></msgstr>
+		<msgstr><![CDATA[letti]]></msgstr>
 	</translation>
 	<translation>
 		<msgid><![CDATA[messages-getmsgs-msg_singular]]></msgid>
-		<msgstr><![CDATA[]]></msgstr>
+		<msgstr><![CDATA[messaggio]]></msgstr>
 	</translation>
 	<translation>
 		<msgid><![CDATA[messages-getmsgs-msg_plural]]></msgid>
-		<msgstr><![CDATA[]]></msgstr>
+		<msgstr><![CDATA[messaggi]]></msgstr>
 	</translation>
 	<translation>
 		<msgid><![CDATA[messages-getmsgs-infos-%s-%s-%s-%s]]></msgid>
