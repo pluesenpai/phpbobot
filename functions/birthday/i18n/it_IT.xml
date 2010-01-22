@@ -1,0 +1,18 @@
+<db>
+	<translation>
+		<msgid><![CDATA[birthday-wrong_month-%s-%s]]></msgid>
+		<msgstr><![CDATA[%s... che mese &egrave;, %s???]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[birthday-wrong_day-%s]]></msgid>
+		<msgstr><![CDATA[Non &egrave; possibile questo giorno, %s!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[birthday-ok-%s]]></msgid>
+		<msgstr><![CDATA[%s: data impostata.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[birthday-theday-%s]]></msgid>
+		<msgstr><![CDATA[%s!! Ma... Oggi &egrave; il tuo compleanno!!! Auguri!!!!]]></msgstr>
+	</translation>
+</db>

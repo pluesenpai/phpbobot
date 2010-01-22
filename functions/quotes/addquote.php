@@ -13,7 +13,7 @@ function addquote($socket, $channel, $sender, $msg, $infos)
 
 	$id_post = $db->insert("quotes", array("message", "sender", "poster", "channel"), array($message, $id_sender, $id_poster, $id_chan));
 
-	sendmsg($socket, "$sender, ho aggiunto la quote n. {$id_post}!!!", $channel);
+	sendmsg($socket, sprintf($translations->bot_gettext("quotes-addquote-ok-%s-%s"), $sender, $id_post), $channel); //"$sender, ho aggiunto la quote n. {$id_post}!!!"
 }
 
 ?>

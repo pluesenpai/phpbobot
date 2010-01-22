@@ -1,0 +1,18 @@
+<db>
+	<translation>
+		<msgid><![CDATA[operators-addop-ok-%s]]></msgid>
+		<msgstr><![CDATA[Aggiunto %s come operatore!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[operators-listop]]></msgid>
+		<msgstr><![CDATA[Ecco la lista degli operatori:]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[operators-rmop-ok-%s]]></msgid>
+		<msgstr><![CDATA[Fatto!!! %s non &egrave; pi&ugrave; operatore!!!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[operators-rmop-ko-%s]]></msgid>
+		<msgstr><![CDATA[Spiacente... %s non era un operatore!!!]]></msgstr>
+	</translation>
+</db>

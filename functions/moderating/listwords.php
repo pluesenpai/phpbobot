@@ -2,7 +2,7 @@
 
 function listwords($socket, $channel, $sender, $msg, $infos)
 {
-	global $db;
+	global $db, $translations;
 
 	$idchan = $db->check_chan($channel);
 	$bad_words = $db->select(
@@ -20,10 +20,10 @@ function listwords($socket, $channel, $sender, $msg, $infos)
 		$words[] = $badword['word'];
 
 	if(count($words) > 0) {
-		sendmsg($socket, "Allora... Ti do l'elenco delle parole vietate!! ;)", $channel);
+		sendmsg($socket, $translations->bot_gettext("moderating-listwords"), $channel); //"Allora... Ti do l'elenco delle parole vietate!! ;)"
 		sendmsg($socket, implode(", ", $words), $channel);
 	} else
-		sendmsg($socket, "Non ci sono parole vietate in questo canale", $channel);
+		sendmsg($socket, $translations->bot_gettext("moderating-nobadwords"), $channel); //"Non ci sono parole vietate in questo canale"
 }
 
 ?>

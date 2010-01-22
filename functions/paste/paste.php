@@ -1,8 +1,7 @@
 <?php
 	function paste($socket, $channel, $sender, $msg, $infos)
 	{
-		global $paste_enabled;
-		global $dir_paste;
+		global $paste_enabled, $dir_paste;
 
 		if($infos[1] != "PRIVMSG")
 			return;

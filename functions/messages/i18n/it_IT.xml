@@ -1,0 +1,30 @@
+<db>
+	<translation>
+		<msgid><![CDATA[messages-getmsgs-read_singular]]></msgid>
+		<msgstr><![CDATA[]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[messages-getmsgs-read_plural]]></msgid>
+		<msgstr><![CDATA[]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[messages-getmsgs-msg_singular]]></msgid>
+		<msgstr><![CDATA[]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[messages-getmsgs-msg_plural]]></msgid>
+		<msgstr><![CDATA[]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[messages-getmsgs-infos-%s-%s-%s-%s]]></msgid>
+		<msgstr><![CDATA[%s, hai %s %s %s]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[messages-sent-%s]]></msgid>
+		<msgstr><![CDATA[Messaggio inviato, %s!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[messages-removed-%s]]></msgid>
+		<msgstr><![CDATA[%s, il messaggio &egrave; stato cancellato correttamente]]></msgstr>
+	</translation>
+</db>

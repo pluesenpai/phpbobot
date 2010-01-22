@@ -13,8 +13,10 @@
 
 	function removemsg($socket, $channel, $sender, $msg, $infos)
 	{
+		global $translations;
+
 		$number = $infos[1];
 		__removemsg($sender, $number);
-		sendmsg($socket, "$sender, il messaggio &egrave; stato cancellato correttamente", $sender);
+		sendmsg($socket, sprintf($translations->bot_gettext("messages-removed-%s")), $sender); //"$sender, il messaggio &egrave; stato cancellato correttamente"
 	}
 ?>

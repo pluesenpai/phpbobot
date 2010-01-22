@@ -2,7 +2,7 @@
 
 function randdef($socket, $channel, $sender, $msg, $infos)
 {
-	global $db;
+	global $db, $translations;
 
 	$cond_f = array();
 	$cond_o = array();
@@ -12,7 +12,7 @@ function randdef($socket, $channel, $sender, $msg, $infos)
 
 	$def_ch = $result[0];
 
-	sendmsg($socket, "\037Random definition for {$sender}!!!\037 Chosen definition: \002{$def_ch["def_name"]}", $channel);
+	sendmsg($socket, sprintf($translations->bot_gettext("definitions-chosen-%s-%s"), $sender, $def_ch["def_name"]), $channel); //"\037Random definition for {$sender}!!!\037 Chosen definition: \002{$def_ch["def_name"]}"
 	foreach(explode("\n", $def_ch["def_text"]) as $def_row)
 		sendmsg($socket, "    {$def_row}", $channel);
 }

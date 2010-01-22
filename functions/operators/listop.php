@@ -2,10 +2,10 @@
 
 function listop($irc, $irc_chan, $sender, $msg, $op)
 {
-	global $operators;
+	global $operators, $translations;
 
 	$testo_p = implode(" ", $operators);
-	sendmsg($irc, "Ecco la lista degli operatori:", $irc_chan);
+	sendmsg($irc, $translations->bot_gettext("operators-listop"), $irc_chan); //"Ecco la lista degli operatori:"
 	sendmsg($irc, "$testo_p", $irc_chan);
 }
 

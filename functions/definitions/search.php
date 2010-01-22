@@ -2,7 +2,7 @@
 
 function search($socket, $channel, $sender, $msg, $infos)
 {
-	global $db;
+	global $db, $translations;
 
 	$definitions_word = preg_replace("/\*/", "%", str_esc($infos[1]));
 	$definitions_word = preg_replace("/\?/", "_", $definitions_word);
@@ -17,7 +17,7 @@ function search($socket, $channel, $sender, $msg, $infos)
 	$def_counter = 1;
 
 	foreach($result as $definitions) {
-		sendmsg($socket, "Definition n. \037{$def_counter}\037 for \002{$definitions["def_name"]}", $channel);
+		sendmsg($socket, sprintf($translations->bot_gettext("definitions-number-%s-%s"), $def_counter, $definitions["def_name"]), $channel); //"Definition n. \037{$def_counter}\037 for \002{$definitions["def_name"]}"
 		foreach(explode("\n", $definitions["def_text"]) as $def_row)
 			sendmsg($socket, "    {$def_row}", $channel);
 		$def_counter++;
