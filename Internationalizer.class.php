@@ -27,8 +27,6 @@
 						$this->_translations[(string)$translation->msgid] = (string)$translation->msgstr;
 				}
 			}
-
-			print_r($this->_translations);
 		}
 
 		public function bot_gettext($key)

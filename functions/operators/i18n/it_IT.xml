@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[operators-group_name]]></msgid>
+		<msgstr><![CDATA[Operatori]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[operators-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per la gestione degli operatori del bot.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[operators-addop-ok-%s]]></msgid>
 		<msgstr><![CDATA[Aggiunto %s come operatore!!!]]></msgstr>
 	</translation>

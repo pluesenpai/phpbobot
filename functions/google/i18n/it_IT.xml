@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[google-group_name]]></msgid>
+		<msgstr><![CDATA[Google]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[google-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per la ricerca con google.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[google-noresult]]></msgid>
 		<msgstr><![CDATA[Spiacente. Non ho trovato alcun risultato]]></msgstr>
 	</translation>

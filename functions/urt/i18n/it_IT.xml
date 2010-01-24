@@ -1,0 +1,10 @@
+<db>
+	<translation>
+		<msgid><![CDATA[urt-group_name]]></msgid>
+		<msgstr><![CDATA[UrbanTerror]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[urt-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per il controllo di server di gioco compatibili con Quake.]]></msgstr>
+	</translation>
+</db>

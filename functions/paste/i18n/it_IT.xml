@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[paste-group_name]]></msgid>
+		<msgstr><![CDATA[Paste]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[paste-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per effettuare paste di codice/testo.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[paste-already_open-%s]]></msgid>
 		<msgstr><![CDATA[%s:: Hai gi&agrave; un paste aperto. Chiudi il precedente con il relativo comando.]]></msgstr>
 	</translation>

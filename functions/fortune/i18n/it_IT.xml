@@ -1,0 +1,10 @@
+<db>
+	<translation>
+		<msgid><![CDATA[fortune-group_name]]></msgid>
+		<msgstr><![CDATA[Fortune]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[fortune-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per la visualizzazione di fortunes.]]></msgstr>
+	</translation>
+</db>

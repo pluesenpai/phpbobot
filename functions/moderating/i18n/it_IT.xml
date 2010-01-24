@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[moderating-group_name]]></msgid>
+		<msgstr><![CDATA[Moderazione]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[moderating-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per la moderazione dei canali.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[moderating-addword-%s]]></msgid>
 		<msgstr><![CDATA[Aggiunta la parola %s nella lista!!!]]></msgstr>
 	</translation>
