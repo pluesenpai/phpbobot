@@ -1,0 +1,10 @@
+<db>
+	<translation>
+		<msgid><![CDATA[builtins-group_name]]></msgid>
+		<msgstr><![CDATA[]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[builtins-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni varie del bot.]]></msgstr>
+	</translation>
+</db>

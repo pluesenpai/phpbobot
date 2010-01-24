@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[quotes-group_name]]></msgid>
+		<msgstr><![CDATA[Citazioni]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per la gestione delle citazioni.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[quotes-addquote-ok-%s-%s]]></msgid>
 		<msgstr><![CDATA[%s, ho aggiunto la quote n. %s!!!]]></msgstr>
 	</translation>

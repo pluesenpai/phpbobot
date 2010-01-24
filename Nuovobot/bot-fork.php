@@ -82,7 +82,7 @@
 	}
 	require_once("colors.php");
 	require_once("common.php");
-	require_once("builtins.php");
+// 	require_once("builtins.php");
 
 	echo "\n\n";
 	echo $BOLD . _("bot-descr") . "{$Z}\n\n\n";

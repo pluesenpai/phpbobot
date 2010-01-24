@@ -40,24 +40,24 @@
 			"messages-descr_name" => "messages",
 			"messages-descr" => "You will get your unread messages",
 			//--------------------------------------------------------------
-			"allmessages-regex" => "/^allmessages$/",
-			"allmessages-descr_name" => "allmessages",
+			"allmessages-regex" => "/^messages\+$/",
+			"allmessages-descr_name" => "messages+",
 			"allmessages-descr" => "You will get all your messages",
 			//--------------------------------------------------------------
 			"messages_from-regex" => "/^messages from \b(.+)\b$/",
 			"messages_from-descr_name" => "messages from {USER}",
 			"messages_from-descr" => "You will get your unread messages from {USER}",
 			//--------------------------------------------------------------
-			"allmessages_from-regex" => "/^allmessages from \b(.+)\b$/",
-			"allmessages_from-descr_name" => "allmessages from {USER}",
+			"allmessages_from-regex" => "/^messages\+ from \b(.+)\b$/",
+			"allmessages_from-descr_name" => "messages+ from {USER}",
 			"allmessages_from-descr" => "You will get all your messages from {USER}",
 			//--------------------------------------------------------------
 			"read-regex" => "/^read ([0-9]+)$/",
 			"read-descr_name" => "read {NUMBER}",
 			"read-descr" => "You will read your unread message number {NUMBER}",
 			//--------------------------------------------------------------
-			"readall-regex" => "/^readall ([0-9]+)$/",
-			"readall-descr_name" => "readall {NUMBER}",
+			"readall-regex" => "/^read\+ ([0-9]+)$/",
+			"readall-descr_name" => "read+ {NUMBER}",
 			"readall-descr" => "You will read your message number {NUMBER}",
 			//--------------------------------------------------------------
 			"message-regex" => "/^message (.+?) (.+)$/",

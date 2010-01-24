@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[definitions-group_name]]></msgid>
+		<msgstr><![CDATA[Dizionario]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[definitions-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per la gestione del dizionario.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[definitions-chosen-%s-%s]]></msgid>
 		<msgstr><![CDATA[\037Random definition for %s!!!\037 Chosen definition: \002%s]]></msgstr>
 	</translation>

@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[birthday-group_name]]></msgid>
+		<msgstr><![CDATA[Compleanno]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[birthday-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per la gestione del compleanno.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[birthday-wrong_month-%s-%s]]></msgid>
 		<msgstr><![CDATA[%s... che mese &egrave;, %s???]]></msgstr>
 	</translation>

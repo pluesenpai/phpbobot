@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[joking-group_name]]></msgid>
+		<msgstr><![CDATA[Varie & eventuali]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni varie]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[joking-bidg_notfound]]></msgid>
 		<msgstr><![CDATA[Spiacente. Non sono riuscito a trovarlo.]]></msgstr>
 	</translation>

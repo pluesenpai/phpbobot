@@ -13,23 +13,23 @@
 
 		if($moderated[$channel]) {
 			$array = explode(" ", $msg);
-			foreach($array as $parola) {
+			foreach($array as $parola) { /*  */
 				if(!in_array($sender, $operators) && array_search($parola, $words) !== FALSE) {
 					sendmsg($socket, sprintf($translations->bot_gettext("moderating-badword-%s-%s"), $sender, $parola), $channel, 0, true); //"$sender::: La parola $parola non &egrave; ammessa!!!"
 					$iduser = $db->check_user($sender);
 					$idchan = $db->check_chan($channel);
 					//SELECT kicks FROM entra WHERE IDUser = $iduser AND IDChan = $idchan
 					$result = $db->select(
-						array("entra"),
+						array("enter"),
 						array("kicks"),
 						array(""),
-						array("IDUser", "IDChan"),
+						array("user_IDUser", "chan_IDChan"),
 						array("=", "="),
 						array($iduser, $idchan)
 					);
 					if(count($result) == 0) {
 						//INSERT INTO entra (IDUser, IDChan, IDSaluto, modes, kicks) VALUES ($iduser, $idchan, 0, "", 0)
-						$db->insert("enter", array("iduser", "idchannel", "idgreet", "modes", "kicks"), array($iduser, $idchan, 0, "", 0));
+						$db->insert("enter", array("user_IDUser", "chan_IDChan", "greet_IDGreet", "modes", "kicks"), array($iduser, $idchan, 0, "", 0));
 						$kicks = 1;
 					} else
 						$kicks = ((int)$result[0]['kicks']) + 1;
@@ -47,7 +47,7 @@
 					if($kicks < $max_kicks)
 						send($socket, "KICK $channel $sender\n");
 					//UPDATE entra SET kicks = $kicks WHERE IDUser = $iduser AND IDChan = $idchan
-					$db->update("enter", array("kicks"), array($kicks), array("iduser", "idchannel"), array("=", "="), array($iduser, $idchan));
+					$db->update("enter", array("kicks"), array($kicks), array("user_IDUser", "chan_IDChan"), array("=", "="), array($iduser, $idchan));
 					//SELECT count FROM bad_words WHERE word = '$parola'
 					$result = $db->select(
 						array("bad_words"),
@@ -55,7 +55,7 @@
 						array(""),
 						array("word"),
 						array("="),
-						array("'$parola'")
+						array($parola)
 					);
 					$count = ((int)$result[0]['count']) + 1;
 					//UPDATE bad_words SET count = $count WHERE word = '$parola'

@@ -9,7 +9,7 @@
 	  */
 	function _help($sender, $short = true, $folder = "")
 	{
-		global $irc, $functions;
+		global $irc, $functions, $translations;
 
 		$s = $sender;
 		$pid = pcntl_fork();
@@ -29,10 +29,10 @@
 			foreach($functions as $func) {
 				if($func["folder"] != $old) {
 					$old = $func["folder"];
+					$group_name = $translations->bot_gettext("{$old}-group_name");
+					$group_descr = $translations->bot_gettext("{$old}-group_descr");
 					if($folder == "" || ($folder != "" && $old == $folder))
-						sendmsg($irc, "$old::", $s, .5, true);
-					//if($short)
-						//sendmsg($irc, "$group_descr", $s, .5, true);
+						sendmsg($irc, "\002\00302$old ($group_name)\002\00301:: $group_descr", $s, .5, true);
 				}
 				if($folder != "" && $old != $folder) {
 					continue;
@@ -41,7 +41,7 @@
 					$priv = " ";
 					if($func["privileged"] == 1)
 						$priv = "*";
-					sendmsg($irc, "\t\t($priv) {$func["descr_name"]}: {$func["descr"]}", $s, .5, true);
+					sendmsg($irc, "\t\t($priv) \037\00304{$func["descr_name"]}\00301\037: {$func["descr"]}", $s, .5, true);
 				}
 			}
 

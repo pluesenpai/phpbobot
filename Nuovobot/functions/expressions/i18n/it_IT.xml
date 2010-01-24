@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[expressions-group_name]]></msgid>
+		<msgstr><![CDATA[Espressioni]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[expressions-group_descr]]></msgid>
+		<msgstr><![CDATA[Valutazione di espressioni.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[expressions-result-%s-%s]]></msgid>
 		<msgstr><![CDATA[Il risultato di %s &egrave; %s]]></msgstr>
 	</translation>

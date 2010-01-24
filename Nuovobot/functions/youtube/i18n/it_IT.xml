@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[youtube-group_name]]></msgid>
+		<msgstr><![CDATA[Youtube]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[youtube-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per la gestione dei filmati di youtube.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[youtube-notfound]]></msgid>
 		<msgstr><![CDATA[Spiacente. Non ho trovato alcun risultato]]></msgstr>
 	</translation>

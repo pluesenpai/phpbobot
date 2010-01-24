@@ -1,5 +1,13 @@
 <db>
 	<translation>
+		<msgid><![CDATA[messages-group_name]]></msgid>
+		<msgstr><![CDATA[Messaggi]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[messages-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per l'invio di messaggi.]]></msgstr>
+	</translation>
+	<translation>
 		<msgid><![CDATA[messages-getmsgs-read_singular]]></msgid>
 		<msgstr><![CDATA[letto]]></msgstr>
 	</translation>
