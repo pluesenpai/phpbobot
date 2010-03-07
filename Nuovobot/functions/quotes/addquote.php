@@ -2,7 +2,7 @@
 
 function addquote($socket, $channel, $sender, $msg, $infos)
 {
-	global $db;
+	global $db, $translations;
 
 	preg_match("/^<?(.+?)>?$/", $infos[1], $user);
 

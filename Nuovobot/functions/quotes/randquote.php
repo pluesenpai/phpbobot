@@ -8,7 +8,7 @@ function randquote($socket, $channel, $sender, $msg, $infos)
 	$cond_o = array("=", "=", "=", "=");
 	$cond_v = array("!U1.IDUser!", "!U2.IDUser!", "IDChan", $channel);
 
-	$result = $db->select(array("quotes", "user U1", "user U2", "chan"), array("IDQuote", "message", "U1.username", "U2.username", "name"), array("", "", "the_poster", "the_sender", "the_chan"), $cond_f, $cond_o, $cond_v, "random", 1);
+	$result = $db->select(array("quotes", "user U1", "user U2", "chan"), array("IDQuote", "message", "U1.username", "U2.username", "name"), array("", "", "the_poster", "the_sender", "the_chan"), $cond_f, $cond_o, $cond_v, 1, "random");
 
 	//$quote_no = rand(0, count($result) - 1);
 

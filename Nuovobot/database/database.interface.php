@@ -7,8 +7,12 @@
 		function __destruct();
 		
 		function dbtype();
+		
+		function getDBName();
+		function getHost();
+		function getPort();
+		function getUser();
 
-		function create_db();
 		function create_table();
 		function alter_table();
 

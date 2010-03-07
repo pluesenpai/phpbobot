@@ -16,7 +16,7 @@ function findquotes($socket, $channel, $sender, $msg, $infos)
 		$cond_o = array("LIKE", "=", "=", "=");
 		$cond_v = array("%{$quote_text}%", "!U1.IDUser!", "!U2.IDUser!", "IDChan");
 
-		$result = $db->select(array("quotes", "user U1", "user U2", "chan"), array("IDQuote", "message", "U1.username", "U2.username", "name"), array("", "", "the_poster", "the_sender", "the_chan"), $cond_f, $cond_o, $cond_v, "", $max);
+		$result = $db->select(array("quotes", "user U1", "user U2", "chan"), array("IDQuote", "message", "U1.username", "U2.username", "name"), array("", "", "the_poster", "the_sender", "the_chan"), $cond_f, $cond_o, $cond_v, $max, "");
 
 		if(count($result) > 0) {
 			foreach($result as $quote)

@@ -8,7 +8,7 @@ function randdef($socket, $channel, $sender, $msg, $infos)
 	$cond_o = array();
 	$cond_v = array();
 
-	$result = $db->select(array("definitions"), array("def_name", "def_text"), array("", ""), $cond_f, $cond_o, $cond_v, "random", 1);
+	$result = $db->select(array("definitions"), array("def_name", "def_text"), array("", ""), $cond_f, $cond_o, $cond_v, 1, "random");
 
 	$def_ch = $result[0];
 

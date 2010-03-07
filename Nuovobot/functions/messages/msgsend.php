@@ -16,6 +16,6 @@
 		$id_sender = $db->check_user($sender);
 
 		insert_msg($post, $id_to, $id_sender);
-		sendmsg($socket, sprintf($translations->bot_gettext("messages-sent-%s")), $channel); //"Messaggio inviato, $sender!"
+		sendmsg($socket, sprintf($translations->bot_gettext("messages-sent-%s"), $sender), $channel); //"Messaggio inviato, $sender!"
 	}
 ?>

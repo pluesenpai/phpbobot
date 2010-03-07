@@ -6,12 +6,12 @@
 			"cumbidu-descr_name" => "cumbida",
 			"cumbidu-descr" => "Cumbidu po tottusu :)",
 			//------------------------------------------------
-			"inviteto-regex" => "/^un (.+?) a (.+)$/",
-			"inviteto-descr_name" => "un {QUALCOSA} a {UTENTE}",
+			"inviteto-regex" => "/^offri (.+?) a (.+)$/",
+			"inviteto-descr_name" => "offri {QUALCOSA} a {UTENTE}",
 			"inviteto-descr" => "Offre quello che vuoi a {USER} :)",
 			//------------------------------------------------
-			"invite-regex" => "/^un (.+?)$/",
-			"invite-descr_name" => "un {SOMETHING}",
+			"invite-regex" => "/^hai (.+?)\?$/",
+			"invite-descr_name" => "hai {SOMETHING}?",
 			"invite-descr" => "Ti offre quello che vuoi :)",
 			//------------------------------------------------
 			"roulette-regex" => "/^roulette (.+(,[ ]*.+)*)$/",

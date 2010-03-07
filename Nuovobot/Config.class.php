@@ -63,6 +63,12 @@
 				if($l_port != "")
 					$this->setListenPort($l_port);
 
+				$old_locale = $this->getLocale();
+				echo "Locale: [$old_locale]";
+				$locale = trim(fgets(STDIN));
+				if($locale != "")
+					$this->setBotLocale($locale);
+
 				$this->removeChan("#sardylan");
 				$this->removeChan("#bottoli");
 				do {
@@ -247,6 +253,44 @@
 		public function setListenAddress($address)
 		{
 			$this->_xml->listenAddress = $address;
+			file_put_contents(self::filename, $this->_xml->asXML());
+		}
+
+		/**
+		  * Retrieve the locale for the Bot
+		  * @returns (String) The locale for the Bot
+		  */
+		public function getLocale()
+		{
+			return (string)$this->_xml->locale;
+		}
+
+		/**
+		  * Permits to set the locale of the Bot
+		  * @param $locale New locale of the bot
+		  */
+		public function setBotLocale($locale)
+		{
+			$this->_xml->locale = $locale;
+			file_put_contents(self::filename, $this->_xml->asXML());
+		}
+
+		/**
+		  * Retrieve the locale for the Bot
+		  * @returns (String) The locale for the Bot
+		  */
+		public function getMinimalLog()
+		{
+			return (int)$this->_xml->minimallog;
+		}
+
+		/**
+		  * Permits to set the locale of the Bot
+		  * @param $locale New locale of the bot
+		  */
+		public function setMinimalLog($minimallog = 1)
+		{
+			$this->_xml->minimallog = (int)$minimallog;
 			file_put_contents(self::filename, $this->_xml->asXML());
 		}
 
