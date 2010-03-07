@@ -12,7 +12,7 @@ function search($socket, $channel, $sender, $msg, $infos)
 	$cond_o = array("LIKE");
 	$cond_v = array("{$definitions_word}");
 
-	$result = $db->select(array("definitions"), array("def_name", "def_text"), array("", ""), $cond_f, $cond_o, $cond_v, "desc*def_id", $definitions_max);
+	$result = $db->select(array("definitions"), array("def_name", "def_text"), array("", ""), $cond_f, $cond_o, $cond_v, $definitions_max, "desc*def_id");
 
 	$def_counter = 1;
 

@@ -8,6 +8,8 @@
 	<server>irc.syrolnet.org</server>
 	<listenAddress>127.0.0.1</listenAddress>
 	<listenPort>25000</listenPort>
+	<locale>it_IT</locale>
+	<minimallog>0</minimallog>
 	<chans>
 		<chan>#sardylan</chan>
 		<chan>#bottoli</chan>

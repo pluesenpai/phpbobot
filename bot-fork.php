@@ -1,16 +1,8 @@
-#!/usr/bin/php -c/home/paolo/download/Nuovobot/php5.3.ini
+#!/usr/bin/php -c/home/paolo/programmazione/bot/php5.3.ini
 
 <?php
 	system("clear");
 	declare(ticks = 1);
-
-					$locale = "it_IT";
-					$localedir = "locale/";
-					$domain = "messages";
-					setlocale(LC_ALL, $locale); //setto la variabile d'ambiente che gettext prende in considerazione
-					bindtextdomain($domain, $localedir);
-					textdomain($domain);
-					bind_textdomain_codeset($domain, "UTF-8"); //indica la codifica dei file di traduzione
 
 	require_once("Config.class.php");
 	$config = Config::singleton();
@@ -19,21 +11,32 @@
 	$user_exitmessage = $config->getExitMessage();
 	$user_psw = $config->getPassword();
 	$irc_chans = $config->getChans();
-
+	$locale = $config->getLocale(); //"it_IT";
+	$is_log_minimal = $config->getMinimalLog();
+	
+	$localedir = "locale/";
+	$domain = "messages";
+	setlocale(LC_ALL, $locale); //setto la variabile d'ambiente che gettext prende in considerazione
+	bindtextdomain($domain, $localedir);
+	textdomain($domain);
+	bind_textdomain_codeset($domain, "UTF-8"); //indica la codifica dei file di traduzione
 	require_once("Internationalizer.class.php");
 	$translations = new Internationalizer($locale);
 
-	require_once("MinimalLogger.class.php");
-	$logger = new MinimalLogger($user_name, $irc_chans);
-// 	require_once("Logger.class.php");
-// 	$logger = new Logger($user_name, $irc_chans);
+	if($is_log_minimal > 0) {
+		require_once("MinimalLogger.class.php");
+		$logger = new MinimalLogger($user_name, $irc_chans);
+	} else {
+		require_once("Logger.class.php");
+		$logger = new Logger($user_name, $irc_chans);
+	}
 
-	///TODO: Create class for mysql, mysqli, sqlite2, sqlite3, postgres
+	///TODO: Create class for mysql, mysqli, sqlite3, postgres
 	require_once("database/pdo_sqlite3.class.php");  //For sqlite3 DB with PDO
 	require_once("database/database.class.php");
 	$db = new Database("database.db", "", "", "", "");
 
-	const version = "0.9.21 (beta)";
+	const version = "0.10.2 (beta)";
 	const user_folder = "/dev/shm/channels";
 	$chiusura = false;		//When setted to true the Bot will close
 	$functions = array();	//array containing information about functions
@@ -298,10 +301,8 @@
 					dbg($debug, _("event-376-422"));
 					if(isset($user_psw) && strlen($user_psw) != 0)
 						sendmsg($irc, "IDENTIFY $user_psw", "NickServ");
-					else {
-						foreach($irc_chans as $irc_chan) {
-							entra_chan($irc_chan);
-						}
+					foreach($irc_chans as $irc_chan) {
+						entra_chan($irc_chan);
 					}
 				} elseif($type == "433") {
 					dbg($debug, _("event-433"));

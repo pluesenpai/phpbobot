@@ -6,6 +6,7 @@
 	{
 		private $_dbname;
 		private $_dbhandle;
+		private $_dbuser;
 		private $_dbpass;
 		private $_dbhost;
 		private $_dbport;
@@ -23,9 +24,9 @@
 		{
 			$this->_dbname = $dbname;
 
-			if(!$this->create_db())
+			//if(!$this->create_db())
 				//$this->_dbhandle = new SQLiteDatabase($this->_dbname);
-				$this->_dbhandle = new PDO("sqlite:" . $this->_dbname);
+			$this->_dbhandle = new PDO("sqlite:" . $this->_dbname);
 		}
 
 		/**
@@ -46,25 +47,24 @@
 			return "pdo_sqlite3";
 		}
 
-		/**
-		  * Creates the initial tables needed by the bot
-		  *
-		  * @returns {BOOLEAN} false if database already exists, else true
-		  */
-		function create_db()
+		function getDBName()
 		{
-			if(!file_exists($this->_dbname)) {
-				//$this->_dbhandle = new SQLiteDatabase($this->_dbname);
-				$this->_dbhandle = new PDO("sqlite:" . $this->_dbname);
-				$this->_dbhandle->exec("CREATE TABLE greet (IDGreet INTEGER PRIMARY KEY NOT NULL, join_message VARCHAR(255) UNIQUE NOT NULL)");
-				$this->_dbhandle->exec("CREATE TABLE chan (IDChan INTEGER PRIMARY KEY NOT NULL, name VARCHAR(255) UNIQUE NOT NULL)");
-				$this->_dbhandle->exec("CREATE TABLE user (IDUser INTEGER PRIMARY KEY NOT NULL, username VARCHAR(80) UNIQUE NOT NULL, password CHAR(33), bot_op BOOLEAN DEFAULT FALSE NOT NULL)");
-				$this->_dbhandle->exec("CREATE TABLE enter (user_IDUser INTEGER NOT NULL REFERENCES user(IDUser), chan_IDChan INTEGER NOT NULL REFERENCES chan(IDChan), greet_IDGreet INTEGER NOT NULL REFERENCES greet(IDGreet), modes VARCHAR(15), PRIMARY KEY(user_IDUser, chan_IDChan))");
+			return $this->_dbname;
+		}
 
-				return true;
-			}
+		function getHost()
+		{
+			return "";
+		}
 
-			return false;
+		function getPort()
+		{
+			return "";
+		}
+
+		function getUser()
+		{
+			return "";
 		}
 
 		/**
@@ -116,6 +116,12 @@
 						$query .= " CHECK (" . $args[$i]['fieldname'] . " $data[1])";
 					elseif($flag == "unique")
 						$query .= " UNIQUE";
+					elseif(preg_match("/^default:(.+)$/", $flag, $data)) {
+						$sep = "";
+						if(!is_numeric($data[1]))
+							$sep = "\"";
+						$query .= " DEFAULT {$sep}{$data[1]}{$sep}";
+					}
 				}
 				if($args[$i]['null'] == 'not')
 					$query .= " NOT NULL, ";
@@ -181,6 +187,12 @@
 						$q .= " CHECK (" . $args[$i]['fieldname'] . " $data[1])";
 					elseif($flag == "unique")
 						$q .= " UNIQUE";
+					elseif(preg_match("/^default:(.+)$/", $flag, $data)) {
+						$sep = "";
+						if(!is_numeric($data[1]))
+							$sep = "\"";
+						$query .= " DEFAULT {$sep}{$data[1]}{$sep}";
+					}
 				}
 				if($args[$i]['null'] == 'not')
 					$q .= " NOT NULL, ";
@@ -193,7 +205,7 @@
 		}
 
 
-		function select($tables, $field, $as, $cond_f, $cond_o, $cond_v, $sort = "", $limit = 0)
+		function select($tables, $field, $as, $cond_f, $cond_o, $cond_v, $limit = 0, $sort = "", $group = "")
 		{
 			$q = "SELECT ";
 
@@ -223,6 +235,12 @@
 					$q = substr($q, 0, -5);
 			}
 
+			if(preg_match("/^group (.+):(.+)$/", $group, $data)) {
+				$q .= " GROUP BY $data[1] HAVING $data[2]";
+			} elseif(preg_match("/^group (.+)$/", $group, $data)) {
+				$q .= " GROUP BY $data[1]";
+			}
+
 			if(preg_match("/^asc\*(.+?)$|^desc\*(.+?)$/i", $sort, $field)) {
 				$exploded = explode("*", $sort);
 				$q .= " ORDER BY " . implode(array_slice($field, 1)) . " " . strtoupper($exploded[0]);
@@ -233,6 +251,8 @@
 
 			if($limit > 0)
 				$q .= " LIMIT $limit";
+
+			echo "$q\n";
 
 			$query = $this->_dbhandle->prepare($q);
 

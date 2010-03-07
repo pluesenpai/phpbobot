@@ -21,7 +21,7 @@
 	</translation>
 	<translation>
 		<msgid><![CDATA[joking-invite-%s-%s]]></msgid>
-		<msgstr><![CDATA[offre un %s a %s :)]]></msgstr>
+		<msgstr><![CDATA[offre %s a %s :)]]></msgstr>
 	</translation>
 	<translation>
 		<msgid><![CDATA[joking-lotteria_err-%s-%s-%s]]></msgid>

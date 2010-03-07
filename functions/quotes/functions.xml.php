@@ -26,9 +26,21 @@
 			"findquotes-descr_name" => "trovaquotes {PAROLE}",
 			"findquotes-descr" => "Mostro le ultime 5 citazioni contenenti {PAROLE}",
 			//-------------------------------------------
-			"allquotes-regex" => "/^tutte/",
+			"allquotes-regex" => "/^tutte$/",
 			"allquotes-descr_name" => "tutte",
-			"allquotes-descr" => "Mostro tutte le citazioni (in privato)"
+			"allquotes-descr" => "Mostro tutte le citazioni (in privato)",
+			//-------------------------------------------
+			"lastquote-regex" => "/^ultima$/",
+			"lastquote-descr_name" => "ultima",
+			"lastquote-descr" => "Mostro l'ultima quote inserita.",
+			//-------------------------------------------
+			"mostquoted-regex" => "/^piuquotato$/",
+			"mostquoted-descr_name" => "piuquotato",
+			"mostquoted-descr" => "Mostro chi &egrave; stato pi&ugrave; quotato.",
+			//-------------------------------------------
+			"mostquoter-regex" => "/^quotatore$/",
+			"mostquoter-descr_name" => "quotatore",
+			"mostquoter-descr" => "Mostro chi ha quotato di pi&ugrave;."
 		);
 
 		$langs["en_GB"] = array(
@@ -58,7 +70,19 @@
 			//-------------------------------------------
 			"allquotes-regex" => "/^allquotes$/",
 			"allquotes-descr_name" => "allquotes",
-			"allquotes-descr" => "You will get all quotes (in private)"
+			"allquotes-descr" => "You will get all quotes (in private)",
+			//-------------------------------------------
+			"lastquote-regex" => "/^lastquote$/",
+			"lastquote-descr_name" => "lastquote",
+			"lastquote-descr" => "You will get last inserted quote",
+			//-------------------------------------------
+			"mostquoted-regex" => "/^mostquoted/",
+			"mostquoted-descr_name" => "mostquoted",
+			"mostquoted-descr" => "You will get who has been quoted the most",
+			//-------------------------------------------
+			"mostquoter-regex" => "/^mostquoter$/",
+			"mostquoter-descr_name" => "mostquoter",
+			"mostquoter-descr" => "You will get who quoted the most"
 		);
 		
 		$xml = <<<EOF
@@ -117,6 +141,30 @@
 		<regex><![CDATA[{$langs[$lang]["allquotes-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["allquotes-descr_name"]}</descr_name>
 		<descr><![CDATA[{$langs[$lang]["allquotes-descr"]}]]></descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>lastquote</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[{$langs[$lang]["lastquote-regex"]}]]></regex>
+		<descr_name>{$langs[$lang]["lastquote-descr_name"]}</descr_name>
+		<descr><![CDATA[{$langs[$lang]["lastquote-descr"]}]]></descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>mostquoted</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[{$langs[$lang]["mostquoted-regex"]}]]></regex>
+		<descr_name>{$langs[$lang]["mostquoted-descr_name"]}</descr_name>
+		<descr><![CDATA[{$langs[$lang]["mostquoted-descr"]}]]></descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>mostquoter</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[{$langs[$lang]["mostquoter-regex"]}]]></regex>
+		<descr_name>{$langs[$lang]["mostquoter-descr_name"]}</descr_name>
+		<descr><![CDATA[{$langs[$lang]["mostquoter-descr"]}]]></descr>
 		<tipo>normal</tipo>
 	</function>
 </db>

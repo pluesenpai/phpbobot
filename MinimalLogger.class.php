@@ -18,7 +18,8 @@
 				$msg = $msg[1];
 			}
 
-			if(preg_match("/^PRIVMSG #|^JOIN [:]*#|^MODE #|^QUIT|^PART/", $msg)) {
+			///TODO: Add topic & nick changes
+			if(preg_match("/^PRIVMSG #|^JOIN [:]*#|^MODE #|^QUIT|^PART|^TOPIC #|^NICK/", $msg)) {
 				//parent::setLogFile((string)date("Ymd") . ".log");
 				parent::logMessage($data, $outgoing);
 			}

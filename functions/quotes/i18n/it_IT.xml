@@ -17,7 +17,7 @@
 	</translation>
 	<translation>
 		<msgid><![CDATA[quotes-deleted-%s]]></msgid>
-		<msgstr><![CDATA[Quote \00301\002#%s\002 eliminata!!]]></msgstr>
+		<msgstr><![CDATA[Quote %s eliminata!!]]></msgstr>
 	</translation>
 	<translation>
 		<msgid><![CDATA[quotes-findquotes-notfound]]></msgid>
@@ -30,5 +30,17 @@
 	<translation>
 		<msgid><![CDATA[quotes-userquotes-notfound-%s]]></msgid>
 		<msgstr><![CDATA[Nessuna quote disponibile per l'utente %s.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-stats-notfound]]></msgid>
+		<msgstr><![CDATA[Nessuna quote disponibile.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-mostquoter-message-%s-%s-%s]]></msgid>
+		<msgstr><![CDATA[Al %s posto... %s ha quotato %s volte!]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-mostquoted-message-%s-%s-%s]]></msgid>
+		<msgstr><![CDATA[Al %s posto... %s è stato quotato %s volte!]]></msgstr>
 	</translation>
 </db>
