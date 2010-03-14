@@ -245,6 +245,12 @@
 						$who_user =  substr($who_flags, -1) . $who_user;
 					//$users[$who_channel][] = $who_user;
 				}
+				
+				if($type == "PRIVMSG" && preg_match("/\001PING (.+)\001$/", $msg, $data)) {
+// 					list($usec, $sec) = explode(" ", microtime());
+// 					$val = $sec * 1000 + $usec;
+					notice($irc, "\001PING {$data[1]}\001", $sender);
+				}
 
 				if(isset($slot_saluto[0])) {
 					for($i = 0; $i < count($slot_saluto); $i++) {
