@@ -252,8 +252,6 @@
 			if($limit > 0)
 				$q .= " LIMIT $limit";
 
-			echo "$q\n";
-
 			$query = $this->_dbhandle->prepare($q);
 
 			$query->execute();
