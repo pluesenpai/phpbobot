@@ -1,0 +1,10 @@
+<db>
+	<translation>
+		<msgid><![CDATA[bot_interaction-group_name]]></msgid>
+		<msgstr><![CDATA[Interazione tra bot]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bot_interaction-group_descr]]></msgid>
+		<msgstr><![CDATA[Funzioni per l'interazione tra bot.]]></msgstr>
+	</translation>
+</db>
