@@ -339,8 +339,7 @@
 
 		function table_is_present($table)
 		{
-			//SHOW TABLES LIKE $table
-			$query = $this->_dbhandle->prepare("PRAGMA table_info($table)");
+			$query = $this->_dbhandle->prepare("SHOW TABLES LIKE \"$table\"");
 			$query->execute();
 			$result = $query->fetchAll();
 
@@ -356,14 +355,13 @@
 				return true;
 
 			$table_ = explode(" ", $table);
-			//SHOW COLUMNS FROM $table_[0]
-			$query = $this->_dbhandle->prepare("PRAGMA table_info($table_[0])");
+			$query = $this->_dbhandle->prepare("SHOW COLUMNS FROM $table_[0]");
 			$query->execute();
 			$result = $query->fetchAll();
 
 			$trovato = false;
 			foreach($result as $r) {
-				if($r['name'] == $field)
+				if($r['Field'] == $field)
 					$trovato = true;
 			}
 
