@@ -31,7 +31,7 @@
 		$logger = new Logger($user_name, $irc_chans);
 	}
 
-	///TODO: Create class for mysql, mysqli, sqlite3, postgres
+	///TODO: Create class for mysql, mysqli, sqlite3 e postgres
 	require_once("database/pdo_sqlite3.class.php");  //For sqlite3 DB with PDO
 	require_once("database/database.class.php");
 	$db = new Database("database.db", "", "", "", "");
