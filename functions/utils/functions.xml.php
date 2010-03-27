@@ -88,7 +88,7 @@
 		<tipo>normal</tipo>
 	</function>
 	<function>
-		<name>datetime</name>
+		<name>date</name>
 		<privileged>0</privileged>
 		<regex><![CDATA[{$langs[$lang]["date-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["date-descr_name"]}</descr_name>
@@ -96,7 +96,7 @@
 		<tipo>normal</tipo>
 	</function>
 	<function>
-		<name>datetime</name>
+		<name>time</name>
 		<privileged>0</privileged>
 		<regex><![CDATA[{$langs[$lang]["time-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["time-descr_name"]}</descr_name>

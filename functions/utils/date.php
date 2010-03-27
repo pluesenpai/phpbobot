@@ -2,7 +2,7 @@
 
 	function datetime($socket, $channel, $sender, $msg, $infos)
 	{
-		sendmsg($socket, gmdate("r"), $channel);
+		sendmsg($socket, gmdate("D, d M Y"), $channel);
 	}
 
 ?>
