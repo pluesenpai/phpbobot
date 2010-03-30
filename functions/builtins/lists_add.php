@@ -1,7 +1,7 @@
 <?php
 	function lists_add($socket, $channel, $sender, $msg, $infos)
 	{
-		global $allowed_autolists, $registered, $auth;
+		global $allowed_autolists, $registered, $auth, $db;
 
 		if($registered[$sender] || $auth[$sender]) {
 			$iduser = $db->check_user($infos[2]);
