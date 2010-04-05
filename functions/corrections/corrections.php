@@ -10,9 +10,11 @@
 		$idchan = $db->check_chan($channel);
 		$wrong = $db->select(array("corrections"), array("last_said"), array(""), array("user_IDUser", "chan_IDChan"), array("=",  "="), array($iduser, $idchan));
 
-		if(preg_match("#^s(\*(.+?))?/(.+)/(.*)[^/]$#", $msg)) {
-			sendmsg($socket, sprintf($translations->bot_gettext("corrections-final_slash-%s"), $sender), $channel); //"Fai pi&ugrave; attenzione {$sender}: hai dimenticato lo slash finale :)"
-			$msg .= "/";
+		if(substr_count($msg, "/") != 3) {
+			if(preg_match("#^s(\*(.+?))?/(.+)/(.*)[^/]$#", $msg)) {
+				sendmsg($socket, sprintf($translations->bot_gettext("corrections-final_slash-%s"), $sender), $channel); //"Fai pi&ugrave; attenzione {$sender}: hai dimenticato lo slash finale :)"
+				$msg .= "/";
+			}
 		}
 		if(preg_match("#^s(\*(.+?))?/(.+)/(.*)/(.*)$#", $msg, $pieces)) {// && preg_match("/{$pieces[3]}/", $wrong[0]["last_said"])) {
 			$phrase = $translations->bot_gettext("corrections-theuser"); //"meant";
@@ -31,7 +33,17 @@
 			if(preg_match("/r/", $pieces[5]))
 				$oldtext = preg_replace("/([\.\/\#\(\)\+\?\*])/", "\\\\$1", $oldtext);
 
-			$corrected = preg_replace("/{$oldtext}/{$modifiers}", $newtext, $wrong[0]["last_said"]);
+			if(preg_match("/^\001ACTION (.+)\001$/", $wrong[0]["last_said"]))
+				$action = true;
+
+			$wrong[0]["last_said"] = preg_replace("/\001/", "", $wrong[0]["last_said"]);
+			$wrong[0]["last_said"] = preg_replace("/ACTION/", "", $wrong[0]["last_said"]);
+
+			$corrected = "";
+			if($action)
+				$corrected = "* {$corrected_user}:";
+
+			$corrected .= preg_replace("/{$oldtext}/{$modifiers}", $newtext, $wrong[0]["last_said"]);
 			if(strlen($corrected) > 0) {
 				sendmsg($socket, "{$corrected_user} {$phrase}: \002$corrected\002", $channel);
 			}
