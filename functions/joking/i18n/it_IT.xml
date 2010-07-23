@@ -1,7 +1,7 @@
 <db>
 	<translation>
 		<msgid><![CDATA[joking-group_name]]></msgid>
-		<msgstr><![CDATA[Varie & eventuali]]></msgstr>
+		<msgstr><![CDATA[Varie &amp; eventuali]]></msgstr>
 	</translation>
 	<translation>
 		<msgid><![CDATA[joking-group_descr]]></msgid>
@@ -25,7 +25,7 @@
 	</translation>
 	<translation>
 		<msgid><![CDATA[joking-lotteria_err-%s-%s-%s]]></msgid>
-		<msgstr><![CDATA[%s: Ti pare che %s sia più piccolo di %s??]]></msgstr>
+		<msgstr><![CDATA[%s: Ti pare che %s sia pi&ugrave; piccolo di %s??]]></msgstr>
 	</translation>
 	<translation>
 		<msgid><![CDATA[joking-lotteria_chosen-%s]]></msgid>
@@ -38,5 +38,13 @@
 	<translation>
 		<msgid><![CDATA[joking-roulette_word-%s]]></msgid>
 		<msgstr><![CDATA[Ho scelto la parola %s]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-dado_err-%s-%s-%s]]></msgid>
+		<msgstr><![CDATA[%s: Puoi farmi tirare un minimo di %s e un massimo di %s dadi.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[joking-dado_extracted-%s]]></msgid>
+		<msgstr><![CDATA[&Egrave; uscito il numero %s.]]></msgstr>
 	</translation>
 </db>

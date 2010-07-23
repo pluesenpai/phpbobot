@@ -2,7 +2,7 @@
 
 function birthday($socket, $channel, $sender, $msg, $infos)
 {
-	global $db;
+	global $db, $translations;
 
 	$cond_f = array("username");
 	$cond_o = array("=");

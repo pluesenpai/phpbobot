@@ -43,4 +43,8 @@
 		<msgid><![CDATA[quotes-mostquoted-message-%s-%s-%s]]></msgid>
 		<msgstr><![CDATA[Al %s posto... %s è stato quotato %s volte!]]></msgstr>
 	</translation>
+	<translation>
+		<msgid><![CDATA[quotes-couldntadd]]></msgid>
+		<msgstr><![CDATA[Mmm... La quote inserita probabilmente esiste già...]]></msgstr>
+	</translation>
 </db>

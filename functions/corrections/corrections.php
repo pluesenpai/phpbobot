@@ -33,6 +33,7 @@
 			if(preg_match("/r/", $pieces[5]))
 				$oldtext = preg_replace("/([\.\/\#\(\)\+\?\*])/", "\\\\$1", $oldtext);
 
+			$action = false;
 			if(preg_match("/^\001ACTION (.+)\001$/", $wrong[0]["last_said"]))
 				$action = true;
 
@@ -45,9 +46,11 @@
 
 			$corrected .= preg_replace("/{$oldtext}/{$modifiers}", $newtext, $wrong[0]["last_said"]);
 			if(strlen($corrected) > 0) {
-				sendmsg($socket, "{$corrected_user} {$phrase}: \002$corrected\002", $channel);
+				sendmsg($socket, "{$corrected_user} {$phrase}: " . IRCColours::BOLD . $corrected . IRCColours::Z, $channel);
 			}
 		} else {
+			$msg = preg_replace("/\"/", "&#34;", $msg);
+			$msg = preg_replace("/'/", "&#39;", $msg);
 			if(count($wrong) > 0) {
 				$db->update("corrections", array("last_said"), array($msg), array("user_IDUser", "chan_IDChan"), array("=",  "="), array($iduser, $idchan));
 			} else {

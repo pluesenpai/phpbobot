@@ -24,7 +24,7 @@ function mostquoter($socket, $channel, $sender, $msg, $infos)
 	if(count($result) > 0) {
 		$cont = 1;
 		foreach($result as $quote) {
-			sendmsg($socket, sprintf($translations->bot_gettext("quotes-mostquoter-message-%s-%s-%s"), "\002{$cont}°\002", "\00311{$quote["the_sender"]}\00301", "\00304{$quote["totale"]}\00301"), $channel, 0, true); //Al \002{$cont}°\002 posto... \00311{$result["the_sender"]}\00301 ha quotato \00304{$result["totale"]}\00301 volte!
+			sendmsg($socket, sprintf($translations->bot_gettext("quotes-mostquoter-message-%s-%s-%s"), IRCColours::BOLD . "{$cont}°" . IRCColours::Z, IRCColours::AQUA . "{$quote["the_sender"]}" . IRCColours::Z, IRCColours::RED . "{$quote["totale"]}" . IRCColours::Z), $channel, 0, true); //Al \002{$cont}°\002 posto... \00311{$result["the_sender"]}\00301 ha quotato \00304{$result["totale"]}\00301 volte!
 			//sendmsg($socket, "\00301\002#{$quote["IDQuote"]}\002 \037(quoted by {$quote["the_sender"]})\037: \00311<{$quote["the_poster"]}>\00301 \017" . toUTF8(stripslashes($quote["message"])), $channel);
 			$cont++;
 		}

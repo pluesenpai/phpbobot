@@ -19,7 +19,8 @@
 			"lists_add" => "1",
 			"lists_remove" => "1",
 			"setmessage" => "0",
-			"delmessage" => "0"
+			"delmessage" => "0",
+			"addpoke" => "0"
 		);
 
 		$xml = "<db>\n";

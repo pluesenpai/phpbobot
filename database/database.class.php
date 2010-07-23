@@ -32,7 +32,8 @@
 		  */
 		function create_db()
 		{
-			if(!file_exists($this->getDBName())) {
+			//if(!file_exists($this->getDBName())) {
+			if(!$this->table_is_present("user")) {
 				//$this->_dbhandle->exec("CREATE TABLE greet (IDGreet INTEGER PRIMARY KEY NOT NULL, join_message VARCHAR(255) UNIQUE NOT NULL)");
 				$this->create_table("greet",
 					array("fieldname" => "IDGreet", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("primary", "ai")),
@@ -60,6 +61,11 @@
 					array("fieldname" => "greet_IDGreet", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("references greet IDGreet CASCADE CASCADE")),
 					array("fieldname" => "modes", "type" => "varchar", "size" => 15, "null" => "yes", "flags" => array()),
 					array('PK' => array("user_IDUser", "chan_IDChan")));
+
+				$this->create_table("poke",
+					array("fieldname" => "IDPoke", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("primary", "ai")),
+					array("fieldname" => "poke_message", "type" => "varchar", "size" => 255, "null" => "not", "flags" => array("unique")),
+					array("fieldname" => "user_IDUser", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("references user IDUser CASCADE CASCADE")));
 			}
 		}
 
@@ -133,7 +139,7 @@
 			$iduser = $this->find_user($user);
 			if($iduser == 0) {
 				///TODO: Aggiungere alla configurazione i bot_op
-				if(in_array($user, array('paolo86', 'sardylan')))
+				if(in_array($user, array("paolo86", "plue", "sardylan")))
 					$op = "true";
 				else
 					$op = "false";
@@ -157,7 +163,7 @@
 			$iduser = $this->check_user($user);
 			$result = $this->select(array("user"), array("password"), array(""), array("IDUser"), array("="), array($iduser));
 
-			return($result[0]['password'] == "");
+			return($result[0]["password"] != "");
 		}
 
 		/**
@@ -213,26 +219,22 @@
 		/**
 		  * Permits to manage modes and greeting message
 		  *
-		  * @param $user  {STRING} User name
-		  * @param $chan  {STRING} Channel
-		  * @param $greet {STRING} Greeting message
-		  * @param $modes {STRING} Modes to set
+		  * @param $iduser  {STRING} User name
+		  * @param $idchan  {STRING} Channel
+		  * @param $idgreet {STRING} Greeting message
+		  * @param $modes   {STRING} Modes to set
 		  */
-		function check_enter($user, $chan, $greet, $modes)
+		function check_enter($iduser, $idchan, $idgreet, $modes)
 		{
-			$iduser = $this->check_user($user);
-			$idchan = $this->check_chan($chan);
-			$idgreet = $this->check_greet($greet);
-
 			$result = $this->select(array("enter"), array("*"), array(""), array("user_IDUser", "chan_IDChan", "greet_IDGreet"), array("=", "=", "="), array($iduser, $idchan, $idgreet));
 			if(count($result) == 1)
 				$this->update("enter", array("modes"), array($modes), array("user_IDUser", "chan_IDChan", "greet_IDGreet"), array("=", "=", "="), array($iduser, $idchan, $idgreet));
 			else {
 				$result = $this->select(array("enter"), array("*"), array(""), array("user_IDUser", "chan_IDChan"), array("=", "="), array($iduser, $idchan));
 				if(count($result) == 1)
-					$this->update("enter", array("modes", "IDGreet"), array($modes, $idsaluto), array("user_IDUser", "chan_IDChan"), array("=", "="), array($iduser, $idchan));
+					$this->update("enter", array("modes", "IDGreet"), array($modes, $idgreet), array("user_IDUser", "chan_IDChan"), array("=", "="), array($iduser, $idchan));
 				else
-					$this->insert("enter", array("user_IDUser", "chan_IDChan", "greet_IDGreet", "modes"), array($iduser, $idchan, $idsaluto, $modes));
+					$this->insert("enter", array("user_IDUser", "chan_IDChan", "greet_IDGreet", "modes"), array($iduser, $idchan, $idgreet, $modes));
 			}
 		}
 

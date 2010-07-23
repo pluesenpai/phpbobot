@@ -4,9 +4,12 @@
 		global $auth, $db;
 
 		$auth[$sender] = $db->check_password($sender, $infos[1]);
-		if($auth[$sender])
+		if($auth[$sender]) {
+			$db->update("user", array("auth"), array("true"), array("username"), array("="), array($sender));
 			notice($socket, _("auth-success"), $sender);
-		else
+		} else {
+			$db->update("user", array("auth"), array("false"), array("username"), array("="), array($sender));
 			notice($socket, _("auth-failed"), $sender);
+		}
 	}
 ?>

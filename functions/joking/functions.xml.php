@@ -22,6 +22,10 @@
 			"lotteria-descr_name" => "lotteria {MIN} {MAX}",
 			"lotteria-descr" => "Sceglierò un numero casuale tra {MIN} e {MAX}",
 			//------------------------------------------------
+			"dado-regex" => "/^dado ([0-9]+)$/",
+			"dado-descr_name" => "dado {N_DADI}",
+			"dado-descr" => "Tirerò {N_DADI} dadi.",
+			//------------------------------------------------
 			"bigd-regex" => "/^bigd ([0-9]+) ([0-9]+)$|^bigd (-comm){1} ([0-9]+)$/",
 			"bigd-descr_name" => "bigd {AA} {SS} / bigd -comm {NUM}",
 			"bigd-descr" => "Mostrerò il titolo della storia di BigD dell'anno {AA} e settimana {SS} o il commento numero {NUM}."
@@ -47,6 +51,10 @@
 			"lotteria-regex" => "/^lottery ([0-9]+) ([0-9]+)$/",
 			"lotteria-descr_name" => "lottery {MIN} {MAX}",
 			"lotteria-descr" => "I'll pick a random number between {MIN} and {MAX}",
+			//------------------------------------------------
+			"dado-regex" => "/^dice ([0-9]+)$/",
+			"dado-descr_name" => "dice {N_DICES}",
+			"dado-descr" => "I'll pick the result from {N_DICES} dices.",
 			//------------------------------------------------
 			"bigd-regex" => "/^bigd ([0-9]+) ([0-9]+)$|^bigd (-comm){1} ([0-9]+)$/",
 			"bigd-descr_name" => "bigd {YY} {WW} / bigd -comm {NUM}",
@@ -85,6 +93,14 @@
 		<regex><![CDATA[{$langs[$lang]["roulette-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["roulette-descr_name"]}</descr_name>
 		<descr><![CDATA[{$langs[$lang]["roulette-descr"]}]]></descr>
+		<tipo>normal</tipo>
+	</function>
+	<function>
+		<name>dado</name>
+		<privileged>0</privileged>
+		<regex><![CDATA[{$langs[$lang]["dado-regex"]}]]></regex>
+		<descr_name>{$langs[$lang]["dado-descr_name"]}</descr_name>
+		<descr><![CDATA[{$langs[$lang]["dado-descr"]}]]></descr>
 		<tipo>normal</tipo>
 	</function>
 	<function>

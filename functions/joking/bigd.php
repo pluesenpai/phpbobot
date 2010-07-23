@@ -1,7 +1,5 @@
 <?php
 
-//require_once("funcs.php");
-
 function bigd($socket, $channel, $sender, $msg, $infos)
 {
 	global $translations;
@@ -24,7 +22,7 @@ function bigd($socket, $channel, $sender, $msg, $infos)
 
 	$title = $result[1];
 
-	sendmsg($socket, "BigD: \037\00302$title\037 \00301@ \002\00304$address\002", $channel, 1, true);
+	sendmsg($socket, "BigD: " . IRCColours::UNDERLINE . IRCColours::BLUE . $title . IRCColours::Z . " @ " . IRCColours::BOLD . IRCColours::RED . $address . IRCColours::Z, $channel, 1, true);
 }
 
 ?>
