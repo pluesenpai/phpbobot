@@ -1,20 +1,21 @@
 # translation of output.po to
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Paolo <paolo86@altervista.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: output\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-12 15:27+0200\n"
-"PO-Revision-Date: 2010-01-15 20:04+0100\n"
-"Last-Translator: Paolo\n"
-"Language-Team:  <it@li.org>\n"
+"PO-Revision-Date: 2010-05-12 17:28+0200\n"
+"Last-Translator: Paolo <paolo86@altervista.org>\n"
+"Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: bot-fork.php:68
 #, php-format
@@ -118,6 +119,10 @@ msgstr "Password accettata - adesso sei riconosciuto."
 #: bot-fork.php:292
 msgid "no-nickserv"
 msgstr "ickServ :No such nick/channel"
+
+#: bot-fork.php:315
+msgid "not-registered"
+msgstr "Il tuo nick non � registrato."
 
 #: bot-fork.php:315
 msgid "command-kill"
@@ -319,7 +324,7 @@ msgstr "/^registra (.+)$/"
 
 #: functions.xml.php:94
 msgid "register-descr_name"
-msgstr "register {PASSWORD}"
+msgstr "registra {PASSWORD}"
 
 #: functions.xml.php:95
 msgid "register-descr"
@@ -457,3 +462,18 @@ msgstr "Password errata"
 msgid "message-removed"
 msgstr "Saluto eliminato!"
 
+#: addpoke.php
+msgid "addpoke-success"
+msgstr "Messaggio aggiunto!"
+
+#: functions.xml.php:133
+msgid "addpoke-regex"
+msgstr "/^addpoke (.+)$/"
+
+#: functions.xml.php:134
+msgid "addpoke-descr_name"
+msgstr "addpoke {MESSAGGIO}"
+
+#: functions.xml.php:135
+msgid "addpoke-descr"
+msgstr "Aggiunger&ograve; il messaggio come possibile risposta al poke."

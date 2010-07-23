@@ -1,4 +1,4 @@
-#!/usr/bin/php -c/home/paolo/programmazione/bot/php5.3.ini
+#!/usr/bin/php -c/home/paolo/programmazione/phpbobot/php5.3.ini
 
 <?php
 	system("clear");
@@ -37,7 +37,7 @@
 	require_once("database/database.class.php");
 	$db = new Database("database.db", "", "", "", "");
 
-	const version = "0.10.4 (beta)";
+	const version = "0.10.6 (beta)";
 	const user_folder = "/dev/shm/channels";
 	$chiusura = false;		//When setted to true the Bot will close
 	$functions = array();	//array containing information about functions
@@ -84,13 +84,17 @@
 		printf(_("directory-notexists-%s") . "\n", user_folder);
 		mkdir(user_folder, 0755);
 	}
-	require_once("colors.php");
+// 	require_once("colors.php");
+	if($colors == true)
+		require_once("shellcoloursenabled.class.php");
+	else
+		require_once("shellcoloursdisabled.class.php");
+	require_once("irccolours.interface.php");
 	require_once("common.php");
-// 	require_once("builtins.php");
 
 	echo "\n\n";
-	echo $BOLD . _("bot-descr") . "{$Z}\n\n\n";
-	echo $UNDERLINE . _("conn-summary") . ":{$Z}\n\n";
+	echo ShellColours::BOLD . _("bot-descr") . ShellColours::Z . "\n\n\n";
+	echo ShellColours::UNDERLINE . _("conn-summary") . ":" . ShellColours::Z . "\n\n";
 	echo _("conn-server") . ":\t\t$irc_server\n";
 	echo _("conn-port") . ":\t\t$irc_port\n";
 	echo _("conn-channels") . ":\t" . implode(", ", $irc_chans) . "\n";
@@ -148,7 +152,6 @@
 			socket_close($party_mainsck);
 			posix_kill($party_pid, 9);
 		} else { //Son
-			//pcntl_signal(SIGCHLD, "sig_handler");
 			pcntl_signal(SIGCHLD, SIG_IGN);
 			do {
 				$party_sck = socket_accept($party_mainsck);
@@ -195,8 +198,8 @@
 				else
 					$irc_chan = $recv;
 				if($recv == $user_name) {
-					$col = $LGREEN;
-					$col_ = $Z;
+					$col = ShellColours::LGREEN;
+					$col_ = ShellColours::Z;
 				} else {
 					$col = $col_ = "";
 				}
@@ -233,6 +236,35 @@
 							}
 						}
 					}
+					
+					if(isset($slot_saluto[0])) {
+						if($slot_saluto[0][0] <= 0) {
+							$slot_saluto[0][0] = is_user_in_chan($slot_saluto[0][1], $slot_saluto[0][2]);
+							if($slot_saluto[0][0] == true) {
+								$saluto_user = $slot_saluto[0][1];
+								$saluto_chan = $slot_saluto[0][2];
+								$joiner_mess = $db->get_greet($saluto_user, $saluto_chan);
+								$joiner_mode = $db->get_modes($saluto_user, $saluto_chan);
+								sendmsg($irc, sprintf(_("greet-hi-%s"), $saluto_user), $saluto_chan, 0, true);
+								if(strlen($joiner_mess) > 0)
+									sendmsg($irc, "[$saluto_user]: $joiner_mess", $saluto_chan, 0, true);
+								sendmsg($irc, sprintf(_("greet-infos-%s-%s"), $user_name, _("command-help")), $saluto_chan, 0, true);
+								$mode_len = strlen($joiner_mode);
+								if($mode_len > 0) {
+									$stringa_mode = "MODE $saluto_chan +$joiner_mode ";
+									for($index = 0; $index < $mode_len; $index++)
+										$stringa_mode .= $saluto_user . " ";
+									send($irc, $stringa_mode . "\n");
+									dbg($debug, $stringa_mode);
+								}
+								foreach($on_join as $join_func) {
+									chiama($join_func['folder'], $join_func['name'], $irc, $saluto_chan, $saluto_user, $msg, array("on_join"));
+								}
+							}
+							unset($slot_saluto[0]);
+							$slot_saluto = array_values($slot_saluto);
+						}
+					}
 					file_put_contents(user_folder . "/$chan", implode("\n", $users[$chan]) . "\n");
 				}
 
@@ -247,49 +279,18 @@
 					//$users[$who_channel][] = $who_user;
 				}
 				
-				if($type == "PRIVMSG" && preg_match("/\001PING (.+)\001$/", $msg, $data)) {
-// 					list($usec, $sec) = explode(" ", microtime());
-// 					$val = $sec * 1000 + $usec;
+				if($type == "PRIVMSG" && preg_match("/\001PING (.+)\001$/", $msg, $data))
 					notice($irc, "\001PING {$data[1]}\001", $sender);
-				}
 
 				if(isset($slot_saluto[0])) {
 					for($i = 0; $i < count($slot_saluto); $i++) {
 						if(microtime(true) - $slot_saluto[$i][3] >= 0.05) {
 							$slot_saluto[$i][0]--;
-							if($slot_saluto[$i][0] == 3) {
+							if($slot_saluto[$i][0] == 2) {
 								send($irc, "NAMES {$slot_saluto[$i][2]}\n");
 								//send($irc, "WHO {$slot_saluto[$i][2]}\n");
 							}
 						}
-					}
-					if($slot_saluto[0][0] <= 0) {
-						$slot_saluto[0][0] = is_user_in_chan($slot_saluto[0][1], $slot_saluto[0][2]);
-						if($slot_saluto[0][0] == true) {
-							$saluto_user = $slot_saluto[0][1];
-							$saluto_chan = $slot_saluto[0][2];
-							$joiner_mess = $db->get_greet($saluto_user, $saluto_chan);
-							$joiner_mode = $db->get_modes($saluto_user, $saluto_chan);
-							//$joiner_mess = saluto($db, $s, $i);
-							//$joiner_mode = mode($db, $s, $i);
-							sendmsg($irc, sprintf(_("greet-hi-%s"), $saluto_user), $saluto_chan, 0, true);
-							if(strlen($joiner_mess) > 0)
-								sendmsg($irc, "[$saluto_user]: $joiner_mess", $saluto_chan, 0, true);
-							sendmsg($irc, sprintf(_("greet-infos-%s-%s"), $user_name, _("command-help")), $saluto_chan, 0, true);
-							$mode_len = strlen($joiner_mode);
-							if($mode_len > 0) {
-								$stringa_mode = "MODE $saluto_chan +$joiner_mode ";
-								for($index = 0; $index < $mode_len; $index++)
-									$stringa_mode .= $saluto_user . " ";
-								send($irc, $stringa_mode . "\n");
-								dbg($debug, $stringa_mode);
-							}
-							foreach($on_join as $join_func) {
-								chiama($join_func['folder'], $join_func['name'], $irc, $saluto_chan, $saluto_user, $msg, array("on_join"));
-							}
-						}
-						unset($slot_saluto[0]);
-						$slot_saluto = array_values($slot_saluto);
 					}
 				}
 				if(in_array(strtolower($type), array("nick", "quit", "mode", "join", "part"))) {
@@ -303,19 +304,16 @@
 					dbg($debug, "\$joiner = $sender");
 					$irc_chan = substr($recv, 1);
 					if(strcmp($sender, $user_name) != 0)
-						$slot_saluto[] = array(4, $sender, $irc_chan, microtime(true));
+						$slot_saluto[] = array(3, $sender, $irc_chan, microtime(true));
 				} elseif(($type == "376") || ($type == "422")) {
 					dbg($debug, _("event-376-422"));
 					if(isset($user_psw) && strlen($user_psw) != 0)
 						sendmsg($irc, "IDENTIFY $user_psw", "NickServ");
-					foreach($irc_chans as $irc_chan) {
-						entra_chan($irc_chan);
-					}
 				} elseif($type == "433") {
 					dbg($debug, _("event-433"));
 					sendmsg($irc, "GHOST $user_name $user_psw", "NickServ");
 					sendmsg($irc, "IDENTIFY $user_psw", "NickServ");
-				} elseif(($type == "NOTICE" && $sender == "NickServ" && $msg == _("pass-ok")) || ($type == "401" && $msg == _("no-nickserv"))) {
+				} elseif(($type == "NOTICE" && $sender == "NickServ" && preg_match("/now recognized|sei riconosciuto/", $msg)) || ($type == "401" && $msg == _("no-nickserv")) || ($type == "NOTICE" && $sender == "NickServ" && preg_match("/not registered|non (.*?)registrato/", $msg))) {
 					///TODO: Sistemare queste condizioni!!! Altrimenti funziona solo su un server localizzato in ITA
 					foreach($irc_chans as $irc_chan) {
 						entra_chan($irc_chan);
@@ -339,7 +337,6 @@
 						$cmd = implode(" ", $ret);
 						dbg($debug, "\$cmd = $cmd");
 						if($cmd == _("command-kill") && is_bot_op($sender) && ($registered[$sender] || $auth[$sender])) { //if($cmd == "sparati" && in_array($sender, $operators) && ($registered[$sender] || $auth[$sender])) {
-							//$channels = array_diff($irc_chans, array($irc_chan));
 							sendmsg($irc, _("command-kill-msg1"), $irc_chan, 0, true);
 							foreach($irc_chans as $c) {
 								sendmsg($irc, _("command-kill-msg2"), $c, 1 / count($irc_chans), true);
@@ -365,10 +362,20 @@
 								}
 							}
 						}
-						//if(!$trovato)
-							//builtins($irc, $irc_chan, $sender, $cmd);
 					} elseif(preg_match("/^{$user_name}[ \,;\.:\-!\?]*$/", $msg)) {
-						sendmsg($irc, sprintf(_("bot-poke-%s"), $sender), $irc_chan);
+						//sendmsg($irc, sprintf(_("bot-poke-%s"), $sender), $irc_chan);
+						if(rand(1, 10) != 2) {
+							$cond_f = array("user_IDUser", "username");
+							$cond_o = array("=", "=");
+							$cond_v = array("!IDUser!", $sender);
+
+							$result = $db->select(array("poke", "user"), array("poke_message"), array(""), $cond_f, $cond_o, $cond_v, 1, "random");
+							if(count($result) == 0)
+								sendmsg($irc, sprintf(_("bot-poke-%s"), $sender), $irc_chan);
+							else
+								sendmsg($irc, $result[0]["poke_message"], $irc_chan);
+						} else
+							sendmsg($irc, sprintf(_("bot-poke-%s"), $sender), $irc_chan);
 					}
 				}
 			} else {

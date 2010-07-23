@@ -6,14 +6,16 @@
 
 		$espr = $infos[1];
 
-		$regex = "/^[\(]*[0-9]+([\+\-\*\/%\]{1}[\(]*[0-9]+[\)]*)+[\)]*$/";
+		$regex = "^[\(]*[0-9]+([\+\-\*\/%\]{1}[\(]*[0-9]+[\)]*)+[\)]*$";
 
-		if(preg_match($regex, $espr)) {
-			if(is_bot_op($sender))
+		if(preg_match("/{$regex}|^fuffa$/", $espr)) {
+			if($espr == "fuffa") {
+				$risultato = "ruffa";
+			} else if(is_bot_op($sender)) {
 				$risultato = exec("{$command} \"{$espr}\" 1");
-			else
+			} else {
 				$risultato = exec("{$command} \"{$espr}\" 0");
-			
+			}
 			sendmsg($socket, sprintf($translations->bot_gettext("expressions-result-%s-%s"), $espr, $risultato), $channel); //"Il risultato di $espr &egrave; $risultato"
 		} else {
 			sendmsg($socket, "Ti sembra una espressione valida? Segui questa regex: {$regex}", $channel);

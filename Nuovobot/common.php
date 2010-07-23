@@ -169,17 +169,13 @@
 	  * @param $text Text to print
 	  */
 	function dbg($debug, $text) {
-		global $BLUE, $Z;
-		if($debug) {
-			echo "{$BLUE} [ deb ] $text{$Z}\n";
-		}
+		if($debug)
+			echo ShellColours::BLUE . " [ deb ] $text" . ShellColours::Z . "\n";
 	}
 
 	function sckdbg($sck_debug, $text) {	// Questa non te la spiego tanto è facile
-		global $LBLUE, $Z;
-		if($sck_debug) {
-			echo "{$LBLUE} [[sck]] $text{$Z}\n";
-		}
+		if($sck_debug)
+			echo ShellColours::LBLUE . " [[sck]] $text" . ShellColours::Z . "\n";
 	}
 
 	/**
@@ -198,7 +194,7 @@
 	  * @return Returns the pid of the son
 	  */
 	function send($stream, $data, $delay = 0) {
-		global $RED, $Z, $logger, $parla, $irc_chans;
+		global $logger, $parla, $irc_chans;
 
 		$channel = array_slice(explode(" ", $data), 1, 1);
 		if(count($channel) > 0 && in_array($channel[0], $irc_chans) && $parla[$channel[0]] == false) {
@@ -213,7 +209,7 @@
 			return $pid_write;
 		} elseif(!$pid_write) {
 			$print_timestamp = date("dmYHis");
-			echo "[{$print_timestamp}] {$RED}  --->> " . toUTF8($data) . "{$Z}";
+			echo "[{$print_timestamp}] " . ShellColours::RED . "  --->> " . toUTF8($data) . ShellColours::Z;
 			usleep($d * 1000000);
 // 			fwrite($stream, $data);
 			socket_write($stream, toUTF8($data));
@@ -492,11 +488,11 @@
 			return $stringa;
 		else
 			return addslashes($stringa);
-	}	
+	}
 
 	function party_working($party_sck, $db, $socket, $irc_chans)
 	{
-		global $YELLOW, $Z, $user_name;
+		global $user_name;
 		$continua = true;	// Questa serve per smettere di ricevere altre connessioni socket
 		socket_write($party_sck, "Ciao, per autenticarti digita 'auth NOME PASSWORD'\n");
 		$auth = false;
@@ -504,8 +500,6 @@
 		do {
 			$data_raw = socket_read($party_sck, 2048, PHP_NORMAL_READ); // Legge sino a \n oppure \r, e comunque non più di 2048 byte
 			$data = str_replace(array("\n","\r"), "", $data_raw); // Elimina i \n e \r dalla stringa
-			$col = $YELLOW;
-			$col_ = $Z;
 			if($data != "") { // Messo perché è come se il socket restituisca due righe invece che una, di cui la seconda vuota!!! Da risolvere... Sicuramente roba di buffer da pulire...
 				if($data == "exit") {
 					continue;
@@ -534,7 +528,7 @@
 						socket_write($party_sck, "Prima seleziona il canale\n");
 					}
 				}
-				echo "{$col} <<sck   $data{$col_}\n"; // Stampa a video i dati ricevuti!!!
+				echo ShellColours::YELLOW . " <<sck   $data" . ShellColours::Z . "\n"; // Stampa a video i dati ricevuti!!!
 				socket_write($party_sck, ($channel != "" ? "[$channel]" : "") . "$ ");
 			}
 		} while($data != "exit"); // E continua sino a che i dati ricevuti, puliti dal \n o \r, siano diversi da "exit"

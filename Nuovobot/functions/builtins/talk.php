@@ -1,10 +1,11 @@
 <?php
 	function talk($socket, $channel, $sender, $msg, $infos)
 	{
-		global $parla;
+		global $parla, $db;
 
 		if(!$parla[$channel]) {
-			$parla[$channel] = true;
+			$db->update("chan", array("talk"), array("true"), array("name"), array("="), array($channel));
+			//$parla[$channel] = true;
 			sendmsg($socket, _("talk-message"), $channel);
 		}
 	}

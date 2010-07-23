@@ -32,7 +32,7 @@
 					$group_name = $translations->bot_gettext("{$old}-group_name");
 					$group_descr = $translations->bot_gettext("{$old}-group_descr");
 					if($folder == "" || ($folder != "" && $old == $folder))
-						sendmsg($irc, "\002\00302$old ($group_name)\002\00301:: $group_descr", $s, .5, true);
+						sendmsg($irc, IRCColours::BOLD . IRCColours::BLUE . "$old ($group_name)" . IRCColours::Z . ":: $group_descr", $s, .5, true);
 				}
 				if($folder != "" && $old != $folder) {
 					continue;
@@ -41,7 +41,7 @@
 					$priv = " ";
 					if($func["privileged"] == 1)
 						$priv = "*";
-					sendmsg($irc, "\t\t($priv) \037\00304{$func["descr_name"]}\00301\037: {$func["descr"]}", $s, .5, true);
+					sendmsg($irc, "\t\t($priv) " . IRCColours::UNDERLINE . IRCColours::RED . $func["descr_name"] . IRCColours::Z . ": " . $func["descr"], $s, .5, true);
 				}
 			}
 

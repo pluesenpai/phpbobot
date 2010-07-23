@@ -125,6 +125,8 @@
 				}
 				if($args[$i]['null'] == 'not')
 					$query .= " NOT NULL, ";
+				else
+					$query .= ", ";
 			}
 
 			for( ; $i < $n_args; $i++) {

@@ -9,27 +9,30 @@
 
 	function builtins_init()
 	{
-
+		$db->update("user", array("auth"), array("false"), array(), array(), array());
+		$db->update("chan", array("talk"), array("true"), array(), array(), array());
 	}
 
 	function builtins_update()
 	{
-		global $auth, $parla;
+		global $auth, $parla, $db;
 
-		$result = $this->select(array("user"), array("username", "auth"), array(""), array(), array(), array());
+		$result = $db->select(array("user"), array("username", "auth"), array("", ""), array(), array(), array());
 
-		print_r($result);
-
-		/*foreach($result as $r)
+		foreach($result as $r)
 			if(array_key_exists($r["username"], $auth))
-				$auth[$r["username"]] = $r["auth"];*/
-				
-		$result = $this->select(array("chan"), array("name", "talk"), array(""), array(), array(), array());
+				if($r["auth"] == "TRUE" || $r["auth"] == "true" || $r["auth"] == "1" || $r["auth"] == 1 || $r["auth"] == true)
+					$auth[$r["username"]] = true;
+				else
+					$auth[$r["username"]] = false;
 
-		print_r($result);
+		$result = $db->select(array("chan"), array("name", "talk"), array("", ""), array(), array(), array());
 
-		/*foreach($result as $r)
+		foreach($result as $r)
 			if(array_key_exists($r["name"], $parla))
-				$parla[$r["name"]] = $r["talk"];*/
+				if($r["talk"] == "TRUE" || $r["talk"] == "true" || $r["talk"] == "1" || $r["talk"] == 1 || $r["talk"] == true)
+					$parla[$r["name"]] = true;
+				else
+					$parla[$r["name"]] = false;
 	}
 ?>
