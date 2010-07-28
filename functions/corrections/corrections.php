@@ -28,9 +28,10 @@
 			$oldtext = $pieces[3];
 			$newtext = $pieces[4];
 			$modifiers = "";
+			
 			if(preg_match("/i/", $pieces[5]))
 				$modifiers = "i";
-			if(preg_match("/r/", $pieces[5]))
+			if(!preg_match("/r/", $pieces[5]))
 				$oldtext = preg_replace("/([\.\/\#\(\)\+\?\*])/", "\\\\$1", $oldtext);
 
 			$action = false;
@@ -39,6 +40,8 @@
 
 			$wrong[0]["last_said"] = preg_replace("/\001/", "", $wrong[0]["last_said"]);
 			$wrong[0]["last_said"] = preg_replace("/ACTION/", "", $wrong[0]["last_said"]);
+			$wrong[0]["last_said"] = preg_replace("/&#34;/", "\"", $wrong[0]["last_said"]);
+			$wrong[0]["last_said"] = preg_replace("/&#39;/", "'", $wrong[0]["last_said"]);
 
 			$corrected = "";
 			if($action)
