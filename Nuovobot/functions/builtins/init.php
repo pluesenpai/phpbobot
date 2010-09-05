@@ -16,23 +16,20 @@
 	function builtins_update()
 	{
 		global $auth, $parla, $db;
+		echo "called builtins_update\n";
 
 		$result = $db->select(array("user"), array("username", "auth"), array("", ""), array(), array(), array());
 
 		foreach($result as $r)
 			if(array_key_exists($r["username"], $auth))
-				if($r["auth"] == "TRUE" || $r["auth"] == "true" || $r["auth"] == "1" || $r["auth"] == 1 || $r["auth"] == true)
-					$auth[$r["username"]] = true;
-				else
-					$auth[$r["username"]] = false;
+				$auth[$r["username"]] = getBoolFromDB($r["auth"]);
 
-		$result = $db->select(array("chan"), array("name", "talk"), array("", ""), array(), array(), array());
+		$result2 = $db->select(array("chan"), array("name", "talk"), array("", ""), array(), array(), array());
 
-		foreach($result as $r)
+		foreach($result2 as $r) {
 			if(array_key_exists($r["name"], $parla))
-				if($r["talk"] == "TRUE" || $r["talk"] == "true" || $r["talk"] == "1" || $r["talk"] == 1 || $r["talk"] == true)
-					$parla[$r["name"]] = true;
-				else
-					$parla[$r["name"]] = false;
+				if(preg_match("/^#(.+)/", $r["name"]))
+					$parla[$r["name"]] = getBoolFromDB($r["talk"]);
+		}
 	}
 ?>
