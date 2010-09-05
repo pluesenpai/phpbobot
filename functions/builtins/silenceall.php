@@ -3,8 +3,8 @@
 	{
 		global $parla, $irc_chans, $db;
 
+		sendmsg($socket, _("away-message"), $channel);
 		foreach($irc_chans as $index => $value) {
-			sendmsg($socket, _("away-message"), $value);
 			$db->update("chan", array("talk"), array("false"), array("name"), array("="), array($value));
 			//$parla[$value] = false;
 		}

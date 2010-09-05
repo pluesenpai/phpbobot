@@ -12,14 +12,14 @@
 
 	function entra_chan($irc_chan)
 	{
-		global $irc, $user_name, $token;
+		global $irc, $user_name, $token, $saluta;
 
 		send($irc, "JOIN $irc_chan\n");
-		sendmsg($irc, "Ciao a tutti... $user_name &egrave; tornato!", $irc_chan, 0, true);
-		//sendmsg($irc, "Ora controllo il canale!!!", $irc_chan, 0, true);
-		sendmsg($irc, "Per informazioni dai il comando \"$user_name help\"!!!", $irc_chan, 0, true);
-		//sendmsg($irc, "\001ACTION Ora controlla il canale!!!\001", $irc_chan, 0, true);
-		me($irc, "Ora controlla il canale!!!", $irc_chan, 0, true);
+		if($saluta[$irc_chan] == true) {
+			sendmsg($irc, "Ciao a tutti... $user_name &egrave; tornato!", $irc_chan, 0, true);
+			sendmsg($irc, "Per informazioni dai il comando \"$user_name help\"!!!", $irc_chan, 0, true);
+			me($irc, "Ora controlla il canale!!!", $irc_chan, 0, true);
+		}
 		$token[$irc_chan] = true;
 		send($irc, "WHO {$irc_chan}\n");
 	}
@@ -43,6 +43,7 @@
 			call_user_func($fun, $irc, $irc_chan, $sender, $msg, $infos);
 			if($infos[0] != "always") {
 				posix_kill(posix_getppid(), SIGUSR1);
+				pcntl_signal_dispatch();
 			}
 			posix_kill(posix_getpid(), 9);
 		}
@@ -534,4 +535,28 @@
 		} while($data != "exit"); // E continua sino a che i dati ricevuti, puliti dal \n o \r, siano diversi da "exit"
 		return $continua; // Se scrivi exit e poi invio va al return e ritorna dove è stata chiamata la funzione.
 	}
+
+	function isnewuser($user)
+	{
+		global $db;
+		return $db->find_user($user) == 0 ? false : true;
+	}
+
+	function cangreet($user)
+	{
+		global $db;
+		$result = $db->select(array("user"), array("cangreet"), array(""), array("username"), array("="), array($user));
+
+		foreach($result as $r)
+			return getBoolFromDB($r["cangreet"]);
+	}
+
+	function getBoolFromDB($field)
+	{
+		if($field === "TRUE" || $field === "true" || $field === "1" || $field === 1 || $field === true)
+			return true;
+		else
+			return false;
+	}
+
 ?>
