@@ -16,7 +16,6 @@
 	function builtins_update()
 	{
 		global $auth, $parla, $db;
-		echo "called builtins_update\n";
 
 		$result = $db->select(array("user"), array("username", "auth"), array("", ""), array(), array(), array());
 
@@ -26,10 +25,10 @@
 
 		$result2 = $db->select(array("chan"), array("name", "talk"), array("", ""), array(), array(), array());
 
-		foreach($result2 as $r) {
-			if(array_key_exists($r["name"], $parla))
-				if(preg_match("/^#(.+)/", $r["name"]))
-					$parla[$r["name"]] = getBoolFromDB($r["talk"]);
+		foreach($result2 as $r2) {
+			if(array_key_exists($r2["name"], $parla))
+				if(preg_match("/^#(.+)/", $r2["name"]))
+					$parla[$r2["name"]] = getBoolFromDB($r2["talk"]);
 		}
 	}
 ?>

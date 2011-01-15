@@ -1,4 +1,4 @@
-#!/usr/bin/php -c/home/paolo/programmazione/phpbobot/php5.3.ini
+#!/usr/bin/php -c./php5.3.ini
 
 <?php
 	system("clear");
@@ -13,7 +13,8 @@
 	$irc_chans = $config->getChans();
 	$locale = $config->getLocale(); //"it_IT";
 	$is_log_minimal = $config->getMinimalLog();
-	
+	$db_engine = $config->getDB();
+
 	$localedir = "locale/";
 	$domain = "messages";
 	setlocale(LC_ALL, $locale); //setto la variabile d'ambiente che gettext prende in considerazione
@@ -32,12 +33,11 @@
 	}
 
 	///TODO: Create class for mysqli, sqlite3 and postgres
-	require_once("database/pdo_sqlite3.class.php");  //For sqlite3 DB with PDO
-	#require_once("database/pdo_mysql.class.php");   //For MySQL DB with PDO
+	require_once("database/{$db_engine}.class.php");
 	require_once("database/database.class.php");
 	$db = new Database("database.db", "", "", "", "");
 
-	const version = "0.10.7 (beta)";
+	const version = "0.10.7";
 	const user_folder = "/dev/shm/channels";
 	$chiusura = false;		//When setted to true the Bot will close
 	$functions = array();	//array containing information about functions
@@ -59,8 +59,8 @@
 		}
 	}
 
-	print_r($saluta);
-	print_r($salutanuovi);
+// 	print_r($saluta);
+// 	print_r($salutanuovi);
 
 	$irc_server = $config->getServer();
 	$irc_port = $config->getPort();
@@ -261,7 +261,7 @@
 					file_put_contents(user_folder . "/$chan", implode("\n", $users[$chan]) . "\n");
 				}
 
-				print_r($slot_saluto);
+// 				print_r($slot_saluto);
 				if(isset($slot_saluto[0])) {
 					if($slot_saluto[0][0] <= 0) {
 						$slot_saluto[0][0] = is_user_in_chan($slot_saluto[0][1], $slot_saluto[0][2]);
@@ -269,7 +269,7 @@
 							$saluto_user = $slot_saluto[0][1];
 							$saluto_chan = $slot_saluto[0][2];
 							$joiner_mode = $db->get_modes($saluto_user, $saluto_chan);
-							print_r($saluta);
+// 							print_r($saluta);
 							if($saluta[$saluto_chan] == true) {
 								if(cangreet($saluto_user) == true || (isnewuser($saluto_user) == true && $salutanuovi[$saluto_chan] == true)) {
 									$joiner_mess = $db->get_greet($saluto_user, $saluto_chan);
@@ -337,9 +337,6 @@
 					}
 				} else {
 					//From here all functions
-					foreach($always as $always_func) {
-						chiama($always_func['folder'], $always_func['name'], $irc, $irc_chan, $sender, $msg, array("always", $type, $data));
-					}
 					if($recv == $user_name) {
 						$regex = "/^(.*)$/";
 						$num = 1;
@@ -395,6 +392,10 @@
 								sendmsg($irc, $result[0]["poke_message"], $irc_chan);
 						} else
 							sendmsg($irc, sprintf(_("bot-poke-%s"), $sender), $irc_chan);
+					} else {
+						foreach($always as $always_func) {
+							chiama($always_func['folder'], $always_func['name'], $irc, $irc_chan, $sender, $msg, array("always", $type, $data));
+						}
 					}
 				}
 			} else {

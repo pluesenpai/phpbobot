@@ -29,8 +29,6 @@
 				"text" => $post_text
 			);
 
-			print_r($post_data);
-
 			sendmsg($socket, sprintf($translations->bot_gettext("paste-pasting-%s"), $sender), $channel); //"$sender:: Attendi, sto eseguendo il paste..."
 
 			$page = curl_init();
@@ -43,8 +41,6 @@
 			$body = curl_exec($page);
 			$link = curl_getinfo($page, CURLINFO_EFFECTIVE_URL);
 			curl_close($page);
-
-			echo $link;
 
 			sendmsg($socket, sprintf($translations->bot_gettext("paste-link-%s-%s"), $sender, $link), $channel); //"$sender:: Link del paste: \002\00302$link\00F"
 		}

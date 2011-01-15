@@ -10,8 +10,8 @@
 		} else
 			$q = $infos[2];
 
-		if(preg_match("#^http://www\.youtube\.com/(.+)\?(.+)$#", $q, $results)) {
-			$querystring = explode("&", $results[2]);
+		if(preg_match("#^http://www\.youtube\.com/watch\?(.+)$#", $q, $results)) {
+			$querystring = explode("&", $results[1]);
 			$index = array_search("v=", $querystring);
 			$body = getpage($q);
 			$id = substr($querystring[$index], 2);
@@ -23,11 +23,12 @@
 		if(isset($id)) {
 			preg_match("/<meta name=\"title\" content=\"(.+?)\">/", $body, $result);
 
-			if(count($result[0]) == 0)
+			if(count($result) <= 0 || count($result[0]) == 0)
 				sendmsg($socket, $translations->bot_gettext("youtube-notfound"), $channel); //"Spiacente. Non ho trovato alcun risultato"
 			else {
-				$title = html_entity_decode(htmlentities($result[1], ENT_QUOTES, 'UTF-8'));
+				$title = html_entity_decode(html_entity_decode($result[1], ENT_NOQUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
 				$address = "http://www.youtube.com/watch?v=$id";
+
 				//sendmsg($socket, "Video: \037\00302$title\037 \00301@ \002\00304$address\002", $channel, 1, true);
 				sendmsg($socket, "Video: " . IRCColours::UNDERLINE . IRCColours::BLUE . $title . IRCColours::UNDERLINE . IRCColours::Z_COLOUR . " @ " . IRCColours::BOLD . IRCColours::RED . $address . IRCColours::Z, $channel, 1, true);
 			}

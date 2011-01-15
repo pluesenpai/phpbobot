@@ -33,13 +33,15 @@
 		function create_db()
 		{
 			//if(!file_exists($this->getDBName())) {
-			if(!$this->table_is_present("user")) {
+			if(!$this->table_is_present("greet")) {
 				//$this->_dbhandle->exec("CREATE TABLE greet (IDGreet INTEGER PRIMARY KEY NOT NULL, join_message VARCHAR(255) UNIQUE NOT NULL)");
 				$this->create_table("greet",
 					array("fieldname" => "IDGreet", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("primary", "ai")),
 					array("fieldname" => "join_message", "type" => "varchar", "size" => 255, "null" => "not", "flags" => array("unique")),
 					array("fieldname" => "cangreet", "type" => "boolean", "size" => 0, "null" => "not", "flags" => array("default:FALSE")));
+			}
 
+			if(!$this->table_is_present("chan")) {
 				//$this->_dbhandle->exec("CREATE TABLE chan (IDChan INTEGER PRIMARY KEY NOT NULL, name VARCHAR(255) UNIQUE NOT NULL)");
 				$this->create_table("chan",
 					array("fieldname" => "IDChan", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("primary", "ai")),
@@ -47,7 +49,9 @@
 					array("fieldname" => "talk", "type" => "boolean", "size" => 0, "null" => "not", "flags" => array("default:TRUE")),
 					array("fieldname" => "greet", "type" => "boolean", "size" => 0, "null" => "not", "flags" => array("default:FALSE")),
 					array("fieldname" => "greetnew", "type" => "boolean", "size" => 0, "null" => "not", "flags" => array("default:FALSE")));
+			}
 
+			if(!$this->table_is_present("user")) {
 				//$this->_dbhandle->exec("CREATE TABLE user (IDUser INTEGER PRIMARY KEY NOT NULL, username VARCHAR(80) UNIQUE NOT NULL, password CHAR(33), bot_op BOOLEAN DEFAULT FALSE NOT NULL, alias INTEGER NOT NULL REFERENCES user(IDUser))");
 				$this->create_table("user",
 					array("fieldname" => "IDUser", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("primary", "ai")),
@@ -56,7 +60,9 @@
 					array("fieldname" => "bot_op", "type" => "boolean", "size" => 0, "null" => "not", "flags" => array("default:FALSE")),
 					array("fieldname" => "alias", "type" => "integer", "size" => 0, "null" => "yes", "flags" => array("references user IDUser CASCADE CASCADE")),
 					array("fieldname" => "auth", "type" => "boolean", "size" => 0, "null" => "not", "flags" => array("default:FALSE")));
+			}
 
+			if(!$this->table_is_present("enter")) {
 				//$this->_dbhandle->exec("CREATE TABLE enter (user_IDUser INTEGER NOT NULL REFERENCES user(IDUser), chan_IDChan INTEGER NOT NULL REFERENCES chan(IDChan), greet_IDGreet INTEGER NOT NULL REFERENCES greet(IDGreet), modes VARCHAR(15), PRIMARY KEY(user_IDUser, chan_IDChan))");
 				$this->create_table("enter",
 					array("fieldname" => "user_IDUser", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("references user IDUser CASCADE CASCADE")),
@@ -64,7 +70,9 @@
 					array("fieldname" => "greet_IDGreet", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("references greet IDGreet CASCADE CASCADE")),
 					array("fieldname" => "modes", "type" => "varchar", "size" => 15, "null" => "yes", "flags" => array()),
 					array('PK' => array("user_IDUser", "chan_IDChan")));
+			}
 
+			if(!$this->table_is_present("poke")) {
 				$this->create_table("poke",
 					array("fieldname" => "IDPoke", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("primary", "ai")),
 					array("fieldname" => "poke_message", "type" => "varchar", "size" => 255, "null" => "not", "flags" => array("unique")),

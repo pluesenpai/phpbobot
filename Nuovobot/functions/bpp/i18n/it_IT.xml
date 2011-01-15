@@ -1,0 +1,42 @@
+<db>
+	<translation>
+		<msgid><![CDATA[bpp-group_name]]></msgid>
+		<msgstr><![CDATA[Bot Pre Processor]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-group_descr]]></msgid>
+		<msgstr><![CDATA[Dizionario di variabili.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-meant]]></msgid>
+		<msgstr><![CDATA[significa]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-dontknow]]></msgid>
+		<msgstr><![CDATA[Spiacente, non conosco queste variabili]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-on]]></msgid>
+		<msgstr><![CDATA[Bot Pre-Processor ATTIVO]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-off]]></msgid>
+		<msgstr><![CDATA[Bot Pre-Processor DISATTIVATO]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-var_exists-%s]]></msgid>
+		<msgstr><![CDATA[spiacente, la variabile $%s esiste già.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-var_add_ok-%s]]></msgid>
+		<msgstr><![CDATA[Variabile $%s inserita correttamente.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-var_notexists-%s]]></msgid>
+		<msgstr><![CDATA[spiacente, la variabile $%s non esiste.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-var_remove_ok-%s]]></msgid>
+		<msgstr><![CDATA[Variabile $%s rimossa correttamente.]]></msgstr>
+	</translation>
+</db>

@@ -15,7 +15,7 @@ function addquote($socket, $channel, $sender, $msg, $infos)
 
 	if($id_post > 0) {
 		sendmsg($socket, sprintf($translations->bot_gettext("quotes-addquote-ok-%s-%s"), $sender, $id_post), $channel); //"$sender, ho aggiunto la quote n. {$id_post}!!!"
-		getpage("http://www.lucacireddu.it/quotes/engine.php?action=add&psw=bd89d1d862bd5ba278ea89184038841a&id={$id_post}&quote={$message}&pirla={$user[1]}&quotatore={$sender}&canale=" . substr($channel, 1));
+		//getpage("http://www.lucacireddu.it/quotes/engine.php?action=add&psw=bd89d1d862bd5ba278ea89184038841a&id={$id_post}&quote={$message}&pirla=" . clean_username($user[1]) . "&quotatore={$sender}&canale=" . substr($channel, 1));
 	} else
 		sendmsg($socket, $translations->bot_gettext("quotes-couldntadd"), $channel);
 }

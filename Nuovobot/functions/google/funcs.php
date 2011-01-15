@@ -22,8 +22,6 @@
 		$content = curl_exec($page);
 		curl_close($page);
 
-		print_r($content);
-
 		return $content;
 	}
 ?>

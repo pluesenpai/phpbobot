@@ -226,12 +226,17 @@
 			if(count($cond_f) > 0) {
 				$q .= " WHERE ";
 				for($i = 0; $i < count($cond_f); $i++) {
-					$add = "";
-					for($j = 0, $condition = false; $j < count($tables) && $condition == false; $j++)
-						$condition = $this->field_is_present($tables[$j], $cond_v[$i]);
-					if(!is_numeric($cond_v[$i]) && $condition == false)
-						$add = "\"";
-					$q .= $cond_f[$i] . " " . $cond_o[$i] . " " . $add . $this->clean_text($cond_v[$i]) . $add . " AND ";
+					if($cond_o[$i] == "IN") {
+						///TODO: Sistemare. Magari $cond_v[$i] può diventare un array
+						$q .= $cond_f[$i] . " " . $cond_o[$i] . " " . $cond_v[$i] . " AND ";
+					} else {
+						$add = "";
+						for($j = 0, $condition = false; $j < count($tables) && $condition == false; $j++)
+							$condition = $this->field_is_present($tables[$j], $cond_v[$i]);
+						if(!is_numeric($cond_v[$i]) && $condition == false)
+							$add = "\"";
+						$q .= $cond_f[$i] . " " . $cond_o[$i] . " " . $add . $this->clean_text($cond_v[$i]) . $add . " AND ";
+					}
 				}
 				if(substr($q, -5) == " AND ")
 					$q = substr($q, 0, -5);
@@ -253,8 +258,6 @@
 
 			if($limit > 0)
 				$q .= " LIMIT $limit";
-
-			echo "$q\n";
 
 			$query = $this->_dbhandle->prepare($q);
 
