@@ -19,8 +19,6 @@ function mostquoter($socket, $channel, $sender, $msg, $infos)
 
 	$result = $db->select(array("quotes", "user", "chan"), array("count(IDQuote)", "username", "name"), array("totale", "the_sender", "the_chan"), $cond_f, $cond_o, $cond_v, 3, "desc*totale", "group the_sender");
 
-	print_r($result);
-
 	if(count($result) > 0) {
 		$cont = 1;
 		foreach($result as $quote) {

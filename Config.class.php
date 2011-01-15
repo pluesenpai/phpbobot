@@ -51,6 +51,21 @@
 				if($port != "")
 					$this->setPort($port);
 
+				$this->removeChan("#sardylan");
+				$this->removeChan("#bottoli");
+				do {
+					echo "Channel (empty to finish): ";
+					$channel = trim(fgets(STDIN));
+					if($channel != "")
+						$this->addChans($channel);
+				} while($channel != "");
+
+				$old_db = $this->getDB();
+				echo "Database: [$old_db] ";
+				$db = trim(fgets(STDIN));
+				if($db != "")
+					$this->setDB($db);
+
 				$old_laddress = $this->getListenAddress();
 				echo "Listening address: [$old_laddress] ";
 				$l_address = trim(fgets(STDIN));
@@ -69,14 +84,11 @@
 				if($locale != "")
 					$this->setBotLocale($locale);
 
-				$this->removeChan("#sardylan");
-				$this->removeChan("#bottoli");
-				do {
-					echo "Channel (empty to finish): ";
-					$channel = trim(fgets(STDIN));
-					if($channel != "")
-						$this->addChans($channel);
-				} while($channel != "");
+				$old_minimallog = $this->getMinimalLog();
+				echo "Database: [$old_minimallog] ";
+				$minimallog = trim(fgets(STDIN));
+				if($minimallog != "")
+					$this->setMinimalLog($minimallog);
 
 				echo "Configuration created!";
 			}
@@ -181,6 +193,26 @@
 		}
 
 		/**
+		  * Retrieve the server where the Bot must connect
+		  * @returns (String) Server address
+		  */
+		public function getServer()
+		{
+			return (string)$this->_xml->server;
+		}
+
+		/**
+		  * Permits to set the server where the Bot must connect
+		  * @param $server New server address
+		  */
+		public function setServer($server)
+		{
+			$this->_xml->server = $server;
+			file_put_contents(self::filename, $this->_xml->asXML());
+		}
+
+
+		/**
 		  * Retrieve the port for the Bot
 		  * @returns (Int) The port for the Bot
 		  */
@@ -200,21 +232,68 @@
 		}
 
 		/**
-		  * Retrieve the server where the Bot must connect
-		  * @returns (String) Server address
+		  * Retrive the list of chans where bot will enter
+		  * @returns (Array of String) List of chans
 		  */
-		public function getServer()
+		public function getChans()
 		{
-			return (string)$this->_xml->server;
+			$chans = array();
+			foreach($this->_xml->chans->chan as $chan) {
+				$chans[] = (string)$chan;
+			}
+
+			return $chans;
 		}
 
 		/**
-		  * Permits to set the server where the Bot must connect
-		  * @param $server New server address
+		  * Permits to add new chans to the configuration
+		  * @note You can put how many arguments you want.
 		  */
-		public function setServer($server)
+		public function addChans()
 		{
-			$this->_xml->server = $server;
+			$n_args = func_num_args();
+			$args = func_get_args();
+
+			for($i = 0; $i < $n_args; $i++) {
+				$this->_xml->chans->addChild("chan", $args[$i]);
+			}
+
+			file_put_contents(self::filename, $this->_xml->asXML());
+		}
+
+		/**
+		  * Permits to delete a chan from the configuration
+		  * @param $ircchan Chan to be deleted
+		  */
+		public function removeChan($ircchan)
+		{
+			foreach($this->_xml->chans->chan as $chan) {
+				if((string)$chan == $ircchan) {
+					$dom = dom_import_simplexml($chan);
+					$dom->parentNode->removeChild($dom);
+				}
+			}
+
+			file_put_contents(self::filename, $this->_xml->asXML());
+		}
+
+
+		/**
+		  * Retrieve the DB Engine
+		  * @returns (String) The DB Engine
+		  */
+		public function getDB()
+		{
+			return (string)$this->_xml->db;
+		}
+
+		/**
+		  * Permits to set the DB Engine of the bot
+		  * @param $port New DB Engine
+		  */
+		public function setDB($db)
+		{
+			$this->_xml->db = $db;
 			file_put_contents(self::filename, $this->_xml->asXML());
 		}
 
@@ -294,50 +373,6 @@
 			file_put_contents(self::filename, $this->_xml->asXML());
 		}
 
-		/**
-		  * Retrive the list of chans where bot will enter
-		  * @returns (Array of String) List of chans
-		  */
-		public function getChans()
-		{
-			$chans = array();
-			foreach($this->_xml->chans->chan as $chan) {
-				$chans[] = (string)$chan;
-			}
 
-			return $chans;
-		}
-
-		/**
-		  * Permits to add new chans to the configuration
-		  * @note You can put how many arguments you want.
-		  */
-		public function addChans()
-		{
-			$n_args = func_num_args();
-			$args = func_get_args();
-
-			for($i = 0; $i < $n_args; $i++) {
-				$this->_xml->chans->addChild("chan", $args[$i]);
-			}
-
-			file_put_contents(self::filename, $this->_xml->asXML());
-		}
-
-		/**
-		  * Permits to delete a chan from the configuration
-		  * @param $ircchan Chan to be deleted
-		  */
-		public function removeChan($ircchan)
-		{
-			foreach($this->_xml->chans->chan as $chan) {
-				if((string)$chan == $ircchan) {
-					$dom = dom_import_simplexml($chan);
-					$dom->parentNode->removeChild($dom);
-				}
-			}
-
-			file_put_contents(self::filename, $this->_xml->asXML());
-		}
 	}
 ?>

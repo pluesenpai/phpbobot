@@ -26,9 +26,9 @@
 			"dado-descr_name" => "dado {N_DADI}",
 			"dado-descr" => "Tirerò {N_DADI} dadi.",
 			//------------------------------------------------
-			"bigd-regex" => "/^bigd ([0-9]+) ([0-9]+)$|^bigd (-comm){1} ([0-9]+)$/",
-			"bigd-descr_name" => "bigd {AA} {SS} / bigd -comm {NUM}",
-			"bigd-descr" => "Mostrerò il titolo della storia di BigD dell'anno {AA} e settimana {SS} o il commento numero {NUM}."
+			"bigd-regex" => "/^bigd ([0-9]+) ([0-9]+)$|^bigd (-comm){1} ([0-9]+)$|^bigd (-visit){1} ([0-9]+)$/",
+			"bigd-descr_name" => "bigd {AA} {SS} / bigd -comm {NUM} / bigd -visit {NUM}",
+			"bigd-descr" => "Mostrerò il titolo della storia di BigD dell'anno {AA} e settimana {SS} o il commento numero {NUM} o la storia degli ospiti numero {NUM}."
 		);
 
 		$langs["en_GB"] = array(
@@ -56,9 +56,9 @@
 			"dado-descr_name" => "dice {N_DICES}",
 			"dado-descr" => "I'll pick the result from {N_DICES} dices.",
 			//------------------------------------------------
-			"bigd-regex" => "/^bigd ([0-9]+) ([0-9]+)$|^bigd (-comm){1} ([0-9]+)$/",
-			"bigd-descr_name" => "bigd {YY} {WW} / bigd -comm {NUM}",
-			"bigd-descr" => "I'll choose BigD's story from year {YY} and week {WW} or comment numbered {NUM}"
+			"bigd-regex" => "/^bigd ([0-9]+) ([0-9]+)$|^bigd (-comm){1} ([0-9]+)$|^bigd (-visit){1} ([0-9]+)$/",
+			"bigd-descr_name" => "bigd {YY} {WW} / bigd -comm {NUM} / bigd -visit {NUM}",
+			"bigd-descr" => "I'll choose BigD's story from year {YY} and week {WW} or comment numbered {NUM} or guest story number {NUM}"
 		);
 		
 		$xml = <<<EOF

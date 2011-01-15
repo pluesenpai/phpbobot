@@ -5,9 +5,9 @@
 	  * @param $text Text to convert to UTF8
 	  * @return UTF8 converted text
 	  */
-	function toUTF8($text)
+	function toUTF8($text, $quotes = ENT_QUOTES)
 	{
-		return(html_entity_decode($text, ENT_QUOTES, "UTF-8"));
+		return(html_entity_decode($text, $quotes, "UTF-8"));
 	}
 
 	function entra_chan($irc_chan)
@@ -213,7 +213,7 @@
 			echo "[{$print_timestamp}] " . ShellColours::RED . "  --->> " . toUTF8($data) . ShellColours::Z;
 			usleep($d * 1000000);
 // 			fwrite($stream, $data);
-			socket_write($stream, toUTF8($data));
+			socket_write($stream, toUTF8($data, ENT_NOQUOTES));
 			$logger->logMessage(str_replace(array("\n", "\r"), "", $data), true);
 			posix_kill(posix_getpid(), 9);
 		}

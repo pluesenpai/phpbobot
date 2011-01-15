@@ -13,7 +13,7 @@ function delquote($socket, $channel, $sender, $msg, $infos)
 
 	sendmsg($socket, sprintf($translations->bot_gettext("quotes-deleted-%s"), IRCColours::BOLD . "#{$quote_id}" . IRCColours::Z), $channel); //"Quote \00301\002#{$quote_id}\002 deleted!!"
 
-	getpage("http://www.lucacireddu.it/quotes/engine.php?action=del&psw=bd89d1d862bd5ba278ea89184038841a&id={$quote_id}");
+	//getpage("http://www.lucacireddu.it/quotes/engine.php?action=del&psw=bd89d1d862bd5ba278ea89184038841a&id={$quote_id}");
 }
 
 ?>

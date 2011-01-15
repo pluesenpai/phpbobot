@@ -5,7 +5,7 @@
 
 		if(!$parla[$channel]) {
 			$db->update("chan", array("talk"), array("true"), array("name"), array("="), array($channel));
-			//$parla[$channel] = true;
+			$parla[$channel] = true;
 			sendmsg($socket, _("talk-message"), $channel);
 		}
 	}

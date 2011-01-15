@@ -12,7 +12,14 @@
 			sendmsg($socket, $translations->bot_gettext("google-noresult"), $channel); //"Spiacente. Non ho trovato alcun risultato"
 
 		foreach($result[0] as $r) {
-			preg_match("#^<!--m--><li class=g><h3 class=r><a href=\"(.+?)\" class=l onmousedown=\"return clk\(this\.href,'','','res','[0-9]+','','[a-zA-Z0-9]+'\)\">(.+?)</a></h3><div class=\"s\">(.+)<br>#", $r, $result1);
+			preg_match("#^<!--m--><link rel=prefetch href=\".+?\"><li class=g style=\"margin-bottom:8px\"><div class=vsc sig=.+?><span class=tl><h3 class=\"r\"><a href=\"(.+?)\" class=l onmousedown\=\"return clk\(this\.href,'','','','[0-9]+','','[a-zA-Z0-9]+'\)\">(.+?)</a></h3><button class=vspib></button></span><div class=\"s\">(.+)<br>#", $r, $result1);
+			if(count($result1) == 0)
+				preg_match("#^<!--m--><li class=g style=\"margin-bottom:8px\"><div class=vsc sig=.+?><span class=tl><h3 class=\"r\"><a href=\"(.+?)\" class=l onmousedown=\"return clk\(this\.href,'','','','[0-9]+','','[a-zA-Z0-9]+'\)\">(.+?)</a></h3><button class=vspib></button></span><div class=\"s\">(.+)<br>#", $r, $result1);
+			if(count($result1) == 0)
+				preg_match("#^<!--m--><li class=g id=mbb4><div class=vsc sig=.+?><span class=tl><h3 class=\"r\"><a href=\"(.+?)\" class=l onmousedown=\"return clk\(this\.href,'','','','[0-9]+','','[a-zA-Z0-9]+'\)\">(.+?)</a></h3><button class=vspib></button></span><div class=\"s\">(.+)<br>#", $r, $result1);
+			if(count($result1) == 0)
+				preg_match("#^<!--m--><li class=g><div class=vsc sig=.+?><span class=tl><h3 class=\"r\"><a href=\"(.+?)\" class=l onmousedown=\"return clk\(this\.href,'','','','[0-9]+','','[a-zA-Z0-9]+'\)\">(.+?)</a></h3><button class=vspib></button></span><div class=\"s\">(.+)<br>#", $r, $result1);
+			//preg_match("#<!--m--><li class=g><h3 class=r><a href=\"(.+?)\" class=l onmousedown=\"return clk\(this\.href,'','','res','[0-9]+','','[a-zA-Z0-9]+'\)\">(.+?)</a></h3><div class=\"s\">(.+)<br>#", $r, $result1);
 
 			$result1 = preg_replace("#<em>(.+?)</em>#", "$1", $result1);
 			$result1 = preg_replace("#<b>(.+?)</b>#", "$1", $result1);

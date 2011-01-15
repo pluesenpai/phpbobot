@@ -4,10 +4,9 @@ require_once("funcs.php");
 
 function rmword($socket, $channel, $sender, $msg, $infos)
 {
-	global $bad_words,  $db, $translations;
+	global $bad_words, $db, $translations;
 
 	$ret = array_search($infos[1], $bad_words[$channel]);
-	print_r($bad_words[$channel]);
 	if($ret !== false) {
 		$idchan = $db->check_chan($channel);
 		$idbadword = verifica_badword($infos[1]);
