@@ -1,8 +1,13 @@
 <?php
 
-function fortune_update()
-{
-	return;
-}
+	function fortune_init()
+	{
+		return;
+	}
+
+	function fortune_update()
+	{
+		return;
+	}
 
 ?>

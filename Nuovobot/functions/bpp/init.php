@@ -1,21 +1,31 @@
 <?php
 
-	if(!$db->table_is_present("bpp")) {
-		$bpp_field1 = array('fieldname' => "var", 'type' => "varchar", 'size' => 80, 'null' => "not", 'flags' => array("primary"));
-		$bpp_field2 = array('fieldname' => "meaning", 'type' => "varchar", 'size' => 80, 'null' => "not", 'flags' => array());
-		$db->create_table("bpp", $bpp_field1, $bpp_field2);
-		unset($bpp_field1);
-		unset($bpp_field2);
+	$is_bpp_on = "";
+
+	function bpp_init() {
+		global $db;
+
+		if(!$db->table_is_present("bpp")) {
+			$bpp_field1 = array('fieldname' => "var", 'type' => "varchar", 'size' => 80, 'null' => "not", 'flags' => array("primary"));
+			$bpp_field2 = array('fieldname' => "meaning", 'type' => "varchar", 'size' => 80, 'null' => "not", 'flags' => array());
+			$db->create_table("bpp", $bpp_field1, $bpp_field2);
+		}
+
+		if(!$db->field_is_present("chan", "is_bpp_on")) {
+			$bpp_field1 = array('fieldname' => "is_bpp_on", 'type' => "boolean", 'size' => 0, 'null' => "", 'flags' => array());
+			$db->alter_table("chan", $bpp_field1);
+			$db->update("user", array("is_bpp_on"), array("false"), array("is_bpp_on"), array("="), array("NULL"));
+		}
+
+		bpp_update();
 	}
 
-	if(!$db->field_is_present("chan", "is_bpp_on")) {
-		$bpp_field1 = array('fieldname' => "is_bpp_on", 'type' => "boolean", 'size' => 0, 'null' => "", 'flags' => array());
-		$db->alter_table("chan", $bpp_field1);
-		$db->update("user", array("is_bpp_on"), array("false"), array("is_bpp_on"), array("="), array("NULL"));
-		unset($bpp_field1);
+	function bpp_update()
+	{
+		global $is_bpp_on;
+	
+		$is_bpp_on = getBPPValue();
 	}
-
-	$is_bpp_on = getBPPValue();
 
 	function getBPPValue()
 	{
@@ -36,13 +46,6 @@
 		}
 
 		return $is_bpp_on;
-	}
-
-	function bpp_update()
-	{
-		global $is_bpp_on;
-	
-		$is_bpp_on = getBPPValue();
 	}
 
 ?>

@@ -1,12 +1,15 @@
 <?php
 
-function operators_update()
-{
-	global $operators, $db;
+	function operators_init()
+	{
+		operators_update();
+	}
 
-	$operators = $db->get_operators();
-}
+	function operators_update()
+	{
+		global $operators, $db;
 
-operators_update();
+		$operators = $db->get_operators();
+	}
 
 ?>

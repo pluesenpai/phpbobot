@@ -1,8 +1,13 @@
 <?php
 
-function urt_update()
-{
-  return;
-}
+	function urt_init()
+	{
+		return;
+	}
+
+	function urt_update()
+	{
+		return;
+	}
 
 ?>

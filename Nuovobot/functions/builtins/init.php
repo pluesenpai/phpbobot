@@ -9,8 +9,12 @@
 
 	function builtins_init()
 	{
+		global $db;
+
 		$db->update("user", array("auth"), array("false"), array(), array(), array());
 		$db->update("chan", array("talk"), array("true"), array(), array(), array());
+
+		builtins_update();
 	}
 
 	function builtins_update()

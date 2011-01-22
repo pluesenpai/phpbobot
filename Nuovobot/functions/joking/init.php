@@ -1,8 +1,13 @@
 <?php
 
-function joking_update()
-{
-	return;
-}
+	function joking_init()
+	{
+		return;
+	}
+
+	function joking_update()
+	{
+		return;
+	}
 
 ?>

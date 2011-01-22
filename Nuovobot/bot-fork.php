@@ -170,8 +170,7 @@
 		$dirs = getDirs("functions/");
 		foreach($dirs as $dir) {
 			require_once("functions/{$dir}/init.php");
-			///TODO: Usarlo!!
-			//call_user_func("{$dir}_init");
+			call_user_func("{$dir}_init");
 		}
 		while(!$chiusura) {
 			$rawdata = "";
