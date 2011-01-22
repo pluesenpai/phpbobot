@@ -34,7 +34,11 @@ msgstr ""
 EOF
 fi
 
+php functions/builtins/generateFunctionXml.php > functions/builtins/functions.xml1.php
+
 for ITEM in $(find . -name "*.php")
 do
 	eval xgettext --from-code=UTF-8 -L PHP -o ${folder}output.po --join-existing ${ITEM}
 done
+
+rm functions/builtins/functions.xml1.php

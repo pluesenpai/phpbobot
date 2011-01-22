@@ -21,7 +21,7 @@
 							$db->update("enter", array("modes"), array($stringa), array("chan_IDChan", "user_IDUser"), array("=", "="), array($idchan, $iduser));
 							sendmsg($socket, sprintf(_("lists-user_added-%s-%s"), $infos[2], $infos[1]), $channel);
 						} else
-							sendmsg($socket, _("lists-mode_present"), $channel);
+							sendmsg($socket, sprintf(_("lists-mode_present-%s-%s"), $infos[2], $infos[1]), $channel);
 					}
 				}
 			} else

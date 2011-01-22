@@ -5,6 +5,7 @@
 			"greet" => "0",
 			"greetme" => "0",
 			"greetuser" => "0",
+			"greetonuserjoin" => "1",
 			"silence" => "1",
 			"silenceall" => "1",
 			"talk" => "1",
