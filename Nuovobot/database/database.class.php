@@ -37,8 +37,7 @@
 				//$this->_dbhandle->exec("CREATE TABLE greet (IDGreet INTEGER PRIMARY KEY NOT NULL, join_message VARCHAR(255) UNIQUE NOT NULL)");
 				$this->create_table("greet",
 					array("fieldname" => "IDGreet", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("primary", "ai")),
-					array("fieldname" => "join_message", "type" => "varchar", "size" => 255, "null" => "not", "flags" => array("unique")),
-					array("fieldname" => "cangreet", "type" => "boolean", "size" => 0, "null" => "not", "flags" => array("default:FALSE")));
+					array("fieldname" => "join_message", "type" => "varchar", "size" => 255, "null" => "not", "flags" => array("unique")));
 			}
 
 			if(!$this->table_is_present("chan")) {
@@ -69,6 +68,7 @@
 					array("fieldname" => "chan_IDChan", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("references chan IDChan CASCADE CASCADE")),
 					array("fieldname" => "greet_IDGreet", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("references greet IDGreet CASCADE CASCADE")),
 					array("fieldname" => "modes", "type" => "varchar", "size" => 15, "null" => "yes", "flags" => array()),
+					array("fieldname" => "cangreet", "type" => "boolean", "size" => 0, "null" => "not", "flags" => array("default:FALSE")),
 					array('PK' => array("user_IDUser", "chan_IDChan")));
 			}
 
@@ -349,6 +349,37 @@
 
 			$operators = $this->get_operators();
 			
+		}
+
+		/**
+		  * Checks if user is in database
+		  *
+		  * @param $user {STRING} User name
+		  */
+		function isnewuser($user)
+		{
+			return $this->find_user($user) == 0 ? true : false;
+		}
+
+		/**
+		  * Checks if user wants to be greeted when joins channel
+		  *
+		  * @param $user {STRING} User name
+		  */
+		function cangreet($user, $channel)
+		{
+			$result = $this->select(array("enter"), array("cangreet"), array(""), array("user_IDUser", "chan_IDChan"), array("=", "="), array($this->find_user($user), $this->find_chan($channel)));
+
+			foreach($result as $r)
+				return $this->getBoolFromDB($r["cangreet"]);
+		}
+
+		function getBoolFromDB($field)
+		{
+			if($field === "TRUE" || $field === "true" || $field === "1" || $field === 1 || $field === true)
+				return true;
+			else
+				return false;
 		}
 	}
 ?>

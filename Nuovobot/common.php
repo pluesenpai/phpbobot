@@ -536,27 +536,4 @@
 		return $continua; // Se scrivi exit e poi invio va al return e ritorna dove è stata chiamata la funzione.
 	}
 
-	function isnewuser($user)
-	{
-		global $db;
-		return $db->find_user($user) == 0 ? false : true;
-	}
-
-	function cangreet($user)
-	{
-		global $db;
-		$result = $db->select(array("user"), array("cangreet"), array(""), array("username"), array("="), array($user));
-
-		foreach($result as $r)
-			return getBoolFromDB($r["cangreet"]);
-	}
-
-	function getBoolFromDB($field)
-	{
-		if($field === "TRUE" || $field === "true" || $field === "1" || $field === 1 || $field === true)
-			return true;
-		else
-			return false;
-	}
-
 ?>

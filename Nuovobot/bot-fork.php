@@ -51,16 +51,7 @@
 		$users[$irc_chans[$i]] = array();
 		$token[$irc_chans[$i]] = false;
 		$parla[$irc_chans[$i]] = true;
-
-		$result = $db->select(array("chan"), array("greet", "greetnew"), array("", ""), array("name"), array("="), array($irc_chans[$i]));
-		foreach($result as $r) {
-			$saluta[$irc_chans[$i]] = getBoolFromDB($r["greet"]);
-			$salutanuovi[$irc_chans[$i]] = getBoolFromDB($r["greetnew"]);
-		}
 	}
-
-// 	print_r($saluta);
-// 	print_r($salutanuovi);
 
 	$irc_server = $config->getServer();
 	$irc_port = $config->getPort();
@@ -93,7 +84,7 @@
 		printf(_("directory-notexists-%s") . "\n", user_folder);
 		mkdir(user_folder, 0755);
 	}
-// 	require_once("colors.php");
+
 	if($colors == true)
 		require_once("shellcoloursenabled.class.php");
 	else
@@ -179,6 +170,7 @@
 		$dirs = getDirs("functions/");
 		foreach($dirs as $dir) {
 			require_once("functions/{$dir}/init.php");
+			///TODO: Usarlo!!
 			//call_user_func("{$dir}_init");
 		}
 		while(!$chiusura) {
@@ -261,7 +253,6 @@
 					file_put_contents(user_folder . "/$chan", implode("\n", $users[$chan]) . "\n");
 				}
 
-// 				print_r($slot_saluto);
 				if(isset($slot_saluto[0])) {
 					if($slot_saluto[0][0] <= 0) {
 						$slot_saluto[0][0] = is_user_in_chan($slot_saluto[0][1], $slot_saluto[0][2]);
@@ -269,14 +260,14 @@
 							$saluto_user = $slot_saluto[0][1];
 							$saluto_chan = $slot_saluto[0][2];
 							$joiner_mode = $db->get_modes($saluto_user, $saluto_chan);
-// 							print_r($saluta);
 							if($saluta[$saluto_chan] == true) {
-								if(cangreet($saluto_user) == true || (isnewuser($saluto_user) == true && $salutanuovi[$saluto_chan] == true)) {
+								if($db->cangreet($saluto_user, $saluto_chan) == true || ($db->isnewuser($saluto_user) == true && $salutanuovi[$saluto_chan] == true)) {
 									$joiner_mess = $db->get_greet($saluto_user, $saluto_chan);
 									sendmsg($irc, sprintf(_("greet-hi-%s"), $saluto_user), $saluto_chan, 0, true);
 									if(strlen($joiner_mess) > 0)
 										sendmsg($irc, "[$saluto_user]: $joiner_mess", $saluto_chan, 0, true);
-									sendmsg($irc, sprintf(_("greet-infos-%s-%s"), $user_name, _("command-help")), $saluto_chan, 0, true);
+									if($db->isnewuser($saluto_user))
+										sendmsg($irc, sprintf(_("greet-infos-%s-%s"), $user_name, _("command-help")), $saluto_chan, 0, true);
 								}
 							}
 							$mode_len = strlen($joiner_mode);
@@ -379,7 +370,6 @@
 							}
 						}
 					} elseif(preg_match("/^{$user_name}[ \,;\.:\-!\?]*$/", $msg)) {
-						//sendmsg($irc, sprintf(_("bot-poke-%s"), $sender), $irc_chan);
 						if(rand(1, 10) != 2) {
 							$cond_f = array("user_IDUser", "username");
 							$cond_o = array("=", "=");
