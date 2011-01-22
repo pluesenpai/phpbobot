@@ -1,6 +1,6 @@
 <?php
 
-	if(!$db->table_is_present("quotes")) {
+	if(!$db->table_is_present("definitions")) {
 		$definitions_field0 = array("fieldname" => "def_id", "type" => "integer", "size" => 0, "null" => "not", "flags" => array("primary", "ai"));
 		$definitions_field1 = array("fieldname" => "def_name", "type" => "varchar", "size" => 30, "null" => "not", "flags" => array());
 		$definitions_field2 = array("fieldname" => "def_text", "type" => "text", "size" => 0, "null" => "not", "flags" => array());

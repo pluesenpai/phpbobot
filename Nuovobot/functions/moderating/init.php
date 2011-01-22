@@ -48,13 +48,15 @@ function refresh_moderated() {
 }
 
 if(!$db->field_is_present("enter", "kicks")) {
-	$field1 = array('fieldname' => "kicks", 'type' => "integer", 'size' => 0, 'null' => "", 'flags' => array());
+	$field1 = array('fieldname' => "kicks", 'type' => "integer", 'size' => 0, 'null' => "", 'flags' => array("default:0"));
 	$db->alter_table("enter", $field1);
+	$db->update("enter", array("kicks"), array(0), array("kicks"), array("="), array("NULL"));
 }
 
 if(!$db->field_is_present("chan", "moderated")) {
-	$field1 = array('fieldname' => "moderated", 'type' => "boolean", 'size' => 0, 'null' => "", 'flags' => array());
+	$field1 = array('fieldname' => "moderated", 'type' => "boolean", 'size' => 0, 'null' => "", 'flags' => array("default:FALSE"));
 	$db->alter_table("chan", $field1);
+	$db->update("chan", array("moderated"), array("FALSE"), array("moderated"), array("="), array("NULL"));
 }
 
 if(!$db->table_is_present("bad_words")) {

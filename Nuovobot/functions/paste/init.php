@@ -22,7 +22,7 @@ function refresh_paste()
 }
 
 if(!$db->field_is_present("user", "paste_enabled")) {
-	$field1 = array('fieldname' => "paste_enabled", 'type' => "boolean", 'size' => 0, 'null' => "", 'flags' => array());
+	$field1 = array('fieldname' => "paste_enabled", 'type' => "boolean", 'size' => 0, 'null' => "", 'flags' => array("default:FALSE"));
 	$db->alter_table("user", $field1);
 	$db->update("user", array("paste_enabled"), array("false"), array("paste_enabled"), array("="), array("NULL"));
 }
