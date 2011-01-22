@@ -86,11 +86,16 @@
 				//args[] = array('CHECK' => array(check_fields))
 				//args[] = array('UNIQUE' => array(unique_fields))
 
-			$query = "CREATE TABLE {$args[0]} (";
-			for($i = 1; $i < $n_args && array_key_exists("fieldname", $args[$i]); $i++) {
-				$query .= $args[$i]['fieldname'];
+			if($args[1][0] == "fields")
+				$fields = array_slice($args[1], 1);
+			else
+				$fields = array_slice($args, 1);
 
-				switch($args[$i]['type']) {
+			$query = "CREATE TABLE {$args[0]} (";
+			for($i = 0; $i < $n_args && array_key_exists("fieldname", $fields[$i]); $i++) {
+				$query .= $fields[$i]['fieldname'];
+
+				switch($fields[$i]['type']) {
 					case 'integer':
 					case 'varchar':
 					case 'char':
@@ -98,15 +103,15 @@
 					case 'time':
 					case 'blob':
 					case 'boolean':
-						$type = strtoupper($args[$i]['type']);
+						$type = strtoupper($fields[$i]['type']);
 						break;
 				}
 
-				if($args[$i]['size'] > 0)
-					$type .= "(" . $args[$i]['size'] . ")";
+				if($fields[$i]['size'] > 0)
+					$type .= "(" . $fields[$i]['size'] . ")";
 
 				$query .= " $type";
-				foreach($args[$i]['flags'] as $flag) {
+				foreach($fields[$i]['flags'] as $flag) {
 					//references TABLE FIELD ON_UPDATE ON_DELETE
 					if(preg_match("/^references (.+?) (.+?) (.+?) (.+?)$/", $flag, $data))
 						$query .= " REFERENCES $data[1]($data[2]) ON UPDATE $data[3] ON DELETE $data[4]";
@@ -125,22 +130,24 @@
 						$query .= " DEFAULT {$sep}{$data[1]}{$sep}";
 					}
 				}
-				if($args[$i]['null'] == 'not')
+				if($fields[$i]['null'] == 'not')
 					$query .= " NOT NULL, ";
+				else
+					$query .= ", ";
 			}
 
 			for( ; $i < $n_args; $i++) {
-				if(array_key_exists("PK", $args[$i]))
-					$query .= "PRIMARY KEY (" . implode(", ", $args[$i]["PK"]) . "), ";
-				elseif(array_key_exists("UNIQUE", $args[$i]))
-					$query .= "UNIQUE (" . implode(", ", $args[$i]["UNIQUE"]) . "), ";
-				elseif(array_key_exists("FK", $args[$i])) {
-					foreach($args[$i]["FK"] as $fk => $val) {
+				if(array_key_exists("PK", $fields[$i]))
+					$query .= "PRIMARY KEY (" . implode(", ", $fields[$i]["PK"]) . "), ";
+				elseif(array_key_exists("UNIQUE", $fields[$i]))
+					$query .= "UNIQUE (" . implode(", ", $fields[$i]["UNIQUE"]) . "), ";
+				elseif(array_key_exists("FK", $fields[$i])) {
+					foreach($fields[$i]["FK"] as $fk => $val) {
 						preg_match("/^(.+?) (.+?) (.+?) (.+?)$/", $val, $data);
 						$query .= "FOREIGN KEY ($fk) REFERENCES $data[1]($data[2]) ON UPDATE $data[3] ON DELETE $data[4], ";
 					}
-				} elseif(array_key_exists("CHECK", $args[$i])) {
-					foreach($args[$i]["CHECK"] as $check) {
+				} elseif(array_key_exists("CHECK", $fields[$i])) {
+					foreach($fields[$i]["CHECK"] as $check) {
 						$query .= "CHECK ($check), ";
 					}
 				}
