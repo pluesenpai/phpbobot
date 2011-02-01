@@ -105,7 +105,7 @@
 	</function>
 	<function>
 		<name>modes</name>
-		<privileged>1</privileged>
+		<privileged>0</privileged>
 		<regex><![CDATA[{$langs[$lang]["op-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["op-descr_name"]}</descr_name>
 		<descr><![CDATA[{$langs[$lang]["op-descr"]}]]></descr>
@@ -113,7 +113,7 @@
 	</function>
 	<function>
 		<name>modes</name>
-		<privileged>1</privileged>
+		<privileged>0</privileged>
 		<regex><![CDATA[{$langs[$lang]["deop-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["deop-descr_name"]}</descr_name>
 		<descr><![CDATA[{$langs[$lang]["deop-descr"]}]]></descr>
@@ -121,7 +121,7 @@
 	</function>
 	<function>
 		<name>modes</name>
-		<privileged>1</privileged>
+		<privileged>0</privileged>
 		<regex><![CDATA[{$langs[$lang]["halfop-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["halfop-descr_name"]}</descr_name>
 		<descr><![CDATA[{$langs[$lang]["halfop-descr"]}]]></descr>
@@ -129,7 +129,7 @@
 	</function>
 	<function>
 		<name>modes</name>
-		<privileged>1</privileged>
+		<privileged>0</privileged>
 		<regex><![CDATA[{$langs[$lang]["dehalfop-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["dehalfop-descr_name"]}</descr_name>
 		<descr><![CDATA[{$langs[$lang]["dehalfop-descr"]}]]></descr>
@@ -137,7 +137,7 @@
 	</function>
 	<function>
 		<name>modes</name>
-		<privileged>1</privileged>
+		<privileged>0</privileged>
 		<regex><![CDATA[{$langs[$lang]["voice-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["voice-descr_name"]}</descr_name>
 		<descr><![CDATA[{$langs[$lang]["voice-descr"]}]]></descr>
@@ -145,7 +145,7 @@
 	</function>
 	<function>
 		<name>modes</name>
-		<privileged>1</privileged>
+		<privileged>0</privileged>
 		<regex><![CDATA[{$langs[$lang]["devoice-regex"]}]]></regex>
 		<descr_name>{$langs[$lang]["devoice-descr_name"]}</descr_name>
 		<descr><![CDATA[{$langs[$lang]["devoice-descr"]}]]></descr>

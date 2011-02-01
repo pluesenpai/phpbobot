@@ -1,4 +1,14 @@
 <?php
+	class UserLevels
+	{
+		const OWNER_LEVEL = 0;
+		const PROTECTED_LEVEL = 1;
+		const OPER_LEVEL = 2;
+		const HALFOP_LEVEL = 3;
+		const VOICE_LEVEL = 4;
+		const NONE_LEVEL = 5;
+	}
+
 	/**
 	  * Converts a given text that could contain html
 	  * entities into a UTF8 message.
@@ -474,6 +484,43 @@
 		global $users;
 
 		return preg_match("/\b(.*)&(.*){$user}\b/", implode(" ", $users[$channel]));
+	}
+
+	function is_channel_operator($user, $channel)
+	{
+		global $users;
+
+		return preg_match("/\b(.*)@(.*){$user}\b/", implode(" ", $users[$channel]));
+	}
+
+	function is_channel_half_operator($user, $channel)
+	{
+		global $users;
+
+		return preg_match("/\b(.*)%(.*){$user}\b/", implode(" ", $users[$channel]));
+	}
+
+	function is_channel_voice_user($user, $channel)
+	{
+		global $users;
+
+		return preg_match("/\b(.*)+(.*){$user}\b/", implode(" ", $users[$channel]));
+	}
+
+	function getUserPrivileges($user, $channel)
+	{
+		if(is_channel_owner($user, $channel))
+			return UserLevels::OWNER_LEVEL;
+		elseif(is_channel_protected_operator($user, $channel))
+			return UserLevels::PROTECTED_LEVEL;
+		elseif(is_channel_operator($user, $channel))
+			return UserLevels::OPER_LEVEL;
+		elseif(is_channel_half_operator($user, $channel))
+			return UserLevels::HALFOP_LEVEL;
+		elseif(is_channel_voice_user($user, $channel))
+			return UserLevels::VOICE_LEVEL;
+		else
+			return UserLevels::NONE_LEVEL;
 	}
 
 	function is_user_in_chan($user, $channel)
