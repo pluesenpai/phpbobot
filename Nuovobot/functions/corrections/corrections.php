@@ -48,9 +48,9 @@
 				$corrected = "* {$corrected_user}:";
 
 			if($oldtext == "[A-Z]" && $newtext == "[a-z]")
-				$corrected = strtolower($wrong[0]["last_said"]);
+				$corrected = mb_strtolower($wrong[0]["last_said"]);
 			elseif($oldtext == "[a-z]" && $newtext == "[A-Z]")
-				$corrected = strtoupper($wrong[0]["last_said"]);
+				$corrected = mb_strtoupper($wrong[0]["last_said"]);
 			else
 				$corrected .= preg_replace("/{$oldtext}/{$modifiers}", $newtext, $wrong[0]["last_said"]);
 			if(strlen($corrected) > 0) {
