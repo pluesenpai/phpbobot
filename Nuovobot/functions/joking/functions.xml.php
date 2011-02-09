@@ -14,8 +14,8 @@
 			"invite-descr_name" => "hai {SOMETHING}?",
 			"invite-descr" => "Ti offre quello che vuoi :)",
 			//------------------------------------------------
-			"roulette-regex" => "/^roulette (.+(,[ ]*.+)*)$/",
-			"roulette-descr_name" => "roulette {WORD1}[, {WORD2}[, {WORD3}...]]",
+			"roulette-regex" => "/^roulette (.+( [ ]*.+)*)$/",
+			"roulette-descr_name" => "roulette {WORD1}[ {WORD2}[ {WORD3}...]]",
 			"roulette-descr" => "Sceglierò tra una delle parole scelte.",
 			//------------------------------------------------
 			"lotteria-regex" => "/^lotteria ([0-9]+) ([0-9]+)$/",
@@ -44,8 +44,8 @@
 			"invite-descr_name" => "a {SOMETHING} please",
 			"invite-descr" => "Gives you what you want :)",
 			//------------------------------------------------
-			"roulette-regex" => "/^roulette (.+(,[ ]*.+)*)$/",
-			"roulette-descr_name" => "roulette {WORD1}[, {WORD2}[, {WORD3}...]]",
+			"roulette-regex" => "/^roulette (.+( [ ]*.+)*)$/",
+			"roulette-descr_name" => "roulette {WORD1}[ {WORD2}[ {WORD3}...]]",
 			"roulette-descr" => "I'll choose one of given words",
 			//------------------------------------------------
 			"lotteria-regex" => "/^lottery ([0-9]+) ([0-9]+)$/",

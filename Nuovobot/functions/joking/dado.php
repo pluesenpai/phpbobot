@@ -14,8 +14,10 @@ function dado($socket, $channel, $sender, $msg, $infos)
 	}
 
 	$num = 0;
-	for($i = 0; $i < $n; $i++)
+	for($i = 0; $i < $n; $i++) {
+		srand(time());
 		$num += rand(1, 6);
+	}
 
 	sendmsg($socket, sprintf($translations->bot_gettext("joking-dado_extracted-%s"), $num), $channel);
 }

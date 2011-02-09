@@ -4,7 +4,8 @@ function roulette($socket, $channel, $sender, $msg, $infos)
 {
 	global $users, $translations;
 
-	$words = explode(",", $infos[1]);
+	$words = explode(" ", $infos[1]);
+	srand(time());
 	$word = trim($words[rand(0, count($words) - 1)]);
 
 	if($channel != $sender && is_user_in_chan($word, $channel))

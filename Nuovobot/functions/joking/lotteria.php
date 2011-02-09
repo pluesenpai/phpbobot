@@ -12,6 +12,7 @@ function lotteria($socket, $channel, $sender, $msg, $infos)
 		return;
 	}
 
+	srand(time());
 	$num = rand($min, $max);
 
 	sendmsg($socket, sprintf($translations->bot_gettext("joking-lotteria_chosen-%s"), $num), $channel); //"Ho scelto il numero $num"
