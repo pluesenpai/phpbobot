@@ -34,7 +34,7 @@ msgstr ""
 EOF
 fi
 
-php functions/builtins/generateFunctionXml.php > functions/builtins/functions.xml1.php
+php functions/builtins/utils/generateFunctionXml.php > functions/builtins/functions.xml1.php
 
 for ITEM in $(find . -name "*.php")
 do

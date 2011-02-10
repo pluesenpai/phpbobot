@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-22 10:37+0100\n"
+"POT-Creation-Date: 2011-02-10 22:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,21 +16,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: functions/builtins/greetonuserjoin.php:29 functions/builtins/talk.php:9
-msgid "talk-message"
-msgstr ""
-
-#: functions/builtins/greetuser.php:5
+#: functions/builtins/greetuser.php:7
 #, php-format
 msgid "greetuser-message-%s"
 msgstr ""
 
-#: functions/builtins/greetuser.php:7
+#: functions/builtins/greetuser.php:9
 #, php-format
 msgid "greetuser-userbot-%s"
 msgstr ""
 
-#: functions/builtins/greetuser.php:9
+#: functions/builtins/greetuser.php:11
 #, php-format
 msgid "greetuser-absent-%s"
 msgstr ""
@@ -67,7 +63,8 @@ msgid "lists-user_added-%s-%s"
 msgstr ""
 
 #: functions/builtins/lists_add.php:24
-msgid "lists-mode_present"
+#, php-format
+msgid "lists-mode_present-%s-%s"
 msgstr ""
 
 #: functions/builtins/lists_add.php:28 functions/builtins/lists_remove.php:29
@@ -132,199 +129,215 @@ msgid "greetuser-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:11
-msgid "greetonuserjoin-regex"
+msgid "greetinchanonjoin-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:12
-msgid "greetonuserjoin-descr_name"
+msgid "greetinchanonjoin-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:13
-msgid "greetonuserjoin-descr"
+msgid "greetinchanonjoin-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:14
-msgid "silence-regex"
+msgid "greetonuserjoin-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:15
-msgid "silence-descr_name"
+msgid "greetonuserjoin-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:16
-msgid "silence-descr"
+msgid "greetonuserjoin-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:17
-msgid "silenceall-regex"
+msgid "silence-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:18
-msgid "silenceall-descr_name"
+msgid "silence-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:19
-msgid "silenceall-descr"
+msgid "silence-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:20
-msgid "talk-regex"
+msgid "silenceall-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:21
-msgid "talk-descr_name"
+msgid "silenceall-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:22
-msgid "talk-descr"
+msgid "silenceall-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:23
-msgid "talkall-regex"
+msgid "talk-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:24
-msgid "talkall-descr_name"
+msgid "talk-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:25
-msgid "talkall-descr"
+msgid "talk-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:26
-msgid "help-regex"
+msgid "talkall-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:27
-msgid "help-descr_name"
+msgid "talkall-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:28
-msgid "help-descr"
+msgid "talkall-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:29
-msgid "grouphelp-regex"
+msgid "help-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:30
-msgid "grouphelp-descr_name"
+msgid "help-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:31
-msgid "grouphelp-descr"
+msgid "help-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:32
-msgid "botversion-regex"
+msgid "grouphelp-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:33
-msgid "botversion-descr_name"
+msgid "grouphelp-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:34
-msgid "botversion-descr"
+msgid "grouphelp-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:35
-msgid "register-regex"
+msgid "botversion-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:36
-msgid "register-descr_name"
+msgid "botversion-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:37
-msgid "register-descr"
+msgid "botversion-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:38
-msgid "auth-regex"
+msgid "register-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:39
-msgid "auth-descr_name"
+msgid "register-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:40
-msgid "auth-descr"
+msgid "register-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:41
-msgid "deauth-regex"
+msgid "auth-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:42
-msgid "deauth-descr_name"
+msgid "auth-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:43
-msgid "deauth-descr"
+msgid "auth-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:44
-msgid "lists_add-regex"
+msgid "deauth-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:45
-msgid "lists_add-descr_name"
+msgid "deauth-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:46
-msgid "lists_add-descr"
+msgid "deauth-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:47
-msgid "lists_remove-regex"
+msgid "lists_add-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:48
-msgid "lists_remove-descr_name"
+msgid "lists_add-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:49
-msgid "lists_remove-descr"
+msgid "lists_add-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:50
-msgid "setmessage-regex"
+msgid "lists_remove-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:51
-msgid "setmessage-descr_name"
+msgid "lists_remove-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:52
-msgid "setmessage-descr"
+msgid "lists_remove-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:53
-msgid "delmessage-regex"
+msgid "setmessage-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:54
-msgid "delmessage-descr_name"
+msgid "setmessage-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:55
-msgid "delmessage-descr"
+msgid "setmessage-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:56
-msgid "addpoke-regex"
+msgid "delmessage-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:57
-msgid "addpoke-descr_name"
+msgid "delmessage-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:58
+msgid "delmessage-descr"
+msgstr ""
+
+#: functions/builtins/functions.xml1.php:59
+msgid "addpoke-regex"
+msgstr ""
+
+#: functions/builtins/functions.xml1.php:60
+msgid "addpoke-descr_name"
+msgstr ""
+
+#: functions/builtins/functions.xml1.php:61
 msgid "addpoke-descr"
 msgstr ""
 
 #: functions/builtins/setmessage.php:10
 msgid "message-success"
+msgstr ""
+
+#: functions/builtins/talk.php:9
+msgid "talk-message"
 msgstr ""
 
 #: functions/builtins/silenceall.php:6 functions/builtins/silenceall.php:11
@@ -352,126 +365,126 @@ msgstr ""
 msgid "auth-failed"
 msgstr ""
 
-#: functions/quotes/allquotes.php:76 bot-fork.php:123 bot-fork.php:138
+#: functions/quotes/allquotes.php:76 bot-fork.php:114 bot-fork.php:129
 msgid "error"
 msgstr ""
 
-#: bot-fork.php:93
+#: bot-fork.php:84
 #, php-format
 msgid "directory-notexists-%s"
 msgstr ""
 
-#: bot-fork.php:105
+#: bot-fork.php:96
 msgid "bot-descr"
 msgstr ""
 
-#: bot-fork.php:106
+#: bot-fork.php:97
 msgid "conn-summary"
 msgstr ""
 
-#: bot-fork.php:107
+#: bot-fork.php:98
 msgid "conn-server"
 msgstr ""
 
-#: bot-fork.php:108
+#: bot-fork.php:99
 msgid "conn-port"
 msgstr ""
 
-#: bot-fork.php:109
+#: bot-fork.php:100
 msgid "conn-channels"
 msgstr ""
 
-#: bot-fork.php:110
+#: bot-fork.php:101
 msgid "conn-username"
 msgstr ""
 
-#: bot-fork.php:111
+#: bot-fork.php:102
 msgid "conn-desc"
 msgstr ""
 
-#: bot-fork.php:112
+#: bot-fork.php:103
 msgid "conn-password"
 msgstr ""
 
-#: bot-fork.php:117
+#: bot-fork.php:108
 msgid "socket-create"
 msgstr ""
 
-#: bot-fork.php:121 bot-fork.php:130
+#: bot-fork.php:112 bot-fork.php:121
 msgid "done"
 msgstr ""
 
-#: bot-fork.php:127
+#: bot-fork.php:118
 msgid "socket-partyline-create"
 msgstr ""
 
-#: bot-fork.php:131
+#: bot-fork.php:122
 msgid "socket-partyline-listening"
 msgstr ""
 
-#: bot-fork.php:146 bot-fork.php:153
+#: bot-fork.php:137 bot-fork.php:144
 msgid "fork-error"
 msgstr ""
 
-#: bot-fork.php:148
+#: bot-fork.php:139
 msgid "dbg-user_nick-send"
 msgstr ""
 
-#: bot-fork.php:168
+#: bot-fork.php:159
 msgid "socket-partyline-newconn"
 msgstr ""
 
-#: bot-fork.php:276
+#: bot-fork.php:265
 #, php-format
 msgid "greet-hi-%s"
 msgstr ""
 
-#: bot-fork.php:279
+#: bot-fork.php:269
 #, php-format
 msgid "greet-infos-%s-%s"
 msgstr ""
 
-#: bot-fork.php:279
+#: bot-fork.php:269
 msgid "command-help"
 msgstr ""
 
-#: bot-fork.php:320
+#: bot-fork.php:310
 msgid "event-newjoin"
 msgstr ""
 
-#: bot-fork.php:326
+#: bot-fork.php:316
 msgid "event-376-422"
 msgstr ""
 
-#: bot-fork.php:330
+#: bot-fork.php:320
 msgid "event-433"
 msgstr ""
 
-#: bot-fork.php:333
+#: bot-fork.php:323
 msgid "no-nickserv"
 msgstr ""
 
-#: bot-fork.php:353
+#: bot-fork.php:343
 msgid "command-kill"
 msgstr ""
 
-#: bot-fork.php:354
+#: bot-fork.php:344
 msgid "command-kill-msg1"
 msgstr ""
 
-#: bot-fork.php:357
+#: bot-fork.php:347
 msgid "command-kill-msg2"
 msgstr ""
 
-#: bot-fork.php:358
+#: bot-fork.php:348
 msgid "command-kill-msg3"
 msgstr ""
 
-#: bot-fork.php:390 bot-fork.php:394
+#: bot-fork.php:379 bot-fork.php:383
 #, php-format
 msgid "bot-poke-%s"
 msgstr ""
 
-#: bot-fork.php:406
+#: bot-fork.php:395
 msgid "ping"
 msgstr ""

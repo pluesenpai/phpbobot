@@ -1,6 +1,6 @@
 <?php
 
-	require_once("functions.xml.php");
+	require_once("functions/builtins/functions.xml.php");
 	$var = builtins_generateXml("it_IT");
 	preg_match_all("/\<!\[CDATA\[(.+)\]\]\>/", $var, $ret);
 
