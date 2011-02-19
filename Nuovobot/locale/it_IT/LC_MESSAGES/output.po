@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-10 22:37+0100\n"
-"PO-Revision-Date: 2011-02-10 22:56+0100\n"
+"POT-Creation-Date: 2011-02-19 16:26+0100\n"
+"PO-Revision-Date: 2011-02-19 16:30+0100\n"
 "Last-Translator: Paolo <paolo86@altervista.org>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgstr "Saluter&ograve; l'utente {UTENTE}"
 
 #: functions/builtins/functions.xml1.php:11
 msgid "greetinchanonjoin-regex"
-msgstr "^saluti (utenti|nuovi) (ON|OFF)$|"
+msgstr "/^saluti (utenti|nuovi) (ON|OFF)$/"
 
 #: functions/builtins/functions.xml1.php:12
 msgid "greetinchanonjoin-descr_name"
@@ -144,7 +144,7 @@ msgstr ""
 
 #: functions/builtins/functions.xml1.php:14
 msgid "greetonuserjoin-regex"
-msgstr "/ ^saluti (ON|OFF)$/"
+msgstr "/^saluti (ON|OFF)$/"
 
 #: functions/builtins/functions.xml1.php:15
 msgid "greetonuserjoin-descr_name"
@@ -155,182 +155,227 @@ msgid "greetonuserjoin-descr"
 msgstr "Funzione per abilitare il saluto di un particolare utente al join."
 
 #: functions/builtins/functions.xml1.php:17
+#: functions/builtins/functions.xml1.php:20
 msgid "silence-regex"
 msgstr "/^zitto$/"
 
 #: functions/builtins/functions.xml1.php:18
+#: functions/builtins/functions.xml1.php:21
 msgid "silence-descr_name"
 msgstr "zitto"
 
 #: functions/builtins/functions.xml1.php:19
+#: functions/builtins/functions.xml1.php:22
 msgid "silence-descr"
 msgstr "Star&ograve; zitto e buono :|"
 
 #: functions/builtins/functions.xml1.php:20
+#: functions/builtins/functions.xml1.php:23
 msgid "silenceall-regex"
 msgstr "/^bai a marrai$/"
 
 #: functions/builtins/functions.xml1.php:21
+#: functions/builtins/functions.xml1.php:24
 msgid "silenceall-descr_name"
 msgstr "bai a marrai"
 
 #: functions/builtins/functions.xml1.php:22
+#: functions/builtins/functions.xml1.php:25
 msgid "silenceall-descr"
 msgstr "Lascer&ograve; tutti i canali per andare a... zappare"
 
 #: functions/builtins/functions.xml1.php:23
+#: functions/builtins/functions.xml1.php:26
 msgid "talk-regex"
 msgstr "/^parla$/"
 
 #: functions/builtins/functions.xml1.php:24
+#: functions/builtins/functions.xml1.php:27
 msgid "talk-descr_name"
 msgstr "parla"
 
 #: functions/builtins/functions.xml1.php:25
+#: functions/builtins/functions.xml1.php:28
 msgid "talk-descr"
 msgstr "Riprender&ograve; a parlare"
 
 #: functions/builtins/functions.xml1.php:26
+#: functions/builtins/functions.xml1.php:29
 msgid "talkall-regex"
 msgstr "/^torra$/"
 
 #: functions/builtins/functions.xml1.php:27
+#: functions/builtins/functions.xml1.php:30
 msgid "talkall-descr_name"
 msgstr "torra"
 
 #: functions/builtins/functions.xml1.php:28
+#: functions/builtins/functions.xml1.php:31
 msgid "talkall-descr"
 msgstr "Torner&ograve; a controllare i canali dopo essere andato a... zappare"
 
 #: functions/builtins/functions.xml1.php:29
+#: functions/builtins/functions.xml1.php:32
 msgid "help-regex"
 msgstr "/^help$/"
 
 #: functions/builtins/functions.xml1.php:30
+#: functions/builtins/functions.xml1.php:33
 msgid "help-descr_name"
 msgstr "help"
 
 #: functions/builtins/functions.xml1.php:31
+#: functions/builtins/functions.xml1.php:34
 msgid "help-descr"
 msgstr "Mostro l'elenco delle funzioni"
 
 #: functions/builtins/functions.xml1.php:32
+#: functions/builtins/functions.xml1.php:35
 msgid "grouphelp-regex"
 msgstr "/^help (.+)$/"
 
 #: functions/builtins/functions.xml1.php:33
+#: functions/builtins/functions.xml1.php:36
 msgid "grouphelp-descr_name"
 msgstr "help {GRUPPO}"
 
 #: functions/builtins/functions.xml1.php:34
+#: functions/builtins/functions.xml1.php:37
 msgid "grouphelp-descr"
 msgstr "Mostro l'elenco delle funzioni nel gruppo {GRUPPO}"
 
 #: functions/builtins/functions.xml1.php:35
+#: functions/builtins/functions.xml1.php:38
 msgid "botversion-regex"
 msgstr "/^versione$/"
 
 #: functions/builtins/functions.xml1.php:36
+#: functions/builtins/functions.xml1.php:39
 msgid "botversion-descr_name"
 msgstr "versione"
 
 #: functions/builtins/functions.xml1.php:37
+#: functions/builtins/functions.xml1.php:40
 msgid "botversion-descr"
 msgstr "Mostro la mia versione"
 
 #: functions/builtins/functions.xml1.php:38
+#: functions/builtins/functions.xml1.php:41
 msgid "register-regex"
 msgstr "/^registra (.+)$/"
 
 #: functions/builtins/functions.xml1.php:39
+#: functions/builtins/functions.xml1.php:42
 msgid "register-descr_name"
 msgstr "registra {PASSWORD}"
 
 #: functions/builtins/functions.xml1.php:40
+#: functions/builtins/functions.xml1.php:43
 msgid "register-descr"
 msgstr "Verrai registrato con la password {PASSWORD}"
 
 #: functions/builtins/functions.xml1.php:41
+#: functions/builtins/functions.xml1.php:44
 msgid "auth-regex"
 msgstr "/^auth (.+)$/"
 
 #: functions/builtins/functions.xml1.php:42
+#: functions/builtins/functions.xml1.php:45
 msgid "auth-descr_name"
 msgstr "auth {PASSWORD}"
 
 #: functions/builtins/functions.xml1.php:43
+#: functions/builtins/functions.xml1.php:46
 msgid "auth-descr"
 msgstr "Verrai autenticato"
 
 #: functions/builtins/functions.xml1.php:44
+#: functions/builtins/functions.xml1.php:47
 msgid "deauth-regex"
 msgstr "/^deauth$/"
 
 #: functions/builtins/functions.xml1.php:45
+#: functions/builtins/functions.xml1.php:48
 msgid "deauth-descr_name"
 msgstr "deauth"
 
 #: functions/builtins/functions.xml1.php:46
+#: functions/builtins/functions.xml1.php:49
 msgid "deauth-descr"
 msgstr "Verrai deautenticato"
 
 #: functions/builtins/functions.xml1.php:47
+#: functions/builtins/functions.xml1.php:50
 msgid "lists_add-regex"
 msgstr "/^([a-z])op add (.+?)$/"
 
 #: functions/builtins/functions.xml1.php:48
+#: functions/builtins/functions.xml1.php:51
 msgid "lists_add-descr_name"
 msgstr "{LISTA}op add {UTENTE}"
 
 #: functions/builtins/functions.xml1.php:49
+#: functions/builtins/functions.xml1.php:52
 msgid "lists_add-descr"
 msgstr "Aggiunger&ograve; l'utente {UTENTE} alla lista {LISTA}"
 
 #: functions/builtins/functions.xml1.php:50
+#: functions/builtins/functions.xml1.php:53
 msgid "lists_remove-regex"
 msgstr "/^([a-z])op remove (.+?)$/"
 
 #: functions/builtins/functions.xml1.php:51
+#: functions/builtins/functions.xml1.php:54
 msgid "lists_remove-descr_name"
 msgstr "{LISTA}op remove {UTENTE}"
 
 #: functions/builtins/functions.xml1.php:52
+#: functions/builtins/functions.xml1.php:55
 msgid "lists_remove-descr"
 msgstr "Rimuover&ograve; l'utente {UTENTE} dalla lista {LISTA}"
 
 #: functions/builtins/functions.xml1.php:53
+#: functions/builtins/functions.xml1.php:56
 msgid "setmessage-regex"
 msgstr "/^setmessage (.+)$/"
 
 #: functions/builtins/functions.xml1.php:54
+#: functions/builtins/functions.xml1.php:57
 msgid "setmessage-descr_name"
 msgstr "setmessage {MESSAGGIO}"
 
 #: functions/builtins/functions.xml1.php:55
+#: functions/builtins/functions.xml1.php:58
 msgid "setmessage-descr"
 msgstr "Imposter&ograve; il tuo messaggio di saluto con quello specificato"
 
 #: functions/builtins/functions.xml1.php:56
+#: functions/builtins/functions.xml1.php:59
 msgid "delmessage-regex"
 msgstr "/^delmessage$/"
 
 #: functions/builtins/functions.xml1.php:57
+#: functions/builtins/functions.xml1.php:60
 msgid "delmessage-descr_name"
 msgstr "delmessage"
 
 #: functions/builtins/functions.xml1.php:58
+#: functions/builtins/functions.xml1.php:61
 msgid "delmessage-descr"
 msgstr "Elimino il tuo messaggio impostato"
 
 #: functions/builtins/functions.xml1.php:59
+#: functions/builtins/functions.xml1.php:62
 msgid "addpoke-regex"
 msgstr "/^addpoke (.+)$/"
 
 #: functions/builtins/functions.xml1.php:60
+#: functions/builtins/functions.xml1.php:63
 msgid "addpoke-descr_name"
 msgstr "addpoke {MESSAGGIO}"
 
 #: functions/builtins/functions.xml1.php:61
+#: functions/builtins/functions.xml1.php:64
 msgid "addpoke-descr"
 msgstr "Aggiunger&ograve; il messaggio come possibile risposta al poke."
 
@@ -490,4 +535,17 @@ msgstr "Cosa c'&egrave; %s??"
 #: bot-fork.php:395
 msgid "ping"
 msgstr "PING request"
+
+#: functions/builtins/functions.xml1.php:17
+msgid "greetstatus-regex"
+msgstr "/^saluti status$|^saluti status ([^ ]+)$/"
+
+#: functions/builtins/functions.xml1.php:18
+msgid "greetstatus-descr_name"
+msgstr "saluti status, saluti status {UTENTE}"
+
+#: functions/builtins/functions.xml1.php:19
+msgid "greetstatus-descr"
+msgstr ""
+"Da informazioni sullo stato dei saluti per un singolo utente o per il canale"
 

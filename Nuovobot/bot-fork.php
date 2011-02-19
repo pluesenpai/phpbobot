@@ -258,14 +258,15 @@
 						if($slot_saluto[0][0] == true) {
 							$saluto_user = $slot_saluto[0][1];
 							$saluto_chan = $slot_saluto[0][2];
+							$new_user = $slot_saluto[0][4];
 							$joiner_mode = $db->get_modes($saluto_user, $saluto_chan);
-							if($saluta[$saluto_chan] == true) {
-								if($db->cangreet($saluto_user, $saluto_chan) == true || ($db->isnewuser($saluto_user) == true && $salutanuovi[$saluto_chan] == true)) {
+							if($saluta[$saluto_chan]) {
+								if($db->cangreet($saluto_user, $saluto_chan) || ($new_user && $salutanuovi[$saluto_chan])) {
 									$joiner_mess = $db->get_greet($saluto_user, $saluto_chan);
 									sendmsg($irc, sprintf(_("greet-hi-%s"), $saluto_user), $saluto_chan, 0, true);
 									if(strlen($joiner_mess) > 0)
 										sendmsg($irc, "[$saluto_user]: $joiner_mess", $saluto_chan, 0, true);
-									if($db->isnewuser($saluto_user))
+									if($new_user)
 										sendmsg($irc, sprintf(_("greet-infos-%s-%s"), $user_name, _("command-help")), $saluto_chan, 0, true);
 								}
 							}
@@ -311,7 +312,7 @@
 					dbg($debug, "\$joiner = $sender");
 					$irc_chan = substr($recv, 1);
 					if(strcmp($sender, $user_name) != 0)
-						$slot_saluto[] = array(3, $sender, $irc_chan, microtime(true));
+						$slot_saluto[] = array(3, $sender, $irc_chan, microtime(true), $db->isnewuser($sender));
 				} elseif(($type == "376") || ($type == "422")) {
 					dbg($debug, _("event-376-422"));
 					if(isset($user_psw) && strlen($user_psw) != 0)

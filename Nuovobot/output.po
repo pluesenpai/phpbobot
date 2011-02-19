@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-10 22:37+0100\n"
+"POT-Creation-Date: 2011-02-19 16:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,182 +153,194 @@ msgid "greetonuserjoin-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:17
-msgid "silence-regex"
+msgid "greetstatus-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:18
-msgid "silence-descr_name"
+msgid "greetstatus-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:19
-msgid "silence-descr"
+msgid "greetstatus-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:20
-msgid "silenceall-regex"
+msgid "silence-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:21
-msgid "silenceall-descr_name"
+msgid "silence-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:22
-msgid "silenceall-descr"
+msgid "silence-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:23
-msgid "talk-regex"
+msgid "silenceall-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:24
-msgid "talk-descr_name"
+msgid "silenceall-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:25
-msgid "talk-descr"
+msgid "silenceall-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:26
-msgid "talkall-regex"
+msgid "talk-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:27
-msgid "talkall-descr_name"
+msgid "talk-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:28
-msgid "talkall-descr"
+msgid "talk-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:29
-msgid "help-regex"
+msgid "talkall-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:30
-msgid "help-descr_name"
+msgid "talkall-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:31
-msgid "help-descr"
+msgid "talkall-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:32
-msgid "grouphelp-regex"
+msgid "help-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:33
-msgid "grouphelp-descr_name"
+msgid "help-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:34
-msgid "grouphelp-descr"
+msgid "help-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:35
-msgid "botversion-regex"
+msgid "grouphelp-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:36
-msgid "botversion-descr_name"
+msgid "grouphelp-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:37
-msgid "botversion-descr"
+msgid "grouphelp-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:38
-msgid "register-regex"
+msgid "botversion-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:39
-msgid "register-descr_name"
+msgid "botversion-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:40
-msgid "register-descr"
+msgid "botversion-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:41
-msgid "auth-regex"
+msgid "register-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:42
-msgid "auth-descr_name"
+msgid "register-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:43
-msgid "auth-descr"
+msgid "register-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:44
-msgid "deauth-regex"
+msgid "auth-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:45
-msgid "deauth-descr_name"
+msgid "auth-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:46
-msgid "deauth-descr"
+msgid "auth-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:47
-msgid "lists_add-regex"
+msgid "deauth-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:48
-msgid "lists_add-descr_name"
+msgid "deauth-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:49
-msgid "lists_add-descr"
+msgid "deauth-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:50
-msgid "lists_remove-regex"
+msgid "lists_add-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:51
-msgid "lists_remove-descr_name"
+msgid "lists_add-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:52
-msgid "lists_remove-descr"
+msgid "lists_add-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:53
-msgid "setmessage-regex"
+msgid "lists_remove-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:54
-msgid "setmessage-descr_name"
+msgid "lists_remove-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:55
-msgid "setmessage-descr"
+msgid "lists_remove-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:56
-msgid "delmessage-regex"
+msgid "setmessage-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:57
-msgid "delmessage-descr_name"
+msgid "setmessage-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:58
-msgid "delmessage-descr"
+msgid "setmessage-descr"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:59
-msgid "addpoke-regex"
+msgid "delmessage-regex"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:60
-msgid "addpoke-descr_name"
+msgid "delmessage-descr_name"
 msgstr ""
 
 #: functions/builtins/functions.xml1.php:61
+msgid "delmessage-descr"
+msgstr ""
+
+#: functions/builtins/functions.xml1.php:62
+msgid "addpoke-regex"
+msgstr ""
+
+#: functions/builtins/functions.xml1.php:63
+msgid "addpoke-descr_name"
+msgstr ""
+
+#: functions/builtins/functions.xml1.php:64
 msgid "addpoke-descr"
 msgstr ""
 

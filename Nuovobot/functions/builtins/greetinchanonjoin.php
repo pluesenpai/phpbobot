@@ -8,7 +8,7 @@
 			$table = "chan";
 			$field = "greet";
 			$cond_f = array("name");
-			$cond_o = array("=", "=");
+			$cond_o = array("=");
 			$cond_v = array($channel);
 			if(mb_strtoupper($infos[2]) == "ON") {
 				$value = "TRUE";
@@ -21,7 +21,7 @@
 			$table = "chan";
 			$field = "greetnew";
 			$cond_f = array("name");
-			$cond_o = array("=", "=");
+			$cond_o = array("=");
 			$cond_v = array($channel);
 			if(mb_strtoupper($infos[2]) == "ON") {
 				$value = "TRUE";

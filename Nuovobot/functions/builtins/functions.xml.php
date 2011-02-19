@@ -7,6 +7,7 @@
 			"greetuser" => "0",
 			"greetinchanonjoin" => "1",
 			"greetonuserjoin" => "0",
+			"greetstatus" => "0",
 			"silence" => "1",
 			"silenceall" => "1",
 			"talk" => "1",

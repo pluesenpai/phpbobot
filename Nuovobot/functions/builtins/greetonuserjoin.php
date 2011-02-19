@@ -15,7 +15,7 @@
 			$value = $infos[1];
 		}
 
-		if(is_user_in_chan($user)) {
+		if(is_user_in_chan($user, $channel)) {
 			$cond_v = array($db->find_user($user), $db->find_chan($channel));
 			if(mb_strtoupper($value) == "ON") {
 				$val = "TRUE";
