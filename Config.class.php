@@ -6,93 +6,124 @@
 		private static $instance;
 		private $_xml;
 
+		private $xmlDefaultItems = array(
+			"botName" => "bobot",
+			"botDescription" => "PHP written Bot for IRC",
+			"botExitMessage" => "Byte Byte!!",
+			"password+" => "",
+			"server" => "irc.syrolnet.org",
+			"port" => "6668",
+			"chans" => array(
+				"chan" => "#sardylan",
+				"chan" => "#bottoli"
+			),
+			"db" => "pdo_sqlite3",
+			"listenAddress" => "127.0.0.1",
+			"listenPort" => "25000",
+			"locale" => "it_IT",
+			"minimallog" => "0",
+			"page_prefix" => "",
+			"page_password+" => ""
+		);
+
+		/**
+		 * Trailing + (plus) means field must be encoded
+		 */
+		private $xmlItems = array(
+			"botName" => "*",
+			"botDescription" => "*",
+			"botExitMessage" => "*",
+			"password+" => "*",
+			"server" => "*",
+			"port" => "*",
+			"chans" => array(),
+			"db" => "*",
+			"listenAddress" => "*",
+			"listenPort" => "*",
+			"locale" => "*",
+			"minimallog" => "*",
+			"page_prefix" => "*",
+			"page_password+" => "*"
+		);
+
 		/**
 		  * Constructor for Config Class
 		  */
 		private function __construct()
 		{
 			if(!file_exists(self::filename)) {
-				copy(self::filename . ".default", self::filename);
-
+				touch(self::filename);
+			} else {
 				$this->_xml = simplexml_load_file(self::filename);
-
-				//Now ask for new configuration data
-				$oldname = $this->getBotName();
-				echo "Bot name: [$oldname] ";
-				$name = trim(fgets(STDIN));
-				if($name != "")
-					$this->setBotName($name);
-
-				$olddescr = $this->getBotDescription();
-				echo "Bot description: [$olddescr] ";
-				$description = trim(fgets(STDIN));
-				if($description != "")
-					$this->setBotDescription($description);
-
-				$oldexitmessage = $this->getExitMessage();
-				echo "Bot exit message: [$oldexitmessage] ";
-				$exitmessage = trim(fgets(STDIN));
-				if($exitmessage != "")
-					$this->setExitMessage($exitmessage);
-
-				echo "Bot password: ";
-				$password = trim(fgets(STDIN));
-				$this->setPassword($password);
-
-				$oldaddress = $this->getServer();
-				echo "Server address: [$oldaddress] ";
-				$address = trim(fgets(STDIN));
-				if($address != "")
-					$this->setServer($address);
-
-				$oldport = $this->getPort();
-				echo "Server port: [$oldport] ";
-				$port = trim(fgets(STDIN));
-				if($port != "")
-					$this->setPort($port);
-
-				$this->removeChan("#sardylan");
-				$this->removeChan("#bottoli");
-				do {
-					echo "Channel (empty to finish): ";
-					$channel = trim(fgets(STDIN));
-					if($channel != "")
-						$this->addChans($channel);
-				} while($channel != "");
-
-				$old_db = $this->getDB();
-				echo "Database: [$old_db] ";
-				$db = trim(fgets(STDIN));
-				if($db != "")
-					$this->setDB($db);
-
-				$old_laddress = $this->getListenAddress();
-				echo "Listening address: [$old_laddress] ";
-				$l_address = trim(fgets(STDIN));
-				if($l_address != "")
-					$this->setListenAddress($l_address);
-
-				$old_lport = $this->getListenPort();
-				echo "Listening port: [$old_lport]";
-				$l_port = trim(fgets(STDIN));
-				if($l_port != "")
-					$this->setListenPort($l_port);
-
-				$old_locale = $this->getLocale();
-				echo "Locale: [$old_locale]";
-				$locale = trim(fgets(STDIN));
-				if($locale != "")
-					$this->setBotLocale($locale);
-
-				$old_minimallog = $this->getMinimalLog();
-				echo "Database: [$old_minimallog] ";
-				$minimallog = trim(fgets(STDIN));
-				if($minimallog != "")
-					$this->setMinimalLog($minimallog);
-
-				echo "Configuration created!";
+				foreach($this->xmlDefaultItems as $key => $value) {
+					if(is_array($value)) {
+						$subKey = key($value);
+						if(substr($subKey, -1) == "+") {
+							$subKey_ = substr($subKey, 0, -1);
+							$func = "decode";
+						} else {
+							$subKey_ = $subKey;
+							$func = "dontChange";
+						}
+						foreach($this->_xml->$key->$subKey_ as $item) {
+							$this->xmlItems[$key][] = $this->$func((string)$item);
+						}
+					} else {
+						if(substr($key, -1) == "+") {
+							$key_ = substr($key, 0, -1);
+							$func = "decode";
+						} else {
+							$key_ = $key;
+							$func = "dontChange";
+						}
+						$this->xmlItems[$key] = $this->$func((string)$this->_xml->$key_);
+					}
+				}
 			}
-			$this->_xml = simplexml_load_file(self::filename);
+
+			print_r($this->xmlItems);
+
+			foreach($this->xmlItems as $key => $value) {
+				if($value == "*" || (is_array($value) && count($value) == 0)) {
+					if(substr($key, -1) == "+") {
+						$key_ = substr($key, 0, -1);
+						$func = "decode";
+					} else {
+						$key_ = $key;
+						$func = "dontChange";
+					}
+					$old = $this->xmlDefaultItems[$key];
+					if(is_array($value)) {
+						$old = implode(" ", $old);
+						echo "{$key_}: [$old] ";
+						do {
+							$subKey = key($value);
+							if(substr($subKey, -1) == "+") {
+								$subKey_ = ucfirst(substr($subKey, 0, -1));
+								$func = "decode";
+							} else {
+								$subKey_ = ucfirst($subKey);
+								$func = "dontChange";
+							}
+							echo "{$subKey_} (empty to finish): ";
+							$new = trim(fgets(STDIN));
+							if($new != "")
+								$this->xmlItems[$key][] = $this->$func($new);
+						} while($new != "");
+					} else {
+						echo "{$key_}: [$old] ";
+						$new = trim(fgets(STDIN));
+						if($new != "")
+							$this->xmlItems[$key] = $this->$func($new);
+					}
+				}
+			}
+
+			$this->writeToXml();
+
+			echo "Configuration created!";
+
+// 			$this->_xml = simplexml_load_file(self::filename);
 		}
 
 		/**
@@ -116,23 +147,61 @@
 			return self::$instance;
 		}
 
+		private function dontChange($param)
+		{
+			return $param;
+		}
+
+		private function encode($param)
+		{
+			return base64_encode($param);
+		}
+		
+		private function decode($param)
+		{
+			return base64_decode($param);
+		}
+
+		private function writeToXml()
+		{
+			$xml = "<?xml version=\"1.0\" ?>\n<bobot>\n";
+			foreach($this->xmlItems as $key => $value) {
+				if(substr($key, -1) == "+") {
+					$key_ = substr($key, 0, -1);
+					$func = "encode";
+				} else {
+					$key_ = $key;
+					$func = "dontChange";
+				}
+				$xml .= "\t<{$key_}>";
+				if(is_array($value)) {
+					foreach($value as $k => $item) {
+						$k_ = key($this->xmlDefaultItems[$key]);
+						if(substr($k_, -1) == "+") {
+							$k_ = substr($k_, 0, -1);
+							$f = "encode";
+						} else {
+							$f = "dontChange";
+						}
+						$xml .= "\n\t\t<{$k_}>" . $this->$func($item) . "</{$k_}>";
+					}
+					$xml .= "\n\t";
+				} else {
+					$xml .= $this->$func($value);
+				}
+				$xml .= "</{$key_}>\n";
+			}
+			$xml .= "</bobot>\n";
+			file_put_contents(self::filename, $xml, LOCK_EX);
+		}
+
 		/**
 		  * Retrieve the name of the Bot
 		  * @returns (String) The name of the Bot
 		  */
 		public function getBotName()
 		{
-			return (string)$this->_xml->botName;
-		}
-
-		/**
-		  * Permits to set the name of the Bot
-		  * @param $name New name of the bot
-		  */
-		public function setBotName($name)
-		{
-			$this->_xml->botName = $name;
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return $this->xmlItems["botName"];
 		}
 
 		/**
@@ -141,17 +210,7 @@
 		  */
 		public function getBotDescription()
 		{
-			return (string)$this->_xml->botDescription;
-		}
-
-		/**
-		  * Permits to set the description of the Bot
-		  * @param $name New description of the bot
-		  */
-		public function setBotDescription($descr)
-		{
-			$this->_xml->botDescription = $descr;
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return $this->xmlItems["botDescription"];
 		}
 
 		/**
@@ -160,17 +219,7 @@
 		  */
 		public function getExitMessage()
 		{
-			return (string)$this->_xml->botExitMessage;
-		}
-
-		/**
-		  * Permits to set the exit message of the Bot
-		  * @param $message New exit message of the bot
-		  */
-		public function setExitMessage($message)
-		{
-			$this->_xml->botExitMessage = $message;
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return $this->xmlItems["botExitMessage"];
 		}
 
 		/**
@@ -179,17 +228,7 @@
 		  */
 		public function getPassword()
 		{
-			return base64_decode((string)$this->_xml->password);
-		}
-
-		/**
-		  * Permits to set the password of the Bot
-		  * @param $password New password of the bot
-		  */
-		public function setPassword($password)
-		{
-			$this->_xml->password = base64_encode($password);
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return $this->xmlItems["password+"];
 		}
 
 		/**
@@ -198,19 +237,8 @@
 		  */
 		public function getServer()
 		{
-			return (string)$this->_xml->server;
+			return $this->xmlItems["server"];
 		}
-
-		/**
-		  * Permits to set the server where the Bot must connect
-		  * @param $server New server address
-		  */
-		public function setServer($server)
-		{
-			$this->_xml->server = $server;
-			file_put_contents(self::filename, $this->_xml->asXML());
-		}
-
 
 		/**
 		  * Retrieve the port for the Bot
@@ -218,17 +246,7 @@
 		  */
 		public function getPort()
 		{
-			return (int)$this->_xml->port;
-		}
-
-		/**
-		  * Permits to set the port of the Bot
-		  * @param $port New port of the bot
-		  */
-		public function setPort($port)
-		{
-			$this->_xml->port = $port;
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return (int)$this->xmlItems["port"];
 		}
 
 		/**
@@ -237,46 +255,8 @@
 		  */
 		public function getChans()
 		{
-			$chans = array();
-			foreach($this->_xml->chans->chan as $chan) {
-				$chans[] = (string)$chan;
-			}
-
-			return $chans;
+			return $this->xmlItems["chans"];
 		}
-
-		/**
-		  * Permits to add new chans to the configuration
-		  * @note You can put how many arguments you want.
-		  */
-		public function addChans()
-		{
-			$n_args = func_num_args();
-			$args = func_get_args();
-
-			for($i = 0; $i < $n_args; $i++) {
-				$this->_xml->chans->addChild("chan", $args[$i]);
-			}
-
-			file_put_contents(self::filename, $this->_xml->asXML());
-		}
-
-		/**
-		  * Permits to delete a chan from the configuration
-		  * @param $ircchan Chan to be deleted
-		  */
-		public function removeChan($ircchan)
-		{
-			foreach($this->_xml->chans->chan as $chan) {
-				if((string)$chan == $ircchan) {
-					$dom = dom_import_simplexml($chan);
-					$dom->parentNode->removeChild($dom);
-				}
-			}
-
-			file_put_contents(self::filename, $this->_xml->asXML());
-		}
-
 
 		/**
 		  * Retrieve the DB Engine
@@ -284,17 +264,7 @@
 		  */
 		public function getDB()
 		{
-			return (string)$this->_xml->db;
-		}
-
-		/**
-		  * Permits to set the DB Engine of the bot
-		  * @param $port New DB Engine
-		  */
-		public function setDB($db)
-		{
-			$this->_xml->db = $db;
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return $this->xmlItems["db"];
 		}
 
 		/**
@@ -303,17 +273,7 @@
 		  */
 		public function getListenPort()
 		{
-			return (int)$this->_xml->listenPort;
-		}
-
-		/**
-		  * Permits to set the port where bot must listen for telnet connections
-		  * @param $port New port
-		  */
-		public function setListenPort($port)
-		{
-			$this->_xml->listenPort = $port;
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return (int)$this->xmlItems["listenPort"];
 		}
 
 		/**
@@ -322,17 +282,7 @@
 		  */
 		public function getListenAddress()
 		{
-			return (string)$this->_xml->listenAddress;
-		}
-
-		/**
-		  * Permits to set the listening address for telnet connections
-		  * @param $address New address
-		  */
-		public function setListenAddress($address)
-		{
-			$this->_xml->listenAddress = $address;
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return $this->xmlItems["listenAddress"];
 		}
 
 		/**
@@ -341,36 +291,16 @@
 		  */
 		public function getLocale()
 		{
-			return (string)$this->_xml->locale;
+			return $this->xmlItems["locale"];
 		}
 
 		/**
-		  * Permits to set the locale of the Bot
-		  * @param $locale New locale of the bot
-		  */
-		public function setBotLocale($locale)
-		{
-			$this->_xml->locale = $locale;
-			file_put_contents(self::filename, $this->_xml->asXML());
-		}
-
-		/**
-		  * Retrieve the locale for the Bot
-		  * @returns (String) The locale for the Bot
+		  * Decides if the bot must create a minimal log
+		  * @returns (String) 1 if enabled, 0 if not
 		  */
 		public function getMinimalLog()
 		{
-			return (int)$this->_xml->minimallog;
-		}
-
-		/**
-		  * Permits to set the locale of the Bot
-		  * @param $locale New locale of the bot
-		  */
-		public function setMinimalLog($minimallog = 1)
-		{
-			$this->_xml->minimallog = (int)$minimallog;
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return (int)$this->xmlItems["minimallog"];
 		}
 
 		/**
@@ -379,17 +309,7 @@
 		  */
 		public function getPagePrefix()
 		{
-			return (string)$this->_xml->page_prefix;
-		}
-
-		/**
-		  * Permits to set web page
-		  * @param $password New web page
-		  */
-		public function setPagePrefix($page)
-		{
-			$this->_xml->page_prefix = $page;
-			file_put_contents(self::filename, $this->_xml->asXML());
+			return (string)$this->xmlItems["page_prefix"];
 		}
 
 		/**
@@ -398,18 +318,7 @@
 		  */
 		public function getPagePassword()
 		{
-			return base64_decode((string)$this->_xml->page_password);
+			return $this->xmlItems["page_password+"];
 		}
-
-		/**
-		  * Permits to set the password of the web page
-		  * @param $password New password of the web page
-		  */
-		public function setPagePassword($password)
-		{
-			$this->_xml->page_password = base64_encode($password);
-			file_put_contents(self::filename, $this->_xml->asXML());
-		}
-
 	}
 ?>
