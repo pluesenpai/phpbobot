@@ -7,7 +7,7 @@
 		$cond_f = array("user_IDUser", "chan_IDChan");
 		$cond_o = array("=", "=");
 
-		if(isset($infos[3]) && is_bot_op($sender) && ($registered[$sender] || $auth[$sender]) {
+		if(isset($infos[3]) && is_bot_op($sender) && ($registered[$sender] || $auth[$sender])) {
 			$user = $infos[2];
 			$value = $infos[3];
 		} else {
@@ -26,7 +26,11 @@
 			}
 
 			if($errore != 1) {
-				$db->update("enter", array("cangreet"), array($val), $cond_f, $cond_o, $cond_v);
+				$r = $db->select(array("enter"), array("cangreet"), array(""), $cond_f, $cond_o, $cond_v, 1);
+				if(count($r) > 0)
+					$db->update("enter", array("cangreet"), array($val), $cond_f, $cond_o, $cond_v);
+				else
+					$db->insert("enter", array("user_IDUser", "chan_IDChan", "greet_IDGreet", "modes", "kicks", "cangreet"), array($db->find_user($user), $db->find_chan($channel), 0, "", 0, "TRUE"));
 				sendmsg($socket, "Tutto ok!", $channel);
 			} else {
 				sendmsg($socket, "Errore", $channel);

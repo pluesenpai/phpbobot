@@ -1,7 +1,7 @@
 <?php
 	function deauth($socket, $channel, $sender, $msg, $infos)
 	{
-		global $auth;
+		global $auth, $db;
 
 		if($auth[$sender]) {
 			$auth[$sender] = false;

@@ -9,7 +9,7 @@
 				$cond_o = array("=", "=");
 				$cond_v = array($db->find_user($infos[1]), $db->find_chan($channel));
 				$r = $db->select(array("enter"), array("cangreet"), array(""), $cond_f, $cond_o, $cond_v, 1);
-				sendmsg($socket, sprintf("L'utente %s se entra in canale %sverr&agrave; salutato", $infos[1], $db->getBoolFromDB($r[0]["cangreet"]) == false ? "NON " : ""), $channel);
+				sendmsg($socket, sprintf("L'utente %s se entra in canale %sverr&agrave; salutato", $infos[1], (count($r) <= 0 || $db->getBoolFromDB($r[0]["cangreet"]) == false) ? "NON " : ""), $channel);
 			} else {
 				sendmsg($socket, "Chi????? Non è in canale!", $channel);
 			}

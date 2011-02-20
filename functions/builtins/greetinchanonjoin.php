@@ -4,12 +4,13 @@
 		global $db;
 		$errore = 0;
 
+		$table = "chan";
+		$cond_f = array("name");
+		$cond_o = array("=");
+		$cond_v = array($channel);
+
 		if($infos[1] == "utenti") {
-			$table = "chan";
 			$field = "greet";
-			$cond_f = array("name");
-			$cond_o = array("=");
-			$cond_v = array($channel);
 			if(mb_strtoupper($infos[2]) == "ON") {
 				$value = "TRUE";
 			} else if(mb_strtoupper($infos[2]) == "OFF") {
@@ -18,11 +19,7 @@
 				$errore = 1;
 			}
 		} else if($infos[1] == "nuovi") {
-			$table = "chan";
 			$field = "greetnew";
-			$cond_f = array("name");
-			$cond_o = array("=");
-			$cond_v = array($channel);
 			if(mb_strtoupper($infos[2]) == "ON") {
 				$value = "TRUE";
 			} else if(mb_strtoupper($infos[2]) == "OFF") {

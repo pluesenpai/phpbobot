@@ -3,7 +3,7 @@
 	{
 		global $allowed_autolists, $registered, $auth, $db;
 
-		if($registered[$sender] || $auth[$sender])) {
+		if($registered[$sender] || $auth[$sender]) {
 			$iduser = $db->check_user($infos[2]);
 			$idchan = $db->check_chan($channel);
 			$result = $db->select(array("enter"), array("modes"), array(""), array("chan_IDChan", "user_IDUser"), array("=", "="), array($idchan, $iduser));
