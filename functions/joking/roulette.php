@@ -2,7 +2,7 @@
 
 function roulette($socket, $channel, $sender, $msg, $infos)
 {
-	global $users, $translations;
+	global $translations;
 
 	$words = explode(" ", $infos[1]);
 	srand(time());

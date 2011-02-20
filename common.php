@@ -446,8 +446,7 @@
 	{
 		$utenti = array();
 		foreach($users as $u) {
-			$u2 = array_map("clean_username", $u);
-			foreach($u2 as $user) {
+			foreach($u as $user) {
 				if(!in_array($user, $utenti))
 					$utenti[] = $user;
 			}

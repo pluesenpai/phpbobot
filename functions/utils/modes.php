@@ -3,7 +3,7 @@
 	{
 		global $registered, $auth, $db, $users, $user_name;
 
-		if(!$registered[$sender] && !$auth[$sender]) {
+		if((isset($registered[$sender]) && !$registered[$sender]) && (isset($auth[$sender]) && !$auth[$sender])) {
 			sendmsg($socket, "Tu vuoi cosa? Per fare che?", $channel);
 			return;
 		}
@@ -36,7 +36,7 @@
 			$mode .= str_repeat("h", $userscount);
 		elseif(preg_match("/voice (.+)$/", $infos[0]) && preg_match("/v|h|o/", $result[0]["modes"] || is_bot_op($sender)))
 			$mode .= str_repeat("v", $userscount);
-		elseif(preg_match("/o/", $result[0]["modes"]) || getUserPrivileges($sender, $channel) <= UserLevels::OPER_LEVEL || is_bot_op($sender))
+		elseif(preg_match("/op (.+)/", $infos[0]) || getUserPrivileges($sender, $channel) <= UserLevels::OPER_LEVEL || is_bot_op($sender))
 			$mode .= str_repeat("o", $userscount);
 
 		if(strlen($mode) > 1) {
