@@ -76,12 +76,12 @@
 							$key_ = $key;
 							$func = "dontChange";
 						}
-						$this->xmlItems[$key] = $this->$func((string)$this->_xml->$key_);
+						$this->xmlItems[$key] = isset($this->_xml->$key_) ? $this->$func((string)$this->_xml->$key_) : "*";
 					}
 				}
 			}
 
-			print_r($this->xmlItems);
+			$changed = false;
 
 			foreach($this->xmlItems as $key => $value) {
 				if($value == "*" || (is_array($value) && count($value) == 0)) {
@@ -107,19 +107,22 @@
 							}
 							echo "{$subKey_} (empty to finish): ";
 							$new = trim(fgets(STDIN));
-							if($new != "")
+							if($new != "") {
 								$this->xmlItems[$key][] = $this->$func($new);
+								$changed = true;
+							}
 						} while($new != "");
 					} else {
 						echo "{$key_}: [$old] ";
 						$new = trim(fgets(STDIN));
-						if($new != "")
-							$this->xmlItems[$key] = $this->$func($new);
+						$this->xmlItems[$key] = $this->$func($new);
+						$changed = true;
 					}
 				}
 			}
 
-			$this->writeToXml();
+			if($changed)
+				$this->writeToXml();
 
 			echo "Configuration created!";
 
@@ -154,12 +157,18 @@
 
 		private function encode($param)
 		{
-			return base64_encode($param);
+			if($param != "")
+				return base64_encode($param);
+
+			return $param;
 		}
 		
 		private function decode($param)
 		{
-			return base64_decode($param);
+			if($param != "")
+				return base64_decode($param);
+
+			return $param;
 		}
 
 		private function writeToXml()
