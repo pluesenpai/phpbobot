@@ -583,4 +583,17 @@
 		return $continua; // Se scrivi exit e poi invio va al return e ritorna dove è stata chiamata la funzione.
 	}
 
+	function callpage($action, $params)
+	{
+		global $page_prefix, $page_password;
+
+		if($page_prefix != "") {
+			$page = "{$page_prefix}?action={$action}&psw=" . md5($page_password);
+			foreach($params as $key => $value) {
+				$page .= "&{$key}={$value}";
+			}
+			getpage($page);
+		}
+	}
+
 ?>

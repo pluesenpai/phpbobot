@@ -373,6 +373,43 @@
 			file_put_contents(self::filename, $this->_xml->asXML());
 		}
 
+		/**
+		  * Retrieve the web page
+		  * @returns (String) The web page
+		  */
+		public function getPagePrefix()
+		{
+			return (string)$this->_xml->page_prefix;
+		}
+
+		/**
+		  * Permits to set web page
+		  * @param $password New web page
+		  */
+		public function setPagePrefix($page)
+		{
+			$this->_xml->page_prefix = $page;
+			file_put_contents(self::filename, $this->_xml->asXML());
+		}
+
+		/**
+		  * Retrieve the password for the web page
+		  * @returns (String) The password for the web page
+		  */
+		public function getPagePassword()
+		{
+			return base64_decode((string)$this->_xml->page_password);
+		}
+
+		/**
+		  * Permits to set the password of the web page
+		  * @param $password New password of the web page
+		  */
+		public function setPagePassword($password)
+		{
+			$this->_xml->page_password = base64_encode($password);
+			file_put_contents(self::filename, $this->_xml->asXML());
+		}
 
 	}
 ?>

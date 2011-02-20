@@ -15,4 +15,6 @@
 	<listenPort>25000</listenPort>
 	<locale>it_IT</locale>
 	<minimallog>0</minimallog>
+	<page_prefix></page_prefix>
+	<page_password></page_password>
 </bobot>

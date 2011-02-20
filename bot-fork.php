@@ -14,6 +14,8 @@
 	$locale = $config->getLocale(); //"it_IT";
 	$is_log_minimal = $config->getMinimalLog();
 	$db_engine = $config->getDB();
+	$page_prefix = $config->getPagePrefix();
+	$page_prefix = $config->getPagePassword();
 
 	$localedir = "locale/";
 	$domain = "messages";
