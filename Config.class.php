@@ -121,12 +121,10 @@
 				}
 			}
 
-			if($changed)
+			if($changed) {
 				$this->writeToXml();
-
-			echo "Configuration created!";
-
-// 			$this->_xml = simplexml_load_file(self::filename);
+				echo "Configuration created!";
+			}
 		}
 
 		/**

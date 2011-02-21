@@ -4,14 +4,16 @@
 		global $db;
 
 		if(isset($infos[1])) {
-			if(is_user_in_chan($infos[1], $channel)) {
+			$iduser = $db->find_user($infos[1]);
+			if($iduser > 0) {
+			//if(is_user_in_chan($infos[1], $channel)) {
 				$cond_f = array("user_IDUser", "chan_IDChan");
 				$cond_o = array("=", "=");
-				$cond_v = array($db->find_user($infos[1]), $db->find_chan($channel));
+				$cond_v = array($iduser, $db->find_chan($channel));
 				$r = $db->select(array("enter"), array("cangreet"), array(""), $cond_f, $cond_o, $cond_v, 1);
 				sendmsg($socket, sprintf("L'utente %s se entra in canale %sverr&agrave; salutato", $infos[1], (count($r) <= 0 || $db->getBoolFromDB($r[0]["cangreet"]) == false) ? "NON " : ""), $channel);
 			} else {
-				sendmsg($socket, "Chi????? Non è in canale!", $channel);
+				sendmsg($socket, "Chi?????", $channel);
 			}
 		} else {
 			$cond_f = array("name");

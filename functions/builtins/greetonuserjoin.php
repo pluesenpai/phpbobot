@@ -1,7 +1,7 @@
 <?php
 	function greetonuserjoin($socket, $channel, $sender, $msg, $infos)
 	{
-		global $db;
+		global $db, $registered, $auth;
 		$errore = 0;
 
 		$cond_f = array("user_IDUser", "chan_IDChan");
@@ -15,8 +15,9 @@
 			$value = $infos[1];
 		}
 
-		if(is_user_in_chan($user, $channel)) {
-			$cond_v = array($db->find_user($user), $db->find_chan($channel));
+		$iduser = $db->find_user($user);
+		if($iduser > 0) {
+			$cond_v = array($iduser, $db->find_chan($channel));
 			if(mb_strtoupper($value) == "ON") {
 				$val = "TRUE";
 			} else if(mb_strtoupper($value) == "OFF") {
@@ -36,7 +37,7 @@
 				sendmsg($socket, "Errore", $channel);
 			}
 		} else {
-			sendmsg($socket, "Chi????? Non è in canale!", $channel);
+			sendmsg($socket, "Chi?????", $channel);
 		}
 	}
 ?>
