@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-19 16:26+0100\n"
-"PO-Revision-Date: 2011-02-19 16:30+0100\n"
+"PO-Revision-Date: 2011-02-21 17:15+0100\n"
 "Last-Translator: Paolo <paolo86@altervista.org>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -144,7 +144,7 @@ msgstr ""
 
 #: functions/builtins/functions.xml1.php:14
 msgid "greetonuserjoin-regex"
-msgstr "/^saluti (ON|OFF)$/"
+msgstr "/^saluti (ON|OFF)$|^saluti ([^ ]+) (ON|OFF)$/"
 
 #: functions/builtins/functions.xml1.php:15
 msgid "greetonuserjoin-descr_name"
@@ -548,4 +548,5 @@ msgstr "saluti status, saluti status {UTENTE}"
 msgid "greetstatus-descr"
 msgstr ""
 "Da informazioni sullo stato dei saluti per un singolo utente o per il canale"
+
 
