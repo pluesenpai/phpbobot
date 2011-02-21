@@ -11,6 +11,11 @@
 		}
 
 		$db->insert("bpp", array("var", "meaning"), array($infos[1], $infos[2]));
+		$params = array(
+			"var" => $infos[1],
+			"meaning" => $infos[2]
+		);
+		callpage("vars", "add", $params);
 		//getpage("http://www.lucacireddu.it/vars/engine.php?action=add&psw=bd89d1d862bd5ba278ea89184038841a&var={$infos[1]}&meaning={$infos[2]}");
 		sendmsg($socket, sprintf($translations->bot_gettext("bpp-var_add_ok-%s"), $infos[1]), $channel);
 	}

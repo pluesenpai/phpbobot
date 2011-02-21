@@ -12,7 +12,9 @@
 
 		sendmsg($socket, sprintf($translations->bot_gettext("bpp-var_remove_ok-%s"), $infos[1]), $channel);
 		$db->remove("bpp", array("var"), array("="), array("{$infos[1]}"));
-		getpage("http://www.lucacireddu.it/vars/engine.php?action=del&psw=bd89d1d862bd5ba278ea89184038841a&var={$infos[1]}");
+		$params = array("var" => $infos[1]);
+		callpage("vars", "del", $params);
+		//getpage("http://www.lucacireddu.it/vars/engine.php?action=del&psw=bd89d1d862bd5ba278ea89184038841a&var={$infos[1]}");
 	}
 
 ?>
