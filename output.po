@@ -8,13 +8,48 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-19 16:30+0100\n"
+"POT-Creation-Date: 2011-02-21 23:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: common.php:29
+#, php-format
+msgid "bot-join"
+msgstr ""
+
+#: common.php:30 bot-fork.php:272
+#, php-format
+msgid "greet-infos-%s-%s"
+msgstr ""
+
+#: common.php:30 bot-fork.php:272
+msgid "command-help"
+msgstr ""
+
+#: common.php:31
+msgid "bot-join2"
+msgstr ""
+
+#: common.php:217 bot-fork.php:139 bot-fork.php:146
+msgid "fork-error"
+msgstr ""
+
+#: functions/builtins/greetonuserjoin.php:35
+msgid "greetonuserjoin-done"
+msgstr ""
+
+#: functions/builtins/greetonuserjoin.php:37
+msgid "greetonuserjoin-error"
+msgstr ""
+
+#: functions/builtins/greetonuserjoin.php:40
+#: functions/builtins/greetstatus.php:15
+msgid "greetstatus-unknown_user"
+msgstr ""
 
 #: functions/builtins/greetuser.php:7
 #, php-format
@@ -31,18 +66,48 @@ msgstr ""
 msgid "greetuser-absent-%s"
 msgstr ""
 
-#: functions/builtins/greet.php:4
-msgid "greet-message"
+#: functions/builtins/_help.php:20
+#, php-format
+msgid "help-groupnotpresent-%s-%s"
 msgstr ""
 
-#: functions/builtins/addpoke.php:11
-msgid "addpoke-success"
+#: functions/builtins/_help.php:24
+msgid "help-groupfunctions"
 msgstr ""
 
-#: functions/builtins/addpoke.php:13 functions/builtins/delmessage.php:10
-#: functions/builtins/lists_add.php:30 functions/builtins/lists_remove.php:31
-#: functions/builtins/setmessage.php:12
-msgid "auth-required"
+#: functions/builtins/_help.php:26
+msgid "help-functions"
+msgstr ""
+
+#: functions/builtins/_help.php:49
+msgid "help-botop_needed"
+msgstr ""
+
+#: functions/builtins/greetstatus.php:13
+#, php-format
+msgid "greetstatus-userinfo-%s-%s"
+msgstr ""
+
+#: functions/builtins/greetstatus.php:13
+msgid "greetstatus-not"
+msgstr ""
+
+#: functions/builtins/greetstatus.php:23
+#, php-format
+msgid "greetstatus-onjoin-%s"
+msgstr ""
+
+#: functions/builtins/greetstatus.php:23 functions/builtins/greetstatus.php:24
+msgid "greetstatus-enabled"
+msgstr ""
+
+#: functions/builtins/greetstatus.php:23 functions/builtins/greetstatus.php:24
+msgid "greetstatus-disabled"
+msgstr ""
+
+#: functions/builtins/greetstatus.php:24
+#, php-format
+msgid "greetstatus-newusers-%s"
 msgstr ""
 
 #: functions/builtins/register.php:8
@@ -53,8 +118,12 @@ msgstr ""
 msgid "register-failed"
 msgstr ""
 
-#: functions/builtins/delmessage.php:8
-msgid "message-removed"
+#: functions/builtins/greetinchanonjoin.php:36
+msgid "greetinchanonjoin-done"
+msgstr ""
+
+#: functions/builtins/greetinchanonjoin.php:38
+msgid "greetinchanonjoin-error"
 msgstr ""
 
 #: functions/builtins/lists_add.php:17 functions/builtins/lists_add.php:22
@@ -72,13 +141,13 @@ msgstr ""
 msgid "lists-list_notexists-%s"
 msgstr ""
 
-#: functions/builtins/talkall.php:11
-msgid "back-message"
+#: functions/builtins/lists_add.php:30 functions/builtins/lists_remove.php:31
+#: functions/builtins/setmessage.php:12
+msgid "auth-required"
 msgstr ""
 
-#: functions/builtins/botversion.php:5
-#, php-format
-msgid "botversion-%s-%s"
+#: functions/builtins/talkall.php:11
+msgid "back-message"
 msgstr ""
 
 #: functions/builtins/lists_remove.php:16
@@ -356,147 +425,118 @@ msgstr ""
 msgid "away-message"
 msgstr ""
 
-#: functions/builtins/deauth.php:9
-msgid "deauth-success"
-msgstr ""
-
-#: functions/builtins/deauth.php:11
-msgid "deauth-failed"
-msgstr ""
-
 #: functions/builtins/greetme.php:4
 #, php-format
 msgid "greetme-message-%s"
 msgstr ""
 
-#: functions/builtins/auth.php:9
-msgid "auth-success"
-msgstr ""
-
-#: functions/builtins/auth.php:12
-msgid "auth-failed"
-msgstr ""
-
-#: functions/quotes/allquotes.php:76 bot-fork.php:114 bot-fork.php:129
+#: functions/quotes/allquotes.php:76 bot-fork.php:116 bot-fork.php:131
 msgid "error"
 msgstr ""
 
-#: bot-fork.php:84
+#: bot-fork.php:86
 #, php-format
 msgid "directory-notexists-%s"
 msgstr ""
 
-#: bot-fork.php:96
+#: bot-fork.php:98
 msgid "bot-descr"
 msgstr ""
 
-#: bot-fork.php:97
+#: bot-fork.php:99
 msgid "conn-summary"
 msgstr ""
 
-#: bot-fork.php:98
+#: bot-fork.php:100
 msgid "conn-server"
 msgstr ""
 
-#: bot-fork.php:99
+#: bot-fork.php:101
 msgid "conn-port"
 msgstr ""
 
-#: bot-fork.php:100
+#: bot-fork.php:102
 msgid "conn-channels"
 msgstr ""
 
-#: bot-fork.php:101
+#: bot-fork.php:103
 msgid "conn-username"
 msgstr ""
 
-#: bot-fork.php:102
+#: bot-fork.php:104
 msgid "conn-desc"
 msgstr ""
 
-#: bot-fork.php:103
+#: bot-fork.php:105
 msgid "conn-password"
 msgstr ""
 
-#: bot-fork.php:108
+#: bot-fork.php:110
 msgid "socket-create"
 msgstr ""
 
-#: bot-fork.php:112 bot-fork.php:121
+#: bot-fork.php:114 bot-fork.php:123
 msgid "done"
 msgstr ""
 
-#: bot-fork.php:118
+#: bot-fork.php:120
 msgid "socket-partyline-create"
 msgstr ""
 
-#: bot-fork.php:122
+#: bot-fork.php:124
 msgid "socket-partyline-listening"
 msgstr ""
 
-#: bot-fork.php:137 bot-fork.php:144
-msgid "fork-error"
-msgstr ""
-
-#: bot-fork.php:139
+#: bot-fork.php:141
 msgid "dbg-user_nick-send"
 msgstr ""
 
-#: bot-fork.php:159
+#: bot-fork.php:161
 msgid "socket-partyline-newconn"
 msgstr ""
 
-#: bot-fork.php:265
+#: bot-fork.php:268
 #, php-format
 msgid "greet-hi-%s"
 msgstr ""
 
-#: bot-fork.php:269
-#, php-format
-msgid "greet-infos-%s-%s"
-msgstr ""
-
-#: bot-fork.php:269
-msgid "command-help"
-msgstr ""
-
-#: bot-fork.php:310
+#: bot-fork.php:313
 msgid "event-newjoin"
 msgstr ""
 
-#: bot-fork.php:316
+#: bot-fork.php:319
 msgid "event-376-422"
 msgstr ""
 
-#: bot-fork.php:320
+#: bot-fork.php:323
 msgid "event-433"
 msgstr ""
 
-#: bot-fork.php:323
+#: bot-fork.php:326
 msgid "no-nickserv"
 msgstr ""
 
-#: bot-fork.php:343
+#: bot-fork.php:346
 msgid "command-kill"
 msgstr ""
 
-#: bot-fork.php:344
+#: bot-fork.php:347
 msgid "command-kill-msg1"
 msgstr ""
 
-#: bot-fork.php:347
+#: bot-fork.php:350
 msgid "command-kill-msg2"
 msgstr ""
 
-#: bot-fork.php:348
+#: bot-fork.php:351
 msgid "command-kill-msg3"
 msgstr ""
 
-#: bot-fork.php:379 bot-fork.php:383
+#: bot-fork.php:382 bot-fork.php:386
 #, php-format
 msgid "bot-poke-%s"
 msgstr ""
 
-#: bot-fork.php:395
+#: bot-fork.php:398
 msgid "ping"
 msgstr ""

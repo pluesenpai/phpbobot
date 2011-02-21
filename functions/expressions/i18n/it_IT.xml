@@ -11,4 +11,8 @@
 		<msgid><![CDATA[expressions-result-%s-%s]]></msgid>
 		<msgstr><![CDATA[Il risultato di %s &egrave; %s]]></msgstr>
 	</translation>
+	<translation>
+		<msgid><![CDATA[expressions-notvalid-%s]]></msgid>
+		<msgstr><![CDATA[Ti sembra una espressione valida? Segui questa regex: %s  ;)]]></msgstr>
+	</translation>
 </db>

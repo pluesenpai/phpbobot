@@ -7,4 +7,12 @@
 		<msgid><![CDATA[utils-group_descr]]></msgid>
 		<msgstr><![CDATA[Funzioni utili varie.]]></msgstr>
 	</translation>
+	<translation>
+		<msgid><![CDATA[utils-usernotallowed]]></msgid>
+		<msgstr><![CDATA[Tu vuoi cosa? Per fare che?]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[utils-usernotinchan-%s]]></msgid>
+		<msgstr><![CDATA[%s non c'&egrave;!!]]></msgstr>
+	</translation>
 </db>

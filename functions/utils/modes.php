@@ -1,10 +1,10 @@
 <?php
 	function modes($socket, $channel, $sender, $msg, $infos)
 	{
-		global $registered, $auth, $db, $users, $user_name;
+		global $registered, $auth, $db, $users, $user_name, $translations;
 
 		if((isset($registered[$sender]) && !$registered[$sender]) && (isset($auth[$sender]) && !$auth[$sender])) {
-			sendmsg($socket, "Tu vuoi cosa? Per fare che?", $channel);
+			sendmsg($socket, $translations->bot_gettext("utils-usernotallowed"), $channel); //"Tu vuoi cosa? Per fare che?"
 			return;
 		}
 
@@ -14,7 +14,7 @@
 		for($i = 0; $i < $userscount; $i++) {
 			$user = $_users[$i];
 			if(!preg_match("/\b([\+%&$~\@])*{$user}\b/", implode(" ", $users[$channel]))) {
-				sendmsg($socket, "$user non c'è!!", $channel);
+				sendmsg($socket, sprintf($translations->bot_gettext("utils-usernotinchan-%s"), $user), $channel); //"$user non c'è!!"
 				unset($_users[$i]);
 			}
 		}
@@ -42,7 +42,7 @@
 		if(strlen($mode) > 1) {
 			send($socket, "MODE $channel $mode " . implode(" ", $_users) . "\n");
 		} else {
-			sendmsg($socket, "Tu vuoi cosa? Per fare che?", $channel);
+			sendmsg($socket, $translations->bot_gettext("utils-usernotallowed"), $channel); //"Tu vuoi cosa? Per fare che?"
 		}
 	}
 ?>

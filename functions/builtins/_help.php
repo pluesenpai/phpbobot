@@ -17,13 +17,13 @@
 			die("Could not fork");
 		} elseif(!$pid) {
 			if($folder != "" && !in_array($folder, getDirs("functions/"))) {
-				sendmsg($irc, "Spiacente $sender... Non ho nessun gruppo chiamato $folder", $s, 1, true);
+				sendmsg($irc, sprintf(_("help-groupnotpresent-%s-%s"), $sender, $folder), $s, 1, true); //"Spiacente $sender... Non ho nessun gruppo chiamato $folder"
 				return;
 			}
 			if($short)
-				sendmsg($irc, "Ecco la lista dei gruppi di funzioni:", $s, 1, true);
+				sendmsg($irc, _("help-groupfunctions") , $s, 1, true); //"Ecco la lista dei gruppi di funzioni:"
 			else
-				sendmsg($irc, "Ecco la lista delle funzioni:", $s, 1, true);
+				sendmsg($irc, _("help-functions"), $s, 1, true); //"Ecco la lista delle funzioni:"
 
 			$old = "";
 			foreach($functions as $func) {
@@ -46,7 +46,7 @@
 			}
 
 			if(!$short)
-				sendmsg($irc, "     NOTE: (*) means that you need to be bot operator to exec it.", $s);
+				sendmsg($irc, "     " . _("help-botop_needed"), $s); //NOTE: (*) means that you need to be bot operator to exec it.
 			posix_kill(posix_getpid(), 9);
 		}
 	}

@@ -26,9 +26,9 @@
 
 		send($irc, "JOIN $irc_chan\n");
 		if($saluta[$irc_chan] == true) {
-			sendmsg($irc, "Ciao a tutti... $user_name &egrave; tornato!", $irc_chan, 0, true);
-			sendmsg($irc, "Per informazioni dai il comando \"$user_name help\"!!!", $irc_chan, 0, true);
-			me($irc, "Ora controlla il canale!!!", $irc_chan, 0, true);
+			sendmsg($irc, sprintf(_("bot-join"), $user_name), $irc_chan, 0, true); //"Ciao a tutti... $user_name &egrave; tornato!"
+			sendmsg($irc, sprintf(_("greet-infos-%s-%s"), $user_name, _("command-help")), $irc_chan, 0, true); //"Per informazioni dai il comando \"$user_name help\"!!!"
+			me($irc, _("bot-join2"), $irc_chan, 0, true); //"Ora controlla il canale!!!"
 		}
 		$token[$irc_chan] = true;
 		send($irc, "WHO {$irc_chan}\n");
@@ -214,7 +214,7 @@
 		$pid_write = pcntl_fork();
 		$d = $delay;
 		if($pid_write == -1) {
-			echo "ERROR:  Cannot fork!!!\n";
+			echo _("fork-error") . "\n"; //"ERROR:  Cannot fork!!!\n";
 			die();
 		} elseif($pid_write) {
 			return $pid_write;

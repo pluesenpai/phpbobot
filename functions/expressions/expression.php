@@ -18,7 +18,7 @@
 			}
 			sendmsg($socket, sprintf($translations->bot_gettext("expressions-result-%s-%s"), $espr, $risultato), $channel); //"Il risultato di $espr &egrave; $risultato"
 		} else {
-			sendmsg($socket, "Ti sembra una espressione valida? Segui questa regex: {$regex}", $channel);
+			sendmsg($socket, sprintf($translations->bot_gettext("expressions-notvalid-%s"), $regex), $channel); //"Ti sembra una espressione valida? Segui questa regex: {$regex}"
 		}
 	}
 ?>

@@ -33,9 +33,9 @@
 
 		if($errore != 1) {
 			$db->update($table, array($field), array($value), $cond_f, $cond_o, $cond_v);
-			sendmsg($socket, "Tutto ok!", $channel);
+			sendmsg($socket, _("greetinchanonjoin-done"), $channel); //"Tutto ok!"
 		} else {
-			sendmsg($socket, "Errore", $channel);
+			sendmsg($socket, _("greetinchanonjoin-error"), $channel); //"Errore"
 		}
 	}
 ?>

@@ -32,12 +32,12 @@
 					$db->update("enter", array("cangreet"), array($val), $cond_f, $cond_o, $cond_v);
 				else
 					$db->insert("enter", array("user_IDUser", "chan_IDChan", "greet_IDGreet", "modes", "kicks", "cangreet"), array($db->find_user($user), $db->find_chan($channel), 0, "", 0, "TRUE"));
-				sendmsg($socket, "Tutto ok!", $channel);
+				sendmsg($socket, _("greetonuserjoin-done"), $channel); //"Tutto ok!"
 			} else {
-				sendmsg($socket, "Errore", $channel);
+				sendmsg($socket, _("greetonuserjoin-error"), $channel); //"Errore"
 			}
 		} else {
-			sendmsg($socket, "Chi?????", $channel);
+			sendmsg($socket, _("greetstatus-unknown_user"), $channel); //"Chi?????"
 		}
 	}
 ?>

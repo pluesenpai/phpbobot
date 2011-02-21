@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-19 16:26+0100\n"
-"PO-Revision-Date: 2011-02-21 17:15+0100\n"
+"POT-Creation-Date: 2011-02-21 23:20+0100\n"
+"PO-Revision-Date: 2011-02-21 23:39+0100\n"
 "Last-Translator: Paolo <paolo86@altervista.org>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +15,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: common.php:29
+#, php-format
+msgid "bot-join"
+msgstr "Ciao a tutti... %s &egrave; tornato!"
+
+#: common.php:30 bot-fork.php:272
+#, php-format
+msgid "greet-infos-%s-%s"
+msgstr "Per informazioni dai il comando \"%s %s\"!"
+
+#: common.php:30 bot-fork.php:272
+msgid "command-help"
+msgstr "help"
+
+#: common.php:31
+msgid "bot-join2"
+msgstr "Ora controlla il canale!!!"
+
+#: common.php:217 bot-fork.php:139 bot-fork.php:146
+msgid "fork-error"
+msgstr "Impossibile forkare"
+
+#: functions/builtins/greetonuserjoin.php:35
+msgid "greetonuserjoin-done"
+msgstr "OK! Memorizzato!"
+
+#: functions/builtins/greetonuserjoin.php:37
+msgid "greetonuserjoin-error"
+msgstr "Mmh... &egrave; avvenuto un errore."
+
+#: functions/builtins/greetonuserjoin.php:40
+#: functions/builtins/greetstatus.php:15
+msgid "greetstatus-unknown_user"
+msgstr "Chi?????"
 
 #: functions/builtins/greetuser.php:7
 #, php-format
@@ -31,19 +66,49 @@ msgstr "Chi mi fai salutare? %s sono io!!!"
 msgid "greetuser-absent-%s"
 msgstr "Chi mi fai salutare? %s non c'&egrave;!!!"
 
-#: functions/builtins/greet.php:4
-msgid "greet-message"
-msgstr "Ciao a tutti!! :)"
+#: functions/builtins/_help.php:20
+#, php-format
+msgid "help-groupnotpresent-%s-%s"
+msgstr "Spiacente %s... Non ho nessun gruppo chiamato %s"
 
-#: functions/builtins/addpoke.php:11
-msgid "addpoke-success"
-msgstr "Messaggio aggiunto!"
+#: functions/builtins/_help.php:24
+msgid "help-groupfunctions"
+msgstr "Ecco la lista dei gruppi di funzioni:"
 
-#: functions/builtins/addpoke.php:13 functions/builtins/delmessage.php:10
-#: functions/builtins/lists_add.php:30 functions/builtins/lists_remove.php:31
-#: functions/builtins/setmessage.php:12
-msgid "auth-required"
-msgstr "Prima effettua l'autenticazione!"
+#: functions/builtins/_help.php:26
+msgid "help-functions"
+msgstr "Ecco la lista delle funzioni:"
+
+#: functions/builtins/_help.php:49
+msgid "help-botop_needed"
+msgstr "NOTA: (*) significa che devi essere bot-operator per poterla eseguire."
+
+#: functions/builtins/greetstatus.php:13
+#, php-format
+msgid "greetstatus-userinfo-%s-%s"
+msgstr "L'utente %s se entra in canale %sverr&agrave; salutato"
+
+#: functions/builtins/greetstatus.php:13
+msgid "greetstatus-not"
+msgstr "NON "
+
+#: functions/builtins/greetstatus.php:23
+#, php-format
+msgid "greetstatus-onjoin-%s"
+msgstr "Saluto al join: %s"
+
+#: functions/builtins/greetstatus.php:23 functions/builtins/greetstatus.php:24
+msgid "greetstatus-enabled"
+msgstr "Attivo"
+
+#: functions/builtins/greetstatus.php:23 functions/builtins/greetstatus.php:24
+msgid "greetstatus-disabled"
+msgstr "Disattivo"
+
+#: functions/builtins/greetstatus.php:24
+#, php-format
+msgid "greetstatus-newusers-%s"
+msgstr "Saluto ai nuovi utenti: %s"
 
 #: functions/builtins/register.php:8
 msgid "register-complete"
@@ -53,9 +118,13 @@ msgstr "Ora sei registrato!"
 msgid "register-failed"
 msgstr "Registrazione fallita!"
 
-#: functions/builtins/delmessage.php:8
-msgid "message-removed"
-msgstr "Saluto eliminato!"
+#: functions/builtins/greetinchanonjoin.php:36
+msgid "greetinchanonjoin-done"
+msgstr "OK! Memorizzato!"
+
+#: functions/builtins/greetinchanonjoin.php:38
+msgid "greetinchanonjoin-error"
+msgstr "Mmh... &egrave; avvenuto un errore."
 
 #: functions/builtins/lists_add.php:17 functions/builtins/lists_add.php:22
 #, php-format
@@ -72,14 +141,14 @@ msgstr "%s si trova gi&agrave; in %sop list."
 msgid "lists-list_notexists-%s"
 msgstr "La lista %sop non esiste."
 
+#: functions/builtins/lists_add.php:30 functions/builtins/lists_remove.php:31
+#: functions/builtins/setmessage.php:12
+msgid "auth-required"
+msgstr "Prima effettua l'autenticazione!"
+
 #: functions/builtins/talkall.php:11
 msgid "back-message"
 msgstr "Torrau!!"
-
-#: functions/builtins/botversion.php:5
-#, php-format
-msgid "botversion-%s-%s"
-msgstr "Sono %s, versione %s"
 
 #: functions/builtins/lists_remove.php:16
 #: functions/builtins/lists_remove.php:25
@@ -155,226 +224,194 @@ msgid "greetonuserjoin-descr"
 msgstr "Funzione per abilitare il saluto di un particolare utente al join."
 
 #: functions/builtins/functions.xml1.php:17
+msgid "greetstatus-regex"
+msgstr "/^saluti status$|^saluti status ([^ ]+)$/"
+
+#: functions/builtins/functions.xml1.php:18
+msgid "greetstatus-descr_name"
+msgstr "saluti status, saluti status {UTENTE}"
+
+#: functions/builtins/functions.xml1.php:19
+msgid "greetstatus-descr"
+msgstr ""
+"Da informazioni sullo stato dei saluti per un singolo utente o per il canale"
+
 #: functions/builtins/functions.xml1.php:20
 msgid "silence-regex"
 msgstr "/^zitto$/"
 
-#: functions/builtins/functions.xml1.php:18
 #: functions/builtins/functions.xml1.php:21
 msgid "silence-descr_name"
 msgstr "zitto"
 
-#: functions/builtins/functions.xml1.php:19
 #: functions/builtins/functions.xml1.php:22
 msgid "silence-descr"
 msgstr "Star&ograve; zitto e buono :|"
 
-#: functions/builtins/functions.xml1.php:20
 #: functions/builtins/functions.xml1.php:23
 msgid "silenceall-regex"
 msgstr "/^bai a marrai$/"
 
-#: functions/builtins/functions.xml1.php:21
 #: functions/builtins/functions.xml1.php:24
 msgid "silenceall-descr_name"
 msgstr "bai a marrai"
 
-#: functions/builtins/functions.xml1.php:22
 #: functions/builtins/functions.xml1.php:25
 msgid "silenceall-descr"
 msgstr "Lascer&ograve; tutti i canali per andare a... zappare"
 
-#: functions/builtins/functions.xml1.php:23
 #: functions/builtins/functions.xml1.php:26
 msgid "talk-regex"
 msgstr "/^parla$/"
 
-#: functions/builtins/functions.xml1.php:24
 #: functions/builtins/functions.xml1.php:27
 msgid "talk-descr_name"
 msgstr "parla"
 
-#: functions/builtins/functions.xml1.php:25
 #: functions/builtins/functions.xml1.php:28
 msgid "talk-descr"
 msgstr "Riprender&ograve; a parlare"
 
-#: functions/builtins/functions.xml1.php:26
 #: functions/builtins/functions.xml1.php:29
 msgid "talkall-regex"
 msgstr "/^torra$/"
 
-#: functions/builtins/functions.xml1.php:27
 #: functions/builtins/functions.xml1.php:30
 msgid "talkall-descr_name"
 msgstr "torra"
 
-#: functions/builtins/functions.xml1.php:28
 #: functions/builtins/functions.xml1.php:31
 msgid "talkall-descr"
 msgstr "Torner&ograve; a controllare i canali dopo essere andato a... zappare"
 
-#: functions/builtins/functions.xml1.php:29
 #: functions/builtins/functions.xml1.php:32
 msgid "help-regex"
 msgstr "/^help$/"
 
-#: functions/builtins/functions.xml1.php:30
 #: functions/builtins/functions.xml1.php:33
 msgid "help-descr_name"
 msgstr "help"
 
-#: functions/builtins/functions.xml1.php:31
 #: functions/builtins/functions.xml1.php:34
 msgid "help-descr"
 msgstr "Mostro l'elenco delle funzioni"
 
-#: functions/builtins/functions.xml1.php:32
 #: functions/builtins/functions.xml1.php:35
 msgid "grouphelp-regex"
 msgstr "/^help (.+)$/"
 
-#: functions/builtins/functions.xml1.php:33
 #: functions/builtins/functions.xml1.php:36
 msgid "grouphelp-descr_name"
 msgstr "help {GRUPPO}"
 
-#: functions/builtins/functions.xml1.php:34
 #: functions/builtins/functions.xml1.php:37
 msgid "grouphelp-descr"
 msgstr "Mostro l'elenco delle funzioni nel gruppo {GRUPPO}"
 
-#: functions/builtins/functions.xml1.php:35
 #: functions/builtins/functions.xml1.php:38
 msgid "botversion-regex"
 msgstr "/^versione$/"
 
-#: functions/builtins/functions.xml1.php:36
 #: functions/builtins/functions.xml1.php:39
 msgid "botversion-descr_name"
 msgstr "versione"
 
-#: functions/builtins/functions.xml1.php:37
 #: functions/builtins/functions.xml1.php:40
 msgid "botversion-descr"
 msgstr "Mostro la mia versione"
 
-#: functions/builtins/functions.xml1.php:38
 #: functions/builtins/functions.xml1.php:41
 msgid "register-regex"
 msgstr "/^registra (.+)$/"
 
-#: functions/builtins/functions.xml1.php:39
 #: functions/builtins/functions.xml1.php:42
 msgid "register-descr_name"
 msgstr "registra {PASSWORD}"
 
-#: functions/builtins/functions.xml1.php:40
 #: functions/builtins/functions.xml1.php:43
 msgid "register-descr"
 msgstr "Verrai registrato con la password {PASSWORD}"
 
-#: functions/builtins/functions.xml1.php:41
 #: functions/builtins/functions.xml1.php:44
 msgid "auth-regex"
 msgstr "/^auth (.+)$/"
 
-#: functions/builtins/functions.xml1.php:42
 #: functions/builtins/functions.xml1.php:45
 msgid "auth-descr_name"
 msgstr "auth {PASSWORD}"
 
-#: functions/builtins/functions.xml1.php:43
 #: functions/builtins/functions.xml1.php:46
 msgid "auth-descr"
 msgstr "Verrai autenticato"
 
-#: functions/builtins/functions.xml1.php:44
 #: functions/builtins/functions.xml1.php:47
 msgid "deauth-regex"
 msgstr "/^deauth$/"
 
-#: functions/builtins/functions.xml1.php:45
 #: functions/builtins/functions.xml1.php:48
 msgid "deauth-descr_name"
 msgstr "deauth"
 
-#: functions/builtins/functions.xml1.php:46
 #: functions/builtins/functions.xml1.php:49
 msgid "deauth-descr"
 msgstr "Verrai deautenticato"
 
-#: functions/builtins/functions.xml1.php:47
 #: functions/builtins/functions.xml1.php:50
 msgid "lists_add-regex"
 msgstr "/^([a-z])op add (.+?)$/"
 
-#: functions/builtins/functions.xml1.php:48
 #: functions/builtins/functions.xml1.php:51
 msgid "lists_add-descr_name"
 msgstr "{LISTA}op add {UTENTE}"
 
-#: functions/builtins/functions.xml1.php:49
 #: functions/builtins/functions.xml1.php:52
 msgid "lists_add-descr"
 msgstr "Aggiunger&ograve; l'utente {UTENTE} alla lista {LISTA}"
 
-#: functions/builtins/functions.xml1.php:50
 #: functions/builtins/functions.xml1.php:53
 msgid "lists_remove-regex"
 msgstr "/^([a-z])op remove (.+?)$/"
 
-#: functions/builtins/functions.xml1.php:51
 #: functions/builtins/functions.xml1.php:54
 msgid "lists_remove-descr_name"
 msgstr "{LISTA}op remove {UTENTE}"
 
-#: functions/builtins/functions.xml1.php:52
 #: functions/builtins/functions.xml1.php:55
 msgid "lists_remove-descr"
 msgstr "Rimuover&ograve; l'utente {UTENTE} dalla lista {LISTA}"
 
-#: functions/builtins/functions.xml1.php:53
 #: functions/builtins/functions.xml1.php:56
 msgid "setmessage-regex"
 msgstr "/^setmessage (.+)$/"
 
-#: functions/builtins/functions.xml1.php:54
 #: functions/builtins/functions.xml1.php:57
 msgid "setmessage-descr_name"
 msgstr "setmessage {MESSAGGIO}"
 
-#: functions/builtins/functions.xml1.php:55
 #: functions/builtins/functions.xml1.php:58
 msgid "setmessage-descr"
 msgstr "Imposter&ograve; il tuo messaggio di saluto con quello specificato"
 
-#: functions/builtins/functions.xml1.php:56
 #: functions/builtins/functions.xml1.php:59
 msgid "delmessage-regex"
 msgstr "/^delmessage$/"
 
-#: functions/builtins/functions.xml1.php:57
 #: functions/builtins/functions.xml1.php:60
 msgid "delmessage-descr_name"
 msgstr "delmessage"
 
-#: functions/builtins/functions.xml1.php:58
 #: functions/builtins/functions.xml1.php:61
 msgid "delmessage-descr"
 msgstr "Elimino il tuo messaggio impostato"
 
-#: functions/builtins/functions.xml1.php:59
 #: functions/builtins/functions.xml1.php:62
 msgid "addpoke-regex"
 msgstr "/^addpoke (.+)$/"
 
-#: functions/builtins/functions.xml1.php:60
 #: functions/builtins/functions.xml1.php:63
 msgid "addpoke-descr_name"
 msgstr "addpoke {MESSAGGIO}"
 
-#: functions/builtins/functions.xml1.php:61
 #: functions/builtins/functions.xml1.php:64
 msgid "addpoke-descr"
 msgstr "Aggiunger&ograve; il messaggio come possibile risposta al poke."
@@ -391,162 +428,119 @@ msgstr "Blablabla Blabla"
 msgid "away-message"
 msgstr "Vado a zappare!"
 
-#: functions/builtins/deauth.php:9
-msgid "deauth-success"
-msgstr "Deautenticato con successo"
-
-#: functions/builtins/deauth.php:11
-msgid "deauth-failed"
-msgstr "Errore durante la deautenticazione"
-
 #: functions/builtins/greetme.php:4
 #, php-format
 msgid "greetme-message-%s"
 msgstr "Ciao %s :)"
 
-#: functions/builtins/auth.php:9
-msgid "auth-success"
-msgstr "Ora sei autenticato!"
-
-#: functions/builtins/auth.php:12
-msgid "auth-failed"
-msgstr "Password errata"
-
-#: functions/quotes/allquotes.php:76 bot-fork.php:114 bot-fork.php:129
+#: functions/quotes/allquotes.php:76 bot-fork.php:116 bot-fork.php:131
 msgid "error"
 msgstr "ERRORE!!"
 
-#: bot-fork.php:84
+#: bot-fork.php:86
 #, php-format
 msgid "directory-notexists-%s"
 msgstr "Attenzione! La directory %s non esiste!"
 
-#: bot-fork.php:96
+#: bot-fork.php:98
 msgid "bot-descr"
 msgstr "Bot per reti IRC"
 
-#: bot-fork.php:97
+#: bot-fork.php:99
 msgid "conn-summary"
 msgstr "Dati di connessione"
 
-#: bot-fork.php:98
+#: bot-fork.php:100
 msgid "conn-server"
 msgstr "Server"
 
-#: bot-fork.php:99
+#: bot-fork.php:101
 msgid "conn-port"
 msgstr "Porta"
 
-#: bot-fork.php:100
+#: bot-fork.php:102
 msgid "conn-channels"
 msgstr "Canale/i"
 
-#: bot-fork.php:101
+#: bot-fork.php:103
 msgid "conn-username"
 msgstr "Nome utente"
 
-#: bot-fork.php:102
+#: bot-fork.php:104
 msgid "conn-desc"
 msgstr "Descrizione"
 
-#: bot-fork.php:103
+#: bot-fork.php:105
 msgid "conn-password"
 msgstr "Password"
 
-#: bot-fork.php:108
+#: bot-fork.php:110
 msgid "socket-create"
 msgstr "Creazione socket..."
 
-#: bot-fork.php:112 bot-fork.php:121
+#: bot-fork.php:114 bot-fork.php:123
 msgid "done"
 msgstr "Fatto!"
 
-#: bot-fork.php:118
+#: bot-fork.php:120
 msgid "socket-partyline-create"
 msgstr "Creazione socket partyline"
 
-#: bot-fork.php:122
+#: bot-fork.php:124
 msgid "socket-partyline-listening"
 msgstr "Socket in ascolto all'indirizzo"
 
-#: bot-fork.php:137 bot-fork.php:144
-msgid "fork-error"
-msgstr "Impossibile forkare"
-
-#: bot-fork.php:139
+#: bot-fork.php:141
 msgid "dbg-user_nick-send"
 msgstr "Invio nome utente e descrizione"
 
-#: bot-fork.php:159
+#: bot-fork.php:161
 msgid "socket-partyline-newconn"
 msgstr "Nuova connessione partyline da"
 
-#: bot-fork.php:265
+#: bot-fork.php:268
 #, php-format
 msgid "greet-hi-%s"
 msgstr "Ciao %s"
 
-#: bot-fork.php:269
-#, php-format
-msgid "greet-infos-%s-%s"
-msgstr "Per informazioni dai il comando \"%s %s\"!"
-
-#: bot-fork.php:269
-msgid "command-help"
-msgstr "help"
-
-#: bot-fork.php:310
+#: bot-fork.php:313
 msgid "event-newjoin"
 msgstr "Nuovo join"
 
-#: bot-fork.php:316
+#: bot-fork.php:319
 msgid "event-376-422"
 msgstr "Codice 376 o codice 422 ricevuto... Procedo con join e login"
 
-#: bot-fork.php:320
+#: bot-fork.php:323
 msgid "event-433"
 msgstr "Codice 433 ricevuto, necessario GHOST"
 
-#: bot-fork.php:323
+#: bot-fork.php:326
 msgid "no-nickserv"
 msgstr "ickServ :No such nick/channel"
 
-#: bot-fork.php:343
+#: bot-fork.php:346
 msgid "command-kill"
 msgstr "suicidati"
 
-#: bot-fork.php:344
+#: bot-fork.php:347
 msgid "command-kill-msg1"
 msgstr "Ok... :("
 
-#: bot-fork.php:347
+#: bot-fork.php:350
 msgid "command-kill-msg2"
 msgstr "Addio!!! :'("
 
-#: bot-fork.php:348
+#: bot-fork.php:351
 msgid "command-kill-msg3"
 msgstr "BANG!"
 
-#: bot-fork.php:379 bot-fork.php:383
+#: bot-fork.php:382 bot-fork.php:386
 #, php-format
 msgid "bot-poke-%s"
 msgstr "Cosa c'&egrave; %s??"
 
-#: bot-fork.php:395
+#: bot-fork.php:398
 msgid "ping"
 msgstr "PING request"
-
-#: functions/builtins/functions.xml1.php:17
-msgid "greetstatus-regex"
-msgstr "/^saluti status$|^saluti status ([^ ]+)$/"
-
-#: functions/builtins/functions.xml1.php:18
-msgid "greetstatus-descr_name"
-msgstr "saluti status, saluti status {UTENTE}"
-
-#: functions/builtins/functions.xml1.php:19
-msgid "greetstatus-descr"
-msgstr ""
-"Da informazioni sullo stato dei saluti per un singolo utente o per il canale"
-
 
