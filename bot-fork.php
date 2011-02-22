@@ -15,7 +15,7 @@
 	$is_log_minimal = $config->getMinimalLog();
 	$db_engine = $config->getDB();
 	$page_prefix = $config->getPagePrefix();
-	$page_prefix = $config->getPagePassword();
+	$page_password = $config->getPagePassword();
 
 	$localedir = "locale/";
 	$domain = "messages";
