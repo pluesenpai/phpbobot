@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-21 23:20+0100\n"
+"POT-Creation-Date: 2011-02-22 21:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,6 +64,20 @@ msgstr ""
 #: functions/builtins/greetuser.php:11
 #, php-format
 msgid "greetuser-absent-%s"
+msgstr ""
+
+#: functions/builtins/greet.php:4
+msgid "greet-message"
+msgstr ""
+
+#: functions/builtins/addpoke.php:11
+msgid "addpoke-success"
+msgstr ""
+
+#: functions/builtins/addpoke.php:13 functions/builtins/delmessage.php:10
+#: functions/builtins/lists_add.php:30 functions/builtins/lists_remove.php:31
+#: functions/builtins/setmessage.php:12
+msgid "auth-required"
 msgstr ""
 
 #: functions/builtins/_help.php:20
@@ -126,6 +140,10 @@ msgstr ""
 msgid "greetinchanonjoin-error"
 msgstr ""
 
+#: functions/builtins/delmessage.php:8
+msgid "message-removed"
+msgstr ""
+
 #: functions/builtins/lists_add.php:17 functions/builtins/lists_add.php:22
 #, php-format
 msgid "lists-user_added-%s-%s"
@@ -141,13 +159,13 @@ msgstr ""
 msgid "lists-list_notexists-%s"
 msgstr ""
 
-#: functions/builtins/lists_add.php:30 functions/builtins/lists_remove.php:31
-#: functions/builtins/setmessage.php:12
-msgid "auth-required"
-msgstr ""
-
 #: functions/builtins/talkall.php:11
 msgid "back-message"
+msgstr ""
+
+#: functions/builtins/botversion.php:5
+#, php-format
+msgid "botversion-%s-%s"
 msgstr ""
 
 #: functions/builtins/lists_remove.php:16
@@ -425,9 +443,25 @@ msgstr ""
 msgid "away-message"
 msgstr ""
 
+#: functions/builtins/deauth.php:9
+msgid "deauth-success"
+msgstr ""
+
+#: functions/builtins/deauth.php:11
+msgid "deauth-failed"
+msgstr ""
+
 #: functions/builtins/greetme.php:4
 #, php-format
 msgid "greetme-message-%s"
+msgstr ""
+
+#: functions/builtins/auth.php:9
+msgid "auth-success"
+msgstr ""
+
+#: functions/builtins/auth.php:12
+msgid "auth-failed"
 msgstr ""
 
 #: functions/quotes/allquotes.php:76 bot-fork.php:116 bot-fork.php:131

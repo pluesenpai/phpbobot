@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-21 23:20+0100\n"
-"PO-Revision-Date: 2011-02-21 23:39+0100\n"
+"POT-Creation-Date: 2011-02-22 21:55+0100\n"
+"PO-Revision-Date: 2011-02-22 21:58+0100\n"
 "Last-Translator: Paolo <paolo86@altervista.org>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -65,6 +65,20 @@ msgstr "Chi mi fai salutare? %s sono io!!!"
 #, php-format
 msgid "greetuser-absent-%s"
 msgstr "Chi mi fai salutare? %s non c'&egrave;!!!"
+
+#: functions/builtins/greet.php:4
+msgid "greet-message"
+msgstr "Ciao a tutti!! :)"
+
+#: functions/builtins/addpoke.php:11
+msgid "addpoke-success"
+msgstr "Messaggio aggiunto!"
+
+#: functions/builtins/addpoke.php:13 functions/builtins/delmessage.php:10
+#: functions/builtins/lists_add.php:30 functions/builtins/lists_remove.php:31
+#: functions/builtins/setmessage.php:12
+msgid "auth-required"
+msgstr "Prima effettua l'autenticazione!"
 
 #: functions/builtins/_help.php:20
 #, php-format
@@ -126,6 +140,10 @@ msgstr "OK! Memorizzato!"
 msgid "greetinchanonjoin-error"
 msgstr "Mmh... &egrave; avvenuto un errore."
 
+#: functions/builtins/delmessage.php:8
+msgid "message-removed"
+msgstr "Saluto eliminato!"
+
 #: functions/builtins/lists_add.php:17 functions/builtins/lists_add.php:22
 #, php-format
 msgid "lists-user_added-%s-%s"
@@ -141,14 +159,14 @@ msgstr "%s si trova gi&agrave; in %sop list."
 msgid "lists-list_notexists-%s"
 msgstr "La lista %sop non esiste."
 
-#: functions/builtins/lists_add.php:30 functions/builtins/lists_remove.php:31
-#: functions/builtins/setmessage.php:12
-msgid "auth-required"
-msgstr "Prima effettua l'autenticazione!"
-
 #: functions/builtins/talkall.php:11
 msgid "back-message"
 msgstr "Torrau!!"
+
+#: functions/builtins/botversion.php:5
+#, php-format
+msgid "botversion-%s-%s"
+msgstr "Sono %s, versione %s"
 
 #: functions/builtins/lists_remove.php:16
 #: functions/builtins/lists_remove.php:25
@@ -428,10 +446,26 @@ msgstr "Blablabla Blabla"
 msgid "away-message"
 msgstr "Vado a zappare!"
 
+#: functions/builtins/deauth.php:9
+msgid "deauth-success"
+msgstr "Deautenticato con successo"
+
+#: functions/builtins/deauth.php:11
+msgid "deauth-failed"
+msgstr "Errore durante la deautenticazione"
+
 #: functions/builtins/greetme.php:4
 #, php-format
 msgid "greetme-message-%s"
 msgstr "Ciao %s :)"
+
+#: functions/builtins/auth.php:9
+msgid "auth-success"
+msgstr "Ora sei autenticato!"
+
+#: functions/builtins/auth.php:12
+msgid "auth-failed"
+msgstr "Password errata"
 
 #: functions/quotes/allquotes.php:76 bot-fork.php:116 bot-fork.php:131
 msgid "error"
