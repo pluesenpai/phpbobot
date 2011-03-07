@@ -52,15 +52,20 @@
 			if($outgoing) { //OUTGOING MESSAGE
 				@list($type, $recv, $msg) = explode(" ", $data, min(3, substr_count($data, " ") + 1));
 				$paths = array();
-				if($recv{0} == "#") //Message to a channel
+				if(preg_match("/^PRIVMSG NickServ :IDENTIFY (.+)$/", $data, $password)) {
+					$data = "PRIVMSG NickServ :IDENTIFY *********";
+				}
+				if($recv{0} == "#") { //Message to a channel
 					$paths[] = $this->_folder . substr($recv, 1) . "/" . $this->_log_file;
-				else {
+				} else {
 					foreach($this->_chans as $chan)
 						$paths[] = $this->_folder . substr($chan, 1) . "/" . $this->_log_file;
 				}
 				$this->files_put_contents($paths, "$timestamp >>>" . toUTF8($data) . "\n", FILE_APPEND + LOCK_EX);
 			} else { //INCOMING MESSAGE
 				@list($d, $type, $recv, $msg) = explode(" ", $data, min(4, substr_count($data, " ") + 1));
+				if($type == "315" || $type == "352" || $type == "353" || $type == "366") //ignores names and who replys
+					return;
 				$d = substr($d, 1);
 				if(strpos($d, "!") !== false) {
 					preg_match("/(.*)!.*/", $d, $sender);
