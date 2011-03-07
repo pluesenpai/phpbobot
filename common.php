@@ -589,7 +589,7 @@
 		if($page_prefix != "") {
 			$page = "{$page_prefix}{$function}/engine.php?action={$action}&psw=" . md5($page_password);
 			foreach($params as $key => $value) {
-				$page .= "&{$key}={$value}";
+				$page .= "&{$key}=" . urlencode($value);
 			}
 			getpage($page);
 		}

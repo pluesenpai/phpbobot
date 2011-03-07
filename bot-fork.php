@@ -39,7 +39,7 @@
 	require_once("database/database.class.php");
 	$db = new Database("database.db", "", "", "", "");
 
-	const version = "0.10.8-SNAPSHOT";
+	const version = "0.10.8";
 	const user_folder = "/dev/shm/channels";
 	$chiusura = false;		//When setted to true the Bot will close
 	$functions = array();	//array containing information about functions
