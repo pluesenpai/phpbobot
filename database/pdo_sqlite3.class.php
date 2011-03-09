@@ -198,7 +198,7 @@
 						$sep = "";
 						if(!is_numeric($data[1]))
 							$sep = "\"";
-						$query .= " DEFAULT {$sep}{$data[1]}{$sep}";
+						$q .= " DEFAULT {$sep}{$data[1]}{$sep}";
 					}
 				}
 				if($args[$i]['null'] == 'not')

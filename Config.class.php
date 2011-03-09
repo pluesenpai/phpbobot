@@ -115,6 +115,9 @@
 					} else {
 						echo "{$key_}: [$old] ";
 						$new = trim(fgets(STDIN));
+						if(empty($new)) {
+							$new = $old;
+						}
 						$this->xmlItems[$key] = $this->$func($new);
 						$changed = true;
 					}
