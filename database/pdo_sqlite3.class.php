@@ -74,7 +74,6 @@
 		  */
 		function create_table()
 		{
-			$n_args = func_num_args();
 			$args = func_get_args();
 				//args[0] = tablename
 				//args[$i > 0] = array('fieldname' => "", 'type' => "", 'size' => "", 'null' => "", 'flags' => "")
@@ -84,10 +83,13 @@
 				//args[] = array('CHECK' => array(check_fields))
 				//args[] = array('UNIQUE' => array(unique_fields))
 
-			if($args[1][0] == "fields")
+			if(isset($args[1][0]) && $args[1][0] == "fields") {
 				$fields = array_slice($args[1], 1);
-			else
+			} else {
 				$fields = array_slice($args, 1);
+			}
+
+			$n_args = count($fields);
 
 			$query = "CREATE TABLE {$args[0]} (";
 			for($i = 0; $i < $n_args && array_key_exists("fieldname", $fields[$i]); $i++) {
