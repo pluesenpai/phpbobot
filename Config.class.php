@@ -14,7 +14,6 @@
 			"server" => "irc.syrolnet.org",
 			"port" => "6668",
 			"chans" => array(
-				"chan" => "#sardylan",
 				"chan" => "#bottoli"
 			),
 			"db" => "pdo_sqlite3",
@@ -112,13 +111,16 @@
 								$changed = true;
 							}
 						} while($new != "");
+						if(count($this->xmlItems[$key]) == 0) {
+							$this->xmlItems[$key] = $this->xmlDefaultItems[$key];
+						}
 					} else {
 						echo "{$key_}: [$old] ";
 						$new = trim(fgets(STDIN));
 						if(empty($new)) {
 							$new = $old;
 						}
-						$this->xmlItems[$key] = $this->$func($new);
+						$this->xmlItems[$key] = $new;
 						$changed = true;
 					}
 				}
