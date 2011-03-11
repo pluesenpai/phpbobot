@@ -2,7 +2,7 @@
 	function bpp_generateXml($lang)
 	{
 		$langs["it_IT"] = array(
-			"autobpp-regex" => "/^autobpp (on|off)$/",
+			"autobpp-regex" => "/^autobpp (on|off|ON|OFF)$/",
 			"autobpp-descr_name" => "autobpp ON|OFF",
 			"autobpp-descr" => "Attiva o disattiva il parser delle variabili.",
 			//------------------------------------------------
@@ -20,7 +20,7 @@
 		);
 
 		$langs["en_GB"] = array(
-			"autobpp-regex" => "/^autobpp (on|off)$/",
+			"autobpp-regex" => "/^autobpp (on|off|ON|OFF)$/",
 			"autobpp-descr_name" => "autobpp ON|OFF",
 			"autobpp-descr" => "Enables or disables variables parsing.",
 			//------------------------------------------------
