@@ -4,14 +4,14 @@
 	{
 		global $db, $translations;
 
-		if(isset($infos[3])) {
-			$var = $infos[3];
-			$meaning = $infos[4];
-			$description = $infos[5];
-		} else {
-			$var = $infos[1];
-			$meaning = $infos[2];
+		if(isset($infos[4])) {
+			$var = trim($infos[4]);
+			$meaning = trim($infos[5]);
 			$description = "NULL";
+		} else {
+			$var = trim($infos[1]);
+			$meaning = trim($infos[2]);
+			$description = trim($infos[3]);
 		}
 
 		$known = $db->select(array("bpp"), array("var"), array(""), array("var"), array("="), array("{$var}"), 1);
@@ -29,7 +29,7 @@
 		$params = array(
 			"var" => $var,
 			"meaning" => $meaning,
-			"description" => ($description == "NULL") ? "" : $description;
+			"description" => ($description == "NULL") ? "" : $description
 		);
 		callpage("vars", "add", $params);
 		//getpage("http://www.lucacireddu.it/vars/engine.php?action=add&psw=bd89d1d862bd5ba278ea89184038841a&var={$infos[1]}&meaning={$infos[2]}");

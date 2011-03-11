@@ -591,7 +591,8 @@
 			foreach($params as $key => $value) {
 				$page .= "&{$key}=" . urlencode($value);
 			}
-			getpage($page);
+			$result = getpage($page);
+			error_log($result);
 		}
 	}
 

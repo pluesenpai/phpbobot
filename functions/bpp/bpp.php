@@ -25,16 +25,20 @@
 		$vars = $variables[1];
 		sort($vars);
 
-		$wrong = $db->select(array("bpp"), array("var", "meaning", "description"), array("", ""), array("var"), array("IN"), array("('" . implode("', '", $vars) . "')"), 0, "asc*var");
+		$wrong = $db->select(array("bpp"), array("var", "meaning", "description"), array("", "", ""), array("var"), array("IN"), array("('" . implode("', '", $vars) . "')"), 0, "asc*var");
 		$known = $db->select(array("bpp"), array("var"), array(""), array("var"), array("IN"), array("('" . implode("', '", $vars) . "')"), 0, "asc*var");
 
 		if(count($wrong) > 0) {
 			for($i = 0; $i < count($wrong); $i++) {
-				$msg = preg_replace("/\\\${$wrong[$i]["var"]}/", $wrong[$i]["meaning"], $msg);
+				if($always == false) {
+					$msg = preg_replace("/\\\${$wrong[$i]["var"]}/", "{$wrong[$i]["meaning"]} ({$wrong[$i]["description"]})", $msg);
+				} else {
+					$msg = preg_replace("/\\\${$wrong[$i]["var"]}/", $wrong[$i]["meaning"], $msg);
+				}
 			}
 
 			if($always == false) {
-				sendmsg($socket, "{$sender} " . $translations->bot_gettext("bpp-means") . ": {$msg} ({$wrong[$i]["description"]})", $channel);
+				sendmsg($socket, "{$sender} " . $translations->bot_gettext("bpp-means") . ": {$msg}", $channel);
 			} else {
 				sendmsg($socket, $msg, $channel);
 			}

@@ -5,7 +5,7 @@
 	function bpp_init() {
 		global $db;
 
-		$bpp_field3 = array('fieldname' => "description", 'type' => "varchar", 'size' => 150, 'null' => "not", 'flags' => array());
+		$bpp_field3 = array('fieldname' => "description", 'type' => "varchar", 'size' => 150, 'null' => "", 'flags' => array());
 		if(!$db->table_is_present("bpp")) {
 			$bpp_field1 = array('fieldname' => "var", 'type' => "varchar", 'size' => 80, 'null' => "not", 'flags' => array("primary"));
 			$bpp_field2 = array('fieldname' => "meaning", 'type' => "varchar", 'size' => 80, 'null' => "not", 'flags' => array());
