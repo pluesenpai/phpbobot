@@ -595,4 +595,14 @@
 		}
 	}
 
+	/**
+	 * Counts how many words are in the given string
+	 * @param string $stringa The string
+	 * @return int How many words are in given string
+	 */
+	function word_count($stringa)
+	{
+		return count(explode(" ", $stringa));
+	}
+
 ?>

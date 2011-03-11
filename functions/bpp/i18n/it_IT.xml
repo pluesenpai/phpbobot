@@ -8,7 +8,7 @@
 		<msgstr><![CDATA[Dizionario di variabili.]]></msgstr>
 	</translation>
 	<translation>
-		<msgid><![CDATA[bpp-meant]]></msgid>
+		<msgid><![CDATA[bpp-means]]></msgid>
 		<msgstr><![CDATA[significa]]></msgstr>
 	</translation>
 	<translation>
@@ -38,5 +38,9 @@
 	<translation>
 		<msgid><![CDATA[bpp-var_remove_ok-%s]]></msgid>
 		<msgstr><![CDATA[Variabile $%s rimossa correttamente.]]></msgstr>
+	</translation>
+	<translation>
+		<msgid><![CDATA[bpp-too_many_words-%s]]></msgid>
+		<msgstr><![CDATA[La variabile $%s non &egrave; di una sola parola.]]></msgstr>
 	</translation>
 </db>

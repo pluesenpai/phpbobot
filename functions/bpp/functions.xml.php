@@ -10,7 +10,7 @@
 			"bpp-descr_name" => "bpp \$VARIABILE",
 			"bpp-descr" => "Stampa il valore di \$VARIABILE.",
 			//------------------------------------------------
-			"addvar-regex" => "/^var \\$([a-zA-Z_][a-zA-Z0-9_]*)[ ]*=[ ]*(.+)$/",
+			"addvar-regex" => "#^var \\$([a-zA-Z_][a-zA-Z0-9_]*)[ ]*=[ ]*(.+)$|^var \\$([a-zA-Z_][a-zA-Z0-9_]*)[ ]*=[ ]*(.+)[ ]*//[ ]*(.+)$#",
 			"addvar-descr_name" => "var \$VARIABILE = VALORE",
 			"addvar-descr" => "Crea una nuova variabile \$VARIABILE e gli assegna il valore VALORE.",
 			//------------------------------------------------

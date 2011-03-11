@@ -5,10 +5,16 @@
 	function bpp_init() {
 		global $db;
 
+		$bpp_field3 = array('fieldname' => "description", 'type' => "varchar", 'size' => 150, 'null' => "not", 'flags' => array());
 		if(!$db->table_is_present("bpp")) {
 			$bpp_field1 = array('fieldname' => "var", 'type' => "varchar", 'size' => 80, 'null' => "not", 'flags' => array("primary"));
 			$bpp_field2 = array('fieldname' => "meaning", 'type' => "varchar", 'size' => 80, 'null' => "not", 'flags' => array());
-			$db->create_table("bpp", $bpp_field1, $bpp_field2);
+			$db->create_table("bpp", $bpp_field1, $bpp_field2, $bpp_field3);
+		}
+
+		if(!$db->field_is_present("bpp", "description")) {
+			$db->alter_table("bpp", $bpp_field3);
+			$db->update("bpp", array("description"), array(""), array("description"), array("="), array("NULL"));
 		}
 
 		if(!$db->field_is_present("chan", "is_bpp_on")) {
